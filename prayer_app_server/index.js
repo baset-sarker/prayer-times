@@ -25,8 +25,8 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Serve the HTML file at root
 app.get('/', (req, res) => {
-   //res.sendFile(path.join(__dirname, '/views/prayers.html'));
-   res.sendFile(path.join(__dirname, '/views/prayers_side_by_side.html'));
+    res.sendFile(path.join(__dirname, '/views/prayers.html'));
+   //res.sendFile(path.join(__dirname, '/views/prayers_side_by_side.html'));
 });
 
 // GET /update - Read prayer times and pass to update.html

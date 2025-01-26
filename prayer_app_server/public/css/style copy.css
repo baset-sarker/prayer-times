@@ -8,6 +8,14 @@
         background-color:#04383F
     }
 
+    #div1{
+        margin:auto;
+    }
+
+
+    h1 {
+        font-size: 2.9em;
+    }
 
     /* Left image */
     .left-image {
@@ -65,6 +73,10 @@
     }
 
     .shiny-gold-text {
+       
+        /* font-size: 2.5em;  */
+        /* font-weight: bold; */
+            /*color: #d4af37; Fallback gold color */
         color: #ecc402;
         background: linear-gradient(45deg, #ffd700, #ffac33, #d4af37, #f3a32c, #ffd700);
         /* background-size: 400%; Ensure smooth animation */
@@ -72,33 +84,65 @@
         -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
         /* background-position: 100% 50%; */
         animation: shine 4s linear infinite; /* Smooth and continuous animation */
-    }
-    
-    #pt {
-        font-size: 2.9em;
-    }
-
-    .prayer_text {
-        font-size: 2.8em;
+        display: inline-block; /* Ensure the text respects the gradient effect */
+        padding-top: 0;
+        margin-top: 0;
     }
 
-    #hadis_today_text {
-        font-size: 3em;
+    .text_holder {
+        /* font-size: 3em; */
+        padding: 2px;
+        margin: 2px;
+        height: 60px;
+        text-align: center;
+    }
+
+    .footer-div {
+        width: 100%; /* Makes it span the full width of the window */
+        color: white; /* Text color */
+        text-align: center; /* Center-aligns the text */
+        padding: 10px; /* Adds padding for spacing */
+        margin-top: 10px;
+        z-index: 1000; /* Ensures the div stays above other elements */
+    }
+
+    .bottom-right-div{
+        position: fixed; /* Fixes the div in place relative to the viewport */
+        bottom: 0; /* Positions the div at the bottom */
+        right: 0; /* Aligns it to the right */
+        color: white; /* Text color */
+        text-align: center; /* Center-aligns the text */
+        padding: 10px; /* Adds padding for spacing */
+        z-index: 1000; /* Ensures the div stays above other elements */
+    }
+
+
+    /* Make the entire viewport a flex container */
+    .center-content {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        justify-content: center; /* Center vertically */
+        align-items: center; /* Center horizontally */
+        height: calc(100vh - 400px); /* Subtract image height */
+        width: 100%; /* Full width */
         color: white;
+        text-align: center;
     }
 
-    #div2 {
-        display: none;
-        height: 600px;
-        width: 90%;
-        justify-content: center;  /* Centers horizontally */
-        align-items: center;  /* Centers vertically */
-        color: white; /* Optional: Makes text visible */
-        text-align: center; /* Ensures text inside spans multiple lines properly */
+    #prayer_text {
+        margin-bottom: 40px;
+        margin-bottom: 40px;
     }
+
+ 
+   
+
+    /* For mobile and tablet*/
 
     @media (max-width: 768px) {
-
+        h1 {
+            font-size: 1.2em;
+        }
         .left-image {
             width: 100px; /* Adjust width as needed */
         }
@@ -112,18 +156,7 @@
             margin-bottom: 0px;
         }
 
-        .prayer_text {
-            font-size: 1.5em;
-        }
-
-        #hadis_today_text {
-            font-size: 1.5em;
-        }
-
-        #pt {
-            font-size: 1.5em;
-        }
-
+ 
         .golden-card {
             height: auto !important;
             min-height: fit-content;
@@ -135,9 +168,27 @@
             margin-top: 10px;
         }
 
-      
+        #prayer_text {
+            margin-bottom: 2px;
+            margin-bottom: 2px;
+        }   
+    
+        .text_holder {
+            float: left;
+            padding: 1px;
+            margin: 1px;
+            text-align: center;
+            justify-content: center;
+            height: 30px;
+        }
+
+        #div1{
+            margin-left: 40px;
+        }
+
+        .bottom-right-div{
+            display: none;
+        }
+    
 
     }
-
-
-

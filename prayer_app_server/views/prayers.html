@@ -7,92 +7,90 @@
     <link href="/public/fronts/google-fronts.woff2" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/style.css">
-    
 </head>
-<body style="background-color:#04383F">
+<body>
     <img src="/public/images/s1.png" alt="Left Image" class="left-image"> <!-- Replace with your left image -->
     <img src="/public/images/s2.png" alt="Right Image" class="right-image"> <!-- Replace with your right image -->
-    <div class="container text-center" id="div1">
-        <div class="text-center">
-            <img src="/public/images/bismillah.png" class="bismillah" alt="Centered Image">
-            <h1 onclick="window.location.href='/update'" class="text-white" id="prayer_text">Prayer Time</h1>
-            <!-- <h1 style="text-align: center; size: 200em; color: white;">Prayer Time</h5> -->
+
+    <div class="container-fluid text-center">
+        <div class="row-fluid w-100">
+            <img onclick="window.location.href='/update'" 
+                 src="/public/images/bismillah.png" 
+                 class="bismillah" alt="Centered Image">
         </div>
+    
+        <div class="row-fluid w-100 d-flex flex-column justify-content-center align-items-center" id="main-content">
+            <div class="text-center" id="div1" style="width: 90%;" >  
+                <div class="row justify-content-center">
+                    <h1 onclick="window.location.href='/update'" class="text-white" id="pt">Prayer Time (Potsdam Masjid)</h1>
+                </div>              
+                <div class="row justify-content-center">
+                        <div class="col-lg-4 col-sm-6 col-xs-6">
+                            <div class="golden-card">
+                                <div class="prayer_text shiny-gold-text">(فجر)</div>
+                                <div class="prayer_text shiny-gold-text" id="fajr"></div>
+                                <div class="prayer_text shiny-gold-text" id="sunrise"></div>    
+                            </div>
+                         </div>
+                        <div class="col-lg-4 col-sm-6 col-xs-6">
+                            <div class="golden-card">
+                                <div class="prayer_text shiny-gold-text">(ظهر)</div>
+                                <div class="prayer_text shiny-gold-text" id="dhuhr"></div>
+                                <div class="prayer_text shiny-gold-text" id="jummah"></div>  
+                            </div>
+                     </div>
+                     <div class="col-lg-4 col-sm-6 col-xs-6" style="height: auto !important;">
+                        <div class="golden-card">
+                            <div class="prayer_text shiny-gold-text">(عصر)</div>
+                            <div class="prayer_text shiny-gold-text" id="asr"></div>
+                        </div>
+                    </div>
+                     
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-sm-6 col-xs-6">
+                            <div class="golden-card">
+                                <div class="prayer_text shiny-gold-text">(مغرب)</div>
+                                <div class="prayer_text shiny-gold-text" id="magrib"></div>
+                                
+                            </div>
+                     </div>
+                     <div class="col-lg-4 col-sm-6 col-xs-6">
+                            <div class="golden-card">
+                                <div class="prayer_text shiny-gold-text">(عشاء)</div>
+                                <div class="prayer_text shiny-gold-text" id="isha"></div>
+                            </div>
+                     </div>
+                </div>
         
-        <div class="row justify-content-center">
-                <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <div class="golden-card">
-                        <div class="text_holder"><h1 class="shiny-gold-text">(فجر)</h1></div>
-                        <!-- <div class="text_holder"><h1 class="shiny-gold-text">Fajr</h1></div> -->
-                        <div class="text_holder"><h1 class="shiny-gold-text">Fajr &nbsp;</h1><h1 id="fajr" class="shiny-gold-text">5:00 AM</h1></div>
-                        <div class="text_holder"><h1 class="shiny-gold-text">Sunrise</h1> <h1 id="sunrise" class="shiny-gold-text">5:00 AM</h1></div>
-                    </div>
-                 </div>
-                <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <div class="golden-card">
-                        <div class="text_holder"><h1 class="shiny-gold-text">(ظهر)</h1></div>
-                        <!-- <div class="text_holder"><h1 class="shiny-gold-text">Dhuhr</h1></div> -->
-                        <div class="text_holder"><h1 class="shiny-gold-text">Dhuhr &nbsp;</h1><h1 id="dhuhr", class="shiny-gold-text">5:00 AM></h1></div>
-                        <div class="text_holder"><h1 class="shiny-gold-text">Jummah &nbsp;</h1> <h1 id="jummah" class="shiny-gold-text">5:00 AM</h1></div>
-                    </div>
-             </div>
-             <div class="col-lg-4 col-sm-6 col-xs-6" style="height: auto !important;">
-                <div class="golden-card">
-                    <div class="text_holder shiny-gold-text"> <h1 class="shiny-gold-text">(عصر)</h1></div>
-                    <div class="text_holder"><h1 class="shiny-gold-text">Asr</h1></div>
-                    <div class="text_holder"><h1 id="asr" class="shiny-gold-text">5:00 AM</h1></div>
+            </div> <!-- div1 ednd-->
+
+        
+            <div id="div2" style="display: none;" class="">
+                <div class="row justify-content-center">
+                    <div id="hadis_today_text"></div>
                 </div>
             </div>
-             
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <div class="golden-card">
-                        <div class="text_holder"><h1 class="shiny-gold-text">(مغرب)</h1></div>
-                        <div class="text_holder"><h1 class="shiny-gold-text">Magrib</h1></div>
-                        <div class="text_holder"><h1 id="magrib" class="shiny-gold-text">5:00 AM</div>
-                    </div>
-             </div>
-             <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <div class="golden-card">
-                        <div class="text_holder"><h1 class="shiny-gold-text">(عشاء)</h1></div>
-                            <div class="text_holder"><h1 class="shiny-gold-text">Isha</h1></div>
-                            <div class="text_holder"><h1 id="isha" class="shiny-gold-text">5:00 AM</h1></div>
-                    </div>
-             </div>
-             
-        </div>
-        <div class="my-5">
-            <div class="text-center">
-                <h1 id="head_line" style="text-align: center; size: 200em; color: white; margin-bottom: 25px;">Dua for entering the masjid</h5>
-                <h3 id="first_line" style="color: white;">اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ </h3>
-                <h3 id="second_line" style="color: white;"> O Allah! open for me the doors of Thy mercy</h3>
+        
+        <div class="row w-100 d-flex flex-column justify-content-center align-items-center" id="footer-content">
+            <div class="my-5">
+                <div class="text-center">
+                    <h1 id="head_line" style="text-align: center; size: 200em; color: white; margin-bottom: 25px;">Dua for entering the masjid</h5>
+                    <h3 id="first_line" style="color: white;">اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ </h3>
+                    <h3 id="second_line" style="color: white;"> O Allah! open for me the doors of Thy mercy</h3>
+                </div>
+            </div>
+        
+            <div class="text-center footer-div" style="color: white;">
+                Potsdam Masjid, 110 Elm St, Potsdam, NY 13676 <br>
+                <!-- Scan the QR code for up-to-date information -->
             </div>
         </div>
-
-        <!-- <div class="bottom-right-div">
-            <div class="card" style="width: 8rem;">
-                <img src="/public/images/qr_sample.png" class="card-img-top" alt="Card Image">
-              </div>
-        </div> -->
-
-        <div class="text-center footer-div" style="color: white;">
-            Potsdam Masjid, 110 Elm St, Potsdam, NY 13676 <br>
-            <!-- Scan the QR code for up-to-date information -->
-        </div>
     
     </div>
 
-    <div class="container" id="div2">
-        <div class="text-center" style="margin-bottom: 40px;">
-            <img src="/public/images/bismillah.png" class="bismillah" alt="Centered Image">
-        </div>
-        <div class="center-content">
-            <h1 class="my-4">Hadith For Today</h1>
-            <h2 id="hadis_today_text"></h2>
-        </div>
-    </div>
-    
+</body>
+ 
     
     <!-- jQuery -->
     <script src="/public/js/jquery3_5_1.min.js"></script>
@@ -103,8 +101,12 @@
 
    
     <script>
+        const dataFetchInterval = 5000; // 5 seconds
+        const hadisShowInterval = 5000; // 5 seconds
+
         let hadisArray = [];
         let current_hadis = 0; // Track the current index
+
 
         function getNextHadis() {
 
@@ -124,13 +126,44 @@
                 const data = await response.json();
 
                 if (data.prayers) {
-                    Object.entries(data.prayers).forEach(([key, value]) => {
-                        const element = document.getElementById(key);
-                        if (element) {
-                            element.textContent = value; // Update the content of the prayer time element
-                        }
-                    });
+                   
+                    if(data.prayers.fajr){
+                        const element = document.getElementById('fajr');
+                        element.innerHTML = 'Fajr '+data.prayers.fajr
+                    }
+
+                    if(data.prayers.sunrise){
+                        const element = document.getElementById('sunrise');
+                        element.innerHTML = 'Sunrise '+data.prayers.sunrise
+                    }
+
+                    if(data.prayers.dhuhr){
+                        const element = document.getElementById('dhuhr');
+                        element.innerHTML = 'Dhuhr '+data.prayers.dhuhr
+                    }
+
+                    if(data.prayers.jummah){
+                        const element = document.getElementById('jummah');
+                        element.innerHTML = 'Jummah '+data.prayers.jummah
+                    }
+
+                    if(data.prayers.asr){
+                        const element = document.getElementById('asr');
+                        element.innerHTML = 'Asr '+data.prayers.asr
+                    }
+
+                    if(data.prayers.magrib){
+                        const element = document.getElementById('magrib');
+                        element.innerHTML = 'Magrib '+data.prayers.magrib
+                    }
+
+                    if(data.prayers.isha){
+                        const element = document.getElementById('isha');
+                        element.innerHTML = 'Isha '+data.prayers.isha
+                    }
+                   
                 }
+
 
 
                 // Update noticeprayerTimes
@@ -163,15 +196,6 @@
         updatePrayerTimes();
 
 
-        // Use the timerAPI to setInterval
-        if (window.timerAPI && typeof window.timerAPI.setInterval === 'function') {
-            window.timerAPI.setInterval(updatePrayerTimes, 5000);
-        } else {
-            console.error('timerAPI is not available. Falling back to standard setInterval.');
-            setInterval(updatePrayerTimes, 5000);
-        }
-
-
       
         let isDiv1Visible = true; // Track which div is visible
         document.getElementById("div2").style.display = "none";
@@ -191,6 +215,10 @@
                 document.getElementById("div1").style.opacity = "0";
                 // setTimeout(() => {
                     document.getElementById("div1").style.display = "none";
+                    
+                    // set class to div2
+                    document.getElementById("div2").className = "d-flex justify-content-center align-items-center";
+
                     document.getElementById("div2").style.display = "block";
                     document.getElementById("div2").style.opacity = "1";
                 // }, 2000); // Matches transition duration
@@ -200,6 +228,7 @@
                 // setTimeout(() => {
                     document.getElementById('hadis_today_text').textContent = getNextHadis();
                     document.getElementById("div2").style.display = "none";
+                    document.getElementById("div2").className = "";
                     document.getElementById("div1").style.display = "block";
                     document.getElementById("div1").style.opacity = "1";
                 // }, 2000);
@@ -208,9 +237,17 @@
             isDiv1Visible = !isDiv1Visible; // Toggle state
         }
 
-        // Run the toggle function every 5 seconds
-        setInterval(toggleDivs, 5000);
+
+
+       // Use the timerAPI to setInterval
+       if (window.timerAPI && typeof window.timerAPI.setInterval === 'function') {
+            window.timerAPI.setInterval(updatePrayerTimes, dataFetchInterval);
+            window.timerAPI.setInterval(toggleDivs, hadisShowInterval);
+        } else {
+            console.error('timerAPI is not available. Falling back to standard setInterval.');
+            setInterval(updatePrayerTimes, dataFetchInterval);
+            setInterval(toggleDivs, hadisShowInterval);
+        }
     </script>
     
-</body>
 </html>

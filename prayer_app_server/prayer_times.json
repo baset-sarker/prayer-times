@@ -1,7 +1,7 @@
 {
   "prayers": {
-    "fajr": "8:35 AM",
-    "sunrise": "6:00 AM",
+    "fajr": "06:50 PM",
+    "sunrise": "12:00 AM",
     "dhuhr": "10:36 AM",
     "asr": "8:46 AM",
     "magrib": "7:41 AM",
@@ -10,11 +10,11 @@
   },
   "notice": {
     "head_line": "",
-    "first_line": "",
+    "first_line": "Eid Prayer ",
     "second_line": "Please arrive 10 minuteas early"
   },
   "hadis": {
-    "hadis1": "“Those people who show no mercy will receive no mercy from Allah.”  [Muslim, Al-Fada’il (Excellent Qualities of the Prophet and His Companions); 66]",
+    "hadis1": "“Those people who show no mercy will receive no mercy from Allah.”  [Muslim, Al-Fada’il (Excellent Qualities of the Prophet and His Companions); 66] test",
     "hadis2": "“Make things easier, do not make things more difficult, spread the glad tidings, do not hate.” [Bukhari, Al-Ilm (Knowledge); 12]",
     "hadis3": "“Those who are the means for good deeds are the same as those who perform good deeds.” [Tirmidhi, Al-Ilm (Knowledge); 14]",
     "hadis4": "“Allah is pleased with the task performed by you in which both the action and duty are sound and which is performed well. [Tabarani, Al-Mu’jam Al-Awsat; 1/275]",

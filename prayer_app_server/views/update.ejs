@@ -9,7 +9,7 @@
     
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container mt-0">
         <div class="row" style="height: 50px; background-color: #04383F; margin-bottom: 10px; padding-left: 10px;">
             <a href="/" class="text-white" style="margin-top: 10px;"> Back </a>  
         </div>
@@ -22,39 +22,42 @@
             </div>
         <% } %>
         <form id="updateForm" action="/update" method="POST">
+            <div class="d-flex justify-content-end my-1">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
             <div class="mb-3">
                 <label for="fajr" class="form-label">Fajr</label>
-                <input type="text" required class="form-control timepicker" id="fajr" name="fajr" value="<%= prayerData.prayers.fajr %>">
+                <input type="text" required class="form-control timepicker req" id="fajr" name="fajr" value="<%= prayerData.prayers.fajr %>">
                 <div class="invalid-feedback">Please enter a valid time in HH:MM AM/PM format or (On Time)</div>
             </div>
             <div class="mb-3">
-                <label for="fajr" class="form-label">Sunrise</label>
-                <input type="text" required class="form-control timepicker" id="fajr" name="sunrise" value="<%= prayerData.prayers.sunrise %>">
+                <label for="sunrise" class="form-label">Sunrise</label>
+                <input type="text"  class="form-control timepicker" id="sunrise" name="sunrise" value="<%= prayerData.prayers.sunrise %>">
                 <div class="invalid-feedback">Please enter a valid time in HH:MM AM/PM format or (On Time)</div>
             </div>
             <div class="mb-3">
                 <label for="dhuhr" class="form-label">Dhuhr</label>
-                <input type="text" required class="form-control timepicker" id="dhuhr" name="dhuhr" value="<%= prayerData.prayers.dhuhr %>">
+                <input type="text" required class="form-control timepicker req" id="dhuhr" name="dhuhr" value="<%= prayerData.prayers.dhuhr %>">
                 <div class="invalid-feedback">Please enter a valid time in HH:MM AM/PM format or (On Time)</div>
             </div>
             <div class="mb-3">
                 <label for="asr" class="form-label">Asr</label>
-                <input type="text" required class="form-control timepicker" id="asr" name="asr" value="<%= prayerData.prayers.asr %>">
+                <input type="text" required class="form-control timepicker req" id="asr" name="asr" value="<%= prayerData.prayers.asr %>">
                 <div class="invalid-feedback">Please enter a valid time in HH:MM AM/PM format or (On Time)</div>
             </div>
             <div class="mb-3">
                 <label for="magrib" class="form-label">Magrib</label>
-                <input type="text" required class="form-control timepicker" id="magrib" name="magrib" value="<%= prayerData.prayers.magrib %>">
+                <input type="text" required class="form-control timepicker req" id="magrib" name="magrib" value="<%= prayerData.prayers.magrib %>">
                 <div class="invalid-feedback">Please enter a valid time in HH:MM AM/PM format or (On Time)</div>
             </div>
             <div class="mb-3">
                 <label for="isha" class="form-label">Isha</label>
-                <input type="text" required class="form-control timepicker" id="isha" name="isha" value="<%= prayerData.prayers.isha %>">
+                <input type="text" required class="form-control timepicker req" id="isha" name="isha" value="<%= prayerData.prayers.isha %>">
                 <div class="invalid-feedback">Please enter a valid time in HH:MM AM/PM format or (On Time)</div>
             </div>
             <div class="mb-3">
                 <label for="jummah" class="form-label">Jummah</label>
-                <input type="text" required class="form-control timepicker" id="jummah" name="jummah" value="<%= prayerData.prayers.jummah %>">
+                <input type="text" required class="form-control timepicker req" id="jummah" name="jummah" value="<%= prayerData.prayers.jummah %>">
                 <div class="invalid-feedback">Please enter a valid time in HH:MM AM/PM format or (On Time)</div>
             </div>
            
@@ -98,8 +101,9 @@
                 <label for="hadis5" class="form-label">Hadith 5</label>
                 <textarea class="form-control" id="hadis5" name="hadis5" maxlength="500" required rows="10"><%= prayerData.hadis.hadis5 %></textarea>
             </div>
-
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
+            <div class="d-flex justify-content-end my-3">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
         </form>
     </div>
 
@@ -113,7 +117,7 @@
     
     const updateBtn = document.querySelector('button[type="submit"]');
     // Attach keyup event listener to each time input
-    document.querySelectorAll('.timepicker').forEach(field => {
+    document.querySelectorAll('.req').forEach(field => {
         field.addEventListener('keyup', function () {
             const errorElement = this.nextElementSibling; // Get the .invalid-feedback element
             if (!timeRegex.test(this.value.trim())) {
@@ -129,17 +133,29 @@
     });
 
 
-    $('.timepicker').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 1,
-        minTime: '00',
-        maxTime: '11:59pm',
-        defaultTime: '',
-        startTime: '00:00',
-        dynamic: true,
-        dropdown: true,
-        scrollbar: true
-    });
+    // $('.timepicker').timepicker({
+    //     timeFormat: 'h:mm p',
+    //     interval: 1,
+    //     minTime: '00',
+    //     maxTime: '11:59pm',
+    //     defaultTime: '',
+    //     startTime: '00:00',
+    //     dynamic: true,
+    //     dropdown: true,
+    //     scrollbar: true
+    // });
+
+
+    // $('.timepicker').timepicker({
+    //     timeFormat: 'h:mm p',
+    //     interval: 1,
+    //     minTime: '12:00am',  // Ensure the minimum time is midnight
+    //     maxTime: '11:59pm',  // Ensure the maximum time is just before midnight
+    //     defaultTime: 'current', // Automatically set to the currently selected time
+    //     dynamic: false,  // Allows scrolling in both directions
+    //     dropdown: true,
+    //     scrollbar: true
+    // });
 </script>
     </script>
 </body>
