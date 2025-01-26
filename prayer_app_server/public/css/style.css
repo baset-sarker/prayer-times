@@ -1,0 +1,191 @@
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh; /* Full viewport height */
+        position: relative; /* Ensures positioning context for child elements */
+        font-family: 'Sawarabi Mincho', serif;
+        display: flex;
+        /* justify-content: center; Horizontally center */
+        /* align-items: center; Vertically center */
+    }
+
+    #div1{
+        margin-left: auto;
+    }
+
+
+    h1 {
+        font-size: 2em;
+    }
+
+    /* Left image */
+    .left-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px; /* Adjust width as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    /* Right image */
+    .right-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px; /* Adjust width as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .right-bottom-image {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100px; /* Adjust width as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+
+    .bismillah {
+        width: 300px;
+        height: auto;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+  
+
+    .golden-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto; /* Allow it to grow */
+        min-height: 250px;
+        width: 90%; /* Responsive width */
+        max-width: 100%;
+        margin-top: 20px;
+        
+        border: 1px solid gold; /* Thick border */
+        border-radius: 40px; /* Increased border radius */
+        background-color: transparent; /* Transparent background */
+        box-shadow: 20px 25px 25px rgba(211, 192, 18, 0.3); /* Increased shadow */
+    }
+
+    .shiny-gold-text {
+       
+        /* font-size: 2.5em;  */
+        /* font-weight: bold; */
+            /*color: #d4af37; Fallback gold color */
+        color: #ecc402;
+        background: linear-gradient(45deg, #ffd700, #ffac33, #d4af37, #f3a32c, #ffd700);
+        /* background-size: 400%; Ensure smooth animation */
+        -webkit-background-clip: text; /* Clip the gradient to the text */
+        -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
+        /* background-position: 100% 50%; */
+        animation: shine 4s linear infinite; /* Smooth and continuous animation */
+        display: inline-block; /* Ensure the text respects the gradient effect */
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .text_holder {
+        /* font-size: 3em; */
+        padding: 2px;
+        margin: 2px;
+        height: 60px;
+    }
+
+    .footer-div {
+        width: 100%; /* Makes it span the full width of the window */
+        color: white; /* Text color */
+        text-align: center; /* Center-aligns the text */
+        padding: 10px; /* Adds padding for spacing */
+        margin-top: 10px;
+        z-index: 1000; /* Ensures the div stays above other elements */
+    }
+
+    .bottom-right-div{
+        position: fixed; /* Fixes the div in place relative to the viewport */
+        bottom: 0; /* Positions the div at the bottom */
+        right: 0; /* Aligns it to the right */
+        color: white; /* Text color */
+        text-align: center; /* Center-aligns the text */
+        padding: 10px; /* Adds padding for spacing */
+        z-index: 1000; /* Ensures the div stays above other elements */
+    }
+
+
+    /* Make the entire viewport a flex container */
+    .center-content {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        justify-content: center; /* Center vertically */
+        align-items: center; /* Center horizontally */
+        height: calc(100vh - 400px); /* Subtract image height */
+        width: 100%; /* Full width */
+        color: white;
+        text-align: center;
+    }
+
+    #prayer_text {
+        margin-bottom: 40px;
+        margin-bottom: 40px;
+    }
+
+   
+
+    /* For mobile */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.2em;
+        }
+        .left-image {
+            width: 100px; /* Adjust width as needed */
+        }
+
+        .right-image {
+            width: 100px; /* Adjust width as needed */
+        }
+
+        .bismillah {
+            width: 150px;
+            margin-bottom: 0px;
+        }
+
+
+ 
+        .golden-card {
+            height: auto !important;
+            min-height: fit-content;
+            /* clear: both; */
+            justify-content: center;
+            text-align: center;
+            padding-bottom: 2px;
+            padding-top: 2px;
+            margin-top: 5px;
+        }
+
+        #prayer_text {
+            margin-bottom: 2px;
+            margin-bottom: 2px;
+        }   
+    
+        .text_holder {
+            float: left;
+            padding: 1px;
+            margin: 1px;
+            text-align: center;
+            justify-content: center;
+            height: 30px;
+        }
+
+        #div1{
+            margin-left: 40px;
+        }
+
+        .bottom-right-div{
+            display: none;
+        }
+    
+
+    }
