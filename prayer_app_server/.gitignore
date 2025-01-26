@@ -115,3 +115,6 @@ package-lock.json
 # IntelliJ IDEA project files
 *.iml
 .idea/
+
+.node_modules/
+
