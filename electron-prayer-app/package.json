@@ -1,0 +1,15 @@
+{
+  "name": "electron-prayer-app",
+  "version": "1.0.0",
+  "description": "An Electron app to load prayer times from a remote server",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.3.1"
+  }
+}

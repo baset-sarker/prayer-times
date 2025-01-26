@@ -1,0 +1,40 @@
+sudo nano /usr/local/bin/start_wifi_hotspot.sh
+
+
+
+#!/bin/bash
+nmcli connection up Rpi
+# paste in the file
+
+# make executable
+sudo chmod +x /usr/local/bin/start_wifi_hotspot.sh
+
+# create service
+sudo nano /etc/systemd/system/wifi-hotspot.service
+
+
+[Unit]
+Description=Start WiFi Hotspot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/local/bin/start_wifi_hotspot.sh
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+sudo systemctl daemon-reload
+sudo systemctl enable wifi-hotspot.service
+
+
+
+
