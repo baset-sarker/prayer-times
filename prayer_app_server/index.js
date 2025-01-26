@@ -53,11 +53,13 @@ app.post('/update', (req, res) => {
     const { fajr,sunrise, dhuhr, asr, magrib, isha, jummah, head_line, first_line, second_line,
         hadis1, hadis2, hadis3, hadis4, hadis5
     } = req.body;
+    
 
-
+    
     const updatedData = {
         prayers: { fajr, sunrise, dhuhr, asr, magrib, isha, jummah },
         notice: { head_line, first_line, second_line },
+        notice_default: { head_line: 'Dua for entering the masjid', first_line: "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ", second_line: 'O Allah! open for me the doors of your mercy' },
         hadis: { hadis1, hadis2, hadis3, hadis4, hadis5 }
     };
 

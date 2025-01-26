@@ -77,7 +77,7 @@
                 <div class="text-center">
                     <h1 id="head_line" style="text-align: center; size: 200em; color: white; margin-bottom: 25px;">Dua for entering the masjid</h5>
                     <h3 id="first_line" style="color: white;">اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ </h3>
-                    <h3 id="second_line" style="color: white;"> O Allah! open for me the doors of Thy mercy</h3>
+                    <h3 id="second_line" style="color: white;"> O Allah! open for me the doors of thy mercy</h3>
                 </div>
             </div>
         
@@ -165,13 +165,16 @@
                 }
 
 
-
                 // Update noticeprayerTimes
                 if (data.notice) {
                     if (data.notice.head_line != '') {
                         document.getElementById('head_line').textContent = data.notice.head_line || '';
                         document.getElementById('first_line').textContent = data.notice.first_line || '';
                         document.getElementById('second_line').textContent = data.notice.second_line || '';
+                    }else {
+                        document.getElementById('head_line').textContent = data.notice_default.head_line || '';
+                        document.getElementById('first_line').textContent = data.notice_default.first_line || '';
+                        document.getElementById('second_line').textContent = data.notice_default.second_line || '';
                     }
                     
                 }
