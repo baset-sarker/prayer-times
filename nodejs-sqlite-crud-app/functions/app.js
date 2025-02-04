@@ -8,8 +8,8 @@ const router = express.Router();
 // });
 
 const bodyParser = require('body-parser');
-const authRoutes = require('./routes/auth');
-const crudRoutes = require('./routes/crud');
+const authRoutes = require('../routes/auth');
+const crudRoutes = require('../routes/crud');
 const path = require('path');
 const port = 80;
 
