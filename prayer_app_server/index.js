@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const session = require('express-session');
-const port = 3000;
+const port = 3001;
 
 // Path to prayer_times.json file
 const prayerTimesFilePath = path.join(__dirname, 'prayer_times.json');
@@ -18,6 +18,8 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+const { get } = require('http');
+
 app.use(session({ secret: 'TheisIsthesecrets902309203920930', resave: false, saveUninitialized: true }));
 
 // Serve static files (CSS, JS, images, etc.)
@@ -27,6 +29,36 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/views/prayers.html'));
    //res.sendFile(path.join(__dirname, '/views/prayers_side_by_side.html'));
+});
+
+
+const { exec } = require('child_process');
+
+function getSSID() {
+  return new Promise((resolve, reject) => {
+    exec('iwgetid -r', (error, stdout, stderr) => {
+      if (error) {
+        return reject(new Error(`Error executing iwgetid: ${error.message}`));
+      }
+      const ssid = stdout.trim();
+      resolve(ssid || null);
+    });
+  });
+}
+
+
+
+app.get('/ssid', async (req, res) => {
+  try {
+    const ssid = await getSSID();
+    if (ssid) {
+      res.json({ ssid });
+    } else {
+      res.status(404).json({ message: 'No SSID detected.' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message }); // Send only the error message
+  }
 });
 
 // GET /update - Read prayer times and pass to update.html
@@ -105,8 +137,23 @@ app.post('/update', (req, res) => {
 // });
 
 
+
+
 // Route to get the content of prayer_times.json
-app.get('/prayer-times', (req, res) => {
+app.get('/prayer-times',async (req, res) => {
+
+    let ssid
+    try{
+        ssid = await getSSID();
+        if (!ssid) {
+           ssid = 'Connecting...';   
+        }
+    } catch (parseErr){
+        console.error('Error Getting ssid:', parseErr);
+        ssid = 'Connecting...';   
+    }
+    
+ 
     fs.readFile(prayerTimesFilePath, 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading the file:', err);
@@ -114,8 +161,10 @@ app.get('/prayer-times', (req, res) => {
         }
 
         try {
-            const prayerTimes = JSON.parse(data);
+            let prayerTimes = JSON.parse(data);
+            prayerTimes = { ...prayerTimes, ssid };
             res.json(prayerTimes);
+            
         } catch (parseErr) {
             console.error('Error parsing JSON:', parseErr);
             res.status(500).json({ message: 'Invalid JSON format in prayer times file.' });

@@ -10,9 +10,11 @@
   "author": "Md Abdul Baset Sarker",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.9",
     "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "express-session": "^1.18.1"
+    "express-session": "^1.18.1",
+    "node-wifi": "^2.0.16"
   }
 }

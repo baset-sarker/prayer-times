@@ -81,8 +81,9 @@
                 </div>
             </div>
         
-            <div class="text-center footer-div" style="color: white;">
-                Potsdam Masjid, 110 Elm St, Potsdam, NY 13676 <br>
+            <div class="footer-div" style="color: white;">
+                 Potsdam Masjid, 110 Elm St, Potsdam, NY 13676 
+                 <span id='wifi' class="pull-right"></span>
                 <!-- Scan the QR code for up-to-date information -->
             </div>
         </div>
@@ -124,6 +125,7 @@
             try {
                 const response = await fetch('/prayer-times');
                 const data = await response.json();
+                console.log(data);
 
                 if (data.prayers) {
                    
@@ -162,6 +164,10 @@
                         element.innerHTML = 'Isha '+data.prayers.isha
                     }
                    
+                }
+
+                if (data.ssid) {
+                    document.getElementById('wifi').textContent = data.ssid;
                 }
 
 

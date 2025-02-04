@@ -97,6 +97,19 @@
         text-align: center; /* Ensures text inside spans multiple lines properly */
     }
 
+    #wifi {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        /* Optional styling for better visibility */
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 8px 12px;
+        margin: 10px;
+        border-radius: 4px;
+        font-family: Arial, sans-serif;
+      }
+
     @media (max-width: 768px) {
 
         .left-image {

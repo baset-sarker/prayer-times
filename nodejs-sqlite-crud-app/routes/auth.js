@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Session Configuration
 router.use(session({
-    secret: 'secretkey',
+    secret: 'sdfisdfoisoiosidfosidfosidfjsodifjsdofijsodif',
     resave: false,
     saveUninitialized: false
 }));
