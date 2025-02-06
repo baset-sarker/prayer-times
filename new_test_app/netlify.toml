@@ -1,13 +1,15 @@
-
-
 [build]
-  publish = "dist"
-  functions = "functions"
+  functions = "netlify/functions"
+  publish = "public"
 
+# Redirect API requests to the Express function
 [[redirects]]
-  from="/*"
-  to="index.html"
+  from = "/api/*"
+  to = "/.netlify/functions/server"
   status = 200
 
-[dev]
-  publish = "dist"
+# Redirect all unknown paths to React's index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
