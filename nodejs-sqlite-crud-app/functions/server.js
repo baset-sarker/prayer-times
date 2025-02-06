@@ -9,7 +9,9 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
+//app.set('view engine', 'ejs');
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '..', 'views'));  // <-- Add this
 app.use('/public', express.static(path.join(__dirname, '../public')));
 
 // Routes

@@ -1,5 +1,6 @@
 [build]
     functions = "functions"
+    external_node_modules = ["express"]
 
 [[redirects]]
   from = "/*"
