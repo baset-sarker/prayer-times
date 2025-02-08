@@ -2,6 +2,7 @@
   functions = "netlify/functions"
   publish = "public"
 
+
 # Redirect API requests to the Express function
 [[redirects]]
   from = "/api/*"
