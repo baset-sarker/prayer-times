@@ -1,6 +1,7 @@
-import React from 'react';
 import PrayerView from './PrayerView';
 import Contact  from './Contact';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
                 <div class="h4"></div>
             </div>
         </header>
-        <PrayerView />
+        <PrayerView/>
         {/* <Contact /> */}
     </div>
     

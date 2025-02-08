@@ -158,17 +158,17 @@ app.put('/api/prayer/:id', authenticateJWT, async (req, res) => {
   }
 });
 
-app.delete('/api/prayer/:id', authenticateJWT, async (req, res) => {
-  try {
-    const deletedPrayer = await Prayer.findByIdAndDelete(req.params.id);
-    if (!deletedPrayer) {
-      return res.status(404).json({ message: 'Prayer not found' });
-    }
-    res.status(204).end(); // 204 No Content
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+// app.delete('/api/prayer/:id', authenticateJWT, async (req, res) => {
+//   try {
+//     const deletedPrayer = await Prayer.findByIdAndDelete(req.params.id);
+//     if (!deletedPrayer) {
+//       return res.status(404).json({ message: 'Prayer not found' });
+//     }
+//     res.status(204).end(); // 204 No Content
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 
 app.get('/api/prayer/:id', authenticateJWT, async (req, res) => {
     try {

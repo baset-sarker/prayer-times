@@ -51,9 +51,15 @@ function PrayerList({ token, apiUrl }) {
       <ul className="list-group">
         {prayers?.map((prayer) => (
           <li key={prayer._id} className="list-group-item">
+            <Link to={`/prayers/edit/${prayer._id}`} className="btn btn-sm btn-warning ms-2">Edit</Link> <br></br>
             {/* Display your prayer fields here */}
-            {prayer.fajr} {prayer.duhr} {prayer.asr} {prayer.magrib} {prayer.isha}
-            <Link to={`/prayers/edit/${prayer._id}`} className="btn btn-sm btn-warning ms-2">Edit</Link>
+            Fajr:{prayer.fajr}  Duhr:{prayer.duhr} Asr: {prayer.asr} Magrib{prayer.magrib} Isha:{prayer.isha}
+            <hr></hr>
+            {prayer.hadis1} <hr></hr>
+            {prayer.hadis2} <hr></hr>
+            {prayer.hadis3} <hr></hr>
+            {prayer.hadis4} <hr></hr>
+            {prayer.hadis5} <hr></hr>
             {/* <button onClick={() => handleDelete(prayer._id)} className="btn btn-sm btn-danger ms-2">Delete</button> */}
           </li>
         ))}

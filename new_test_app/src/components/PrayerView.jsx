@@ -1,6 +1,69 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 const PrayerView = () => {
+    const apiUrl = '/api/prayer'; // Make sure this path is correct relative to your frontend
+
+    const [prayer, setPrayer] = useState({
+      fajr_api: "",
+      fajr_added_time: 0,
+      fajr: "",
+      sunrise: "",
+      duhr_api: "",
+      duhr_added_time: 0,
+      duhr: "",
+      jummah: "",
+      asr_api: "",
+      asr_added_time: 0,
+      asr: "",
+      magrib_api: "",
+      magrib_added_time: 0,
+      magrib: "",
+      isha_api: "",
+      isha_added_time: 0,
+      isha: "",
+      hadis1: "",
+      hadis2: "",
+      hadis3: "",
+      hadis4: "",
+      hadis5: ""
+    });
+    const [loading, setLoading] = useState(true); // Add a loading state
+    const [error, setError] = useState(null);
+    
+    useEffect(() => {
+      const fetchPrayer = async () => {
+        setLoading(true); // Set loading to true before fetching
+        setError(null);    // Clear any previous errors
+    
+        try {
+          const response = await axios.get(apiUrl); // No need for template literal if it's already a string
+    
+          if (response.status !== 200) {  // Check for successful response
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+    
+          setPrayer(response.data[0]);
+
+          console.log("Prayer Data:", prayer); // Keep this for debugging
+    
+        } catch (err) {
+          console.error("Error fetching prayer:", err); // Log the full error for debugging
+    
+          // More robust error handling:
+          if (axios.isAxiosError(err)) {
+            setError(err.response?.data?.message || err.message || 'Error fetching prayer'); // Prioritize server message
+          } else {
+            setError(err.message || 'An unexpected error occurred.');
+          }
+        } finally {
+          setLoading(false); // Set loading to false after fetch, regardless of success/failure
+        }
+      };
+    
+      fetchPrayer(); // No need for isEditing condition if you always want to fetch on mount.
+    }, []);  // Empty dependency array ensures this runs only once on mount
+
   return (
     <div>
         <section class="py-4">
@@ -9,28 +72,39 @@ const PrayerView = () => {
                     <div className="row">
                     <h1 style={{ textAlign: 'center' }}>Prayer Time</h1>
                     </div>
+
+                    {loading && <div>Loading prayer times...</div>}
+                    {error && <div style={{ color: 'red' }}>Error: {error}</div>}
+                    {!loading && !error && (
+                    
                     <div className='row'>
                         <div className="col-lg-6 my-3 my-lg-0" >
                             <h2 style={{ textAlign: 'center' }}>Potsdam (Gathering Time)</h2>
                             <ul class="list-group">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Morbi leo risus</li>
-                                <li class="list-group-item">Porta ac consectetur ac</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
+                                <li class="list-group-item">Fajr: {prayer.fajr}</li>
+                                <li class="list-group-item">Sunrise: {prayer.sunrise}</li>
+                                <li class="list-group-item">Duhr: {prayer.duhr}</li>
+                                <li class="list-group-item">Jummah: {prayer.juhr_api}</li>
+                                <li class="list-group-item">Asr: {prayer.asr_api}</li>
+                                <li class="list-group-item">Magrib: {prayer.magrib_api}</li>
+                                <li class="list-group-item">Isha: {prayer.isha_api}</li>
                             </ul>
                         </div>
                         <div className="col-lg-6">
                             <h2 style={{ textAlign: 'center' }}>Prayer Time</h2>
                             <ul className="list-group">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Morbi leo risus</li>
-                                <li class="list-group-item">Porta ac consectetur ac</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
+                                <li class="list-group-item">Fajr: {prayer.fajr_api}</li>
+                                <li class="list-group-item">Sunrise: {prayer.sunrise}</li>
+                                <li class="list-group-item">Duhr: {prayer.duhr_api}</li>
+                                <li class="list-group-item">Jummah: {prayer.jummah_}</li>
+                                <li class="list-group-item">Asr: {prayer.asr}</li>
+                                <li class="list-group-item">Magrib: {prayer.magrib}</li>
+                                <li class="list-group-item">Isha: {prayer.isha}</li>
                             </ul>
                         </div>
                     </div>
+                    )}
+
                 </div>
             </div>
         </section>
