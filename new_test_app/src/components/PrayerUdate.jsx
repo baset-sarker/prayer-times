@@ -11,8 +11,9 @@ function PrayerUpdate({ token }) {
     useEffect(() => {
         const fetchPrayer = async () => {
         try {
-            const serverURL = import.meta.env.VITE_SERVER_URL; // Get the URL
-            const response = await axios.get(`${serverURL}/api/prayer/${prayerId}`, {
+            // const serverURL = import.meta.env.VITE_SERVER_URL; // Get the URL
+            // const response = await axios.get(`${serverURL}/api/prayer/${prayerId}`, {
+            const response = await axios.get(`/api/prayer/${prayerId}`, {
             headers: { Authorization: `Bearer ${token}` },
             });
             setPrayer(response.data);

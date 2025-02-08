@@ -1,6 +1,7 @@
 [build]
   functions = "netlify/functions"
   publish = "dist"
+  command = "npm run build"
 
 
 # Redirect API requests to the Express function

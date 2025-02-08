@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import PrayerView from './components/PrayerView';
 
 
-const API_URL = 'http://localhost:5000/api/prayer';
+const API_URL = '/api/prayer';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

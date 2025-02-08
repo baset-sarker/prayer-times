@@ -45,16 +45,16 @@ function PrayerList({ token, apiUrl }) {
   }
 
   return (
-    <div>
+    <div style={{ minHeight: '800px' }}>
       <h2>Prayer List</h2>
-      <Link to="/prayers/create" className="btn btn-primary mb-3">Create Prayer</Link>
+      {/* <Link to="/prayers/create" className="btn btn-primary mb-3">Create Prayer</Link> */}
       <ul className="list-group">
         {prayers?.map((prayer) => (
           <li key={prayer._id} className="list-group-item">
             {/* Display your prayer fields here */}
-            {prayer.field1} {prayer.field2} {prayer.field3} {prayer.field4} {prayer.field5}
+            {prayer.fajr} {prayer.duhr} {prayer.asr} {prayer.magrib} {prayer.isha}
             <Link to={`/prayers/edit/${prayer._id}`} className="btn btn-sm btn-warning ms-2">Edit</Link>
-            <button onClick={() => handleDelete(prayer._id)} className="btn btn-sm btn-danger ms-2">Delete</button>
+            {/* <button onClick={() => handleDelete(prayer._id)} className="btn btn-sm btn-danger ms-2">Delete</button> */}
           </li>
         ))}
       </ul>
