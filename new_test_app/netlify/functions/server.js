@@ -8,7 +8,9 @@ import cors from 'cors'; // Enable Cross-Origin Resource Sharing
 import crypto from 'crypto';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
+import https from 'https';
 
+//const https = require('https');
 // const express = require("express");
 // const serverless = require("serverless-http");
 // const mongoose = require('mongoose');
@@ -23,7 +25,9 @@ const app = express();
 
 // API route
 app.get("/api/hello", (req, res) => {
-  res.json({ message: "Hello from Express on Netlify!" });
+  const currentTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  console.log(currentTimeZone); 
+  res.json({ message: "Hello from Express on Netlify!", currentTimeZone: currentTimeZone });
 });
 
 
@@ -306,6 +310,31 @@ app.get('/api/provider/:id', authenticateJWT, async (req, res) => {
   // wifi provider end
 
 
+
+  async function getPrayerTimes(date, latitude, longitude, method = 3, shafaq = 'general', tune = '5,3,5,7,9,-1,0,8,-6', timezonestring = 'UTC', calendarMethod = 'UAQ') {
+    const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${latitude}&longitude=${longitude}&method=${method}&shafaq=${shafaq}&tune=${tune}&timezonestring=${timezonestring}&calendarMethod=${calendarMethod}`;
+  
+    return new Promise((resolve, reject) => {
+      const req = https.request(url, { method: 'GET', headers: { 'accept': 'application/json' } }, (res) => {
+        let data = '';
+        res.on('data', (chunk) => data += chunk);
+        res.on('end', () => {
+          try {
+            const jsonData = JSON.parse(data);
+            resolve(jsonData); // Resolve with the JSON data
+          } catch (error) {
+            reject(new Error(`Error parsing JSON: ${error}. Raw response: ${data}`)); // Reject with an error
+          }
+        });
+      });
+  
+      req.on('error', (error) => {
+        reject(new Error(`Error making request: ${error}`)); // Reject with an error
+      });
+  
+      req.end();
+    });
+  }
 
 
 // module.exports.handler = //serverless(app);
