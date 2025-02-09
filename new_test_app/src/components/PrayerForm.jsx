@@ -124,7 +124,7 @@ function PrayerForm({ token, apiUrl }) {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
-      navigate('/prayers'); // Redirect to the prayer list after save
+      navigate('/prayer'); // Redirect to the prayer list after save
     } catch (err) {
       setError(err.response?.data?.message || 'Error saving prayer');
     }

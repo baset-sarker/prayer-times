@@ -19,8 +19,9 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div className='container' style={{ minHeight: '1024px' }}>
+    <div className='col-md-6 offset-md-3' style={{ minHeight: '1024px',paddingTop: '100px' }}>
       <div className='col-md-6 offset-md-3'>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         {error && <div className="alert alert-danger">{error}</div>}
         <div className="mb-3">

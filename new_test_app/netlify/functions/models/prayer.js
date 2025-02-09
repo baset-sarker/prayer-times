@@ -1,5 +1,5 @@
-// const mongoose = require('mongoose');
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+// import mongoose from 'mongoose';
 
 const prayerSchema = new mongoose.Schema({
     fajr: String,

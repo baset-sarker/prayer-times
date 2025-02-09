@@ -7,9 +7,12 @@ import PrayerForm from './components/PrayerForm';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import PrayerView from './components/PrayerView';
+import ProviderList from './components/ProviderList';
+import ProviderForm from './components/ProviderForm';
 
 
-const API_URL = '/api/prayer';
+const API_URL_PRAYER = '/api/prayer';
+const API_URL_PROVIDER = '/api/provider';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,7 +31,7 @@ function App() {
     setToken(newToken);
     localStorage.setItem('token', newToken);
     setIsAuthenticated(true);
-    navigate('/prayers', { replace: true });
+    navigate('/prayer', { replace: true });
   };
 
   const handleLogout = () => {
@@ -49,7 +52,7 @@ function App() {
         <div className="navbar-nav">
           {isAuthenticated ? (
             <>
-              <NavLink className="nav-link" to="/prayers">Prayers</NavLink>
+              <NavLink className="nav-link" to="/prayer">Prayers</NavLink>
               <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
             </>
           ) : (
@@ -77,7 +80,8 @@ function App() {
             <ul className="navbar-nav">
               {isAuthenticated ? (
                   <>
-                    <NavLink className="btn btn-link nav-link" to="/prayers">Prayers</NavLink>
+                    <NavLink className="btn btn-link nav-link" to="/prayer">Prayers</NavLink>
+                    <NavLink className="btn btn-link nav-link" to="/provider">Provider</NavLink>
                     <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
                   </>
                 ) : (
@@ -93,10 +97,15 @@ function App() {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         {isAuthenticated && (
           <>
-            <Route path="/prayers" element={<PrayerList token={token} apiUrl={API_URL} />} />
-            <Route path="/prayers/create" element={<PrayerForm token={token} apiUrl={API_URL} />} />
-            <Route path="/prayers/edit/:id" element={<PrayerForm token={token} apiUrl={API_URL} />} />
-            {/* <Route path="/prayers/edit/67a6a7f3910f6b920a5d4254" element={<PrayerUpdate token={token} />} /> */}
+            <Route path="/prayer" element={<PrayerList token={token} apiUrl={API_URL_PRAYER} />} />
+            <Route path="/prayer/create" element={<PrayerForm token={token} apiUrl={API_URL_PRAYER} />} />
+            <Route path="/prayer/edit/:id" element={<PrayerForm token={token} apiUrl={API_URL_PRAYER} />} />
+
+            <Route path="/provider" element={<ProviderList token={token} apiUrl={API_URL_PROVIDER} />} />
+            <Route path="/provider/create" element={<ProviderForm token={token} apiUrl={API_URL_PROVIDER} />} />
+            <Route path="/provider/edit/:id" element={<ProviderForm token={token} apiUrl={API_URL_PROVIDER} />} />
+
+            {/* <Route path="/prayer/edit/67a6a7f3910f6b920a5d4254" element={<PrayerUpdate token={token} />} /> */}
           </>
         )}
       </Routes>
