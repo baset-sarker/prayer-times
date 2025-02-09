@@ -28,14 +28,14 @@ function App() {
     setToken(newToken);
     localStorage.setItem('token', newToken);
     setIsAuthenticated(true);
-    navigate('/prayers');
+    navigate('/prayers', { replace: true });
   };
 
   const handleLogout = () => {
     setToken(null);
     localStorage.removeItem('token');
     setIsAuthenticated(false);
-    navigate('/');
+    navigate('/', { replace: true }); 
   };
 
   const handleToggle = () => {
@@ -77,12 +77,11 @@ function App() {
             <ul className="navbar-nav">
               {isAuthenticated ? (
                   <>
-                    <NavLink className="nav-link" to="/prayers">Prayers</NavLink>
-                    <NavLink className="nav-link" onClick={handleLogout} >Logout</NavLink>
-                    {/* <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button> */}
+                    <NavLink className="btn btn-link nav-link" to="/prayers">Prayers</NavLink>
+                    <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
                   </>
                 ) : (
-                  <NavLink className="nav-link" to="/login">Login</NavLink>
+                  <NavLink className="btn btn-link nav-link" to="/login">Login</NavLink>
                 )}
             </ul>
           </div>

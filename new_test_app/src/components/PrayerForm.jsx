@@ -56,7 +56,10 @@ function PrayerForm({ token, apiUrl }) {
     hadis2: "",
     hadis3: "",
     hadis4: "",
-    hadis5: ""
+    hadis5: "",
+    notice_head_line: "",
+    notice_first_line: "",
+    notice_second_line: "",
   });
   const [error, setError] = useState(null);
   const isEditing = !!id;
@@ -260,6 +263,24 @@ function PrayerForm({ token, apiUrl }) {
             <label htmlFor="isha_added_time" className="form-label">Hadis 5</label>
             <div className="input-group">
               <textarea type="text" rows={5} className="form-control" id="hadis5" name="hadis5" value={prayer.hadis5} onChange={handleChange} />
+            </div>
+        </div>
+        <div className="mb-3 mt-3">
+            <label htmlFor="notice_head_line" className="form-label">Notice Headline</label>
+            <div className="input-group">
+              <textarea type="text" className="form-control" id="notice_head_line" name="notice_head_line" value={prayer.notice_head_line} onChange={handleChange} />
+            </div>
+        </div>
+        <div className="mb-3 mt-3">
+            <label htmlFor="notice_first_line" className="form-label">Notice First Line</label>
+            <div className="input-group">
+              <textarea type="text" rows={5} className="form-control" id="notice_first_line" name="notice_first_line" value={prayer.notice_first_line} onChange={handleChange} />
+            </div>
+        </div>
+        <div className="mb-3 mt-3">
+            <label htmlFor="notice_second_line" className="form-label">Notice Second Line</label>
+            <div className="input-group">
+              <textarea type="text" rows={5} className="form-control" id="notice_second_line" name="notice_second_line" value={prayer.notice_second_line} onChange={handleChange} />
             </div>
         </div>
       <button type="submit" className="btn btn-primary">Save</button>
