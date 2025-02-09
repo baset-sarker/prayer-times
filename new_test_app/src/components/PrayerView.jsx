@@ -84,10 +84,10 @@ const PrayerView = () => {
                                 <li class="list-group-item">Fajr: {prayer.fajr}</li>
                                 <li class="list-group-item">Sunrise: {prayer.sunrise}</li>
                                 <li class="list-group-item">Duhr: {prayer.duhr}</li>
-                                <li class="list-group-item">Jummah: {prayer.juhr_api}</li>
-                                <li class="list-group-item">Asr: {prayer.asr_api}</li>
-                                <li class="list-group-item">Magrib: {prayer.magrib_api}</li>
-                                <li class="list-group-item">Isha: {prayer.isha_api}</li>
+                                <li class="list-group-item">Jummah: {prayer.jummah}</li>
+                                <li class="list-group-item">Asr: {prayer.asr}</li>
+                                <li class="list-group-item">Magrib: {prayer.magrib}</li>
+                                <li class="list-group-item">Isha: {prayer.isha}</li>
                             </ul>
                         </div>
                         <div className="col-lg-6">
@@ -96,12 +96,12 @@ const PrayerView = () => {
                                 <li class="list-group-item">Fajr: {prayer.fajr_api}</li>
                                 <li class="list-group-item">Sunrise: {prayer.sunrise}</li>
                                 <li class="list-group-item">Duhr: {prayer.duhr_api}</li>
-                                <li class="list-group-item">Jummah: {prayer.jummah_}</li>
-                                <li class="list-group-item">Asr: {prayer.asr}</li>
-                                <li class="list-group-item">Magrib: {prayer.magrib}</li>
-                                <li class="list-group-item">Isha: {prayer.isha}</li>
+                                <li class="list-group-item">Jummah: {prayer.duhr_api}</li>
+                                <li class="list-group-item">Asr: {prayer.asr_api}</li>
+                                <li class="list-group-item">Magrib: {prayer.magrib_api}</li>
+                                <li class="list-group-item">Isha: {prayer.isha_api}</li>
                             </ul>
-                        </div>
+                        </div> 
                     </div>
                     )}
 

@@ -8,7 +8,9 @@ import cors from 'cors'; // Enable Cross-Origin Resource Sharing
 import crypto from 'crypto';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
-import https from 'https';
+import axios from 'axios';
+import { get } from 'http';
+
 
 //const https = require('https');
 // const express = require("express");
@@ -43,7 +45,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // For form data (if needed)
 
 // MongoDB Connection
 mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
+  // useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB Connected'))
@@ -52,14 +54,21 @@ mongoose.connect(MONGODB_URI, {
 // Prayer Schema
 const prayerSchema = new mongoose.Schema({
   fajr: String,
+  fajr_api: String,
   fajr_added_time: Number,
+  sunrise: String,
   duhr: String,
+  duhr_api: String,
   duhr_added_time: Number,
+  jummah: String,
   asr: String,
+  asr_api: String,
   asr_added_time: Number,
   magrib: String,
+  magrib_api: String,
   magrib_added_time: Number,
   isha: String,
+  isha_api: String,
   isha_added_time: Number,
   hadis1: String,
   hadis2: String,
@@ -183,11 +192,22 @@ app.get('/api/prayer', async (req, res) => {
   try {
     //const prayers = await Prayer.find({ user: req.user.userId }); // Get prayers for logged-in user
     const prayers = await Prayer.find({})
-    res.json(prayers);
+    const api_data = await fetchData();
+
+    let prayer = prayers[0];
+    prayer.fajr_api = convert24to12(api_data.data.timings.Fajr)
+    prayer.duhr_api = convert24to12(api_data.data.timings.Dhuhr)
+    prayer.asr_api = convert24to12(api_data.data.timings.Asr)
+    prayer.magrib_api = convert24to12(api_data.data.timings.Maghrib)
+    prayer.isha_api = convert24to12(api_data.data.timings.Isha)
+    prayer.sunrise = convert24to12(api_data.data.timings.Sunrise)
+
+    res.json([prayer]);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
+
 
 app.post('/api/prayer', authenticateJWT, async (req, res) => {
   try {
@@ -227,6 +247,14 @@ app.get('/api/prayer/:id', authenticateJWT, async (req, res) => {
     try {
       //const prayer = await Prayer.findById(req.params.id)
       const prayer = await Prayer.findById("67a6a7f3910f6b920a5d4254");
+      const api_data = await fetchData();
+
+      prayer.fajr_api = convert24to12(api_data.data.timings.Fajr)
+      prayer.duhr_api = convert24to12(api_data.data.timings.Dhuhr)
+      prayer.asr_api = convert24to12(api_data.data.timings.Asr)
+      prayer.magrib_api = convert24to12(api_data.data.timings.Maghrib)
+      prayer.isha_api = convert24to12(api_data.data.timings.Isha)
+      prayer.sunrise = convert24to12(api_data.data.timings.Sunrise)
     
       if (!prayer) {
         return res.status(404).json({ message: 'Prayer not found' });
@@ -311,30 +339,49 @@ app.get('/api/provider/:id', authenticateJWT, async (req, res) => {
 
 
 
-  async function getPrayerTimes(date, latitude, longitude, method = 3, shafaq = 'general', tune = '5,3,5,7,9,-1,0,8,-6', timezonestring = 'UTC', calendarMethod = 'UAQ') {
-    const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${latitude}&longitude=${longitude}&method=${method}&shafaq=${shafaq}&tune=${tune}&timezonestring=${timezonestring}&calendarMethod=${calendarMethod}`;
   
-    return new Promise((resolve, reject) => {
-      const req = https.request(url, { method: 'GET', headers: { 'accept': 'application/json' } }, (res) => {
-        let data = '';
-        res.on('data', (chunk) => data += chunk);
-        res.on('end', () => {
-          try {
-            const jsonData = JSON.parse(data);
-            resolve(jsonData); // Resolve with the JSON data
-          } catch (error) {
-            reject(new Error(`Error parsing JSON: ${error}. Raw response: ${data}`)); // Reject with an error
-          }
-        });
-      });
+function convert24to12(time24) {
+  const [hours, minutes] = time24.split(':');
+  let hours12 = hours % 12 || 12; // Handle midnight (00:00)
+  const ampm = hours < 12 || hours === 24 ? 'AM' : 'PM'; // Determine AM/PM
+  hours12 = hours12 % 12 || 12;
+  return `${hours12}:${minutes} ${ampm}`;
+}
+ 
+
+  function getCurrentDateFormatted() {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0'); // Pad with leading zero if needed
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+    const year = now.getFullYear();
   
-      req.on('error', (error) => {
-        reject(new Error(`Error making request: ${error}`)); // Reject with an error
-      });
-  
-      req.end();
-    });
+    return `${day}-${month}-${year}`;
   }
+
+  const fetchData = async () => {
+    const lat = '44.676048'
+    const lon = '-74.992142'
+    // date format 01-01-2025
+    const dt = getCurrentDateFormatted();
+    // const api_url = `https://api.aladhan.com/v1/timings/${dt}?latitude=${lat}&longitude=${lon}&method=3&shafaq=general&timezonestring=UTC&calendarMethod=UAQ`
+    // const api_url = `https://api.aladhan.com/v1/timings/${dt?latitude=${lat}&longitude=${lon}&method=3&shafaq=general&timezonestring=UTC&calendarMethod=UAQ`
+    const api_url = `https://api.aladhan.com/v1/timings/${dt}?latitude=44&longitude=-74&method=2&shafaq=general&timezonestring=America%2FNew_York&calendarMethod=UAQ`
+    console.log(api_url)  
+    try {
+          const response = await axios.get(api_url, {
+              headers: {
+                  'accept': 'application/json'
+              }
+          });
+          console.log(response.data);
+          return response.data;
+          
+      } catch (error) {
+          console.error('Error fetching data:', error.message);
+      }
+  };
+  
+  // fetchData();
 
 
 // module.exports.handler = //serverless(app);
