@@ -30,7 +30,7 @@ app.get("/api/hello", (req, res) => {
 //const PORT = process.env.PORT || 5000;
 const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key'; // Replace with a strong secret key
 const MONGODB_URI = process.env.MONGODB_URI ; // Replace with your MongoDB URI
-const ENCRYPTION_SALT = process.env.ENCRYPTION_SALT
+const ENCRYPTION_SALT = process.env.ENCRYPTION_SALT || 'sdfsdklfksldfksl'
 
 
 app.use(cors()); // Enable CORS for all routes
