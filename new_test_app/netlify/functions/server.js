@@ -251,14 +251,12 @@ app.get('/api/provider',authenticateJWT, async (req, res) => {
 
 app.post('/api/provider', authenticateJWT, async (req, res) => {
   try {
-    const { name, password } = req.body;
-    const password_encrypted = encrypt(password, SECRET_KEY, ENCRYPTION_SALT);
+    // const { name, password } = req.body;
+    // const password_encrypted = encrypt(password, SECRET_KEY, ENCRYPTION_SALT);
+    // console.log("password_encrypted",password_encrypted)
+    // const newProvider = new Provider({ name, password, password_encrypted }); // Associate with user
 
-    console.log("password_encrypted",password_encrypted)
-
-    const newProvider = new Provider({ name, password, password_encrypted }); // Associate with user
-
-    // const newProvider = new Provider({ ...req.body, user: req.user.userId }); // Associate with user
+    const newProvider = new Provider({ ...req.body, user: req.user.userId }); // Associate with user
     await newProvider.save();
     res.status(201).json(newProvider); // 201 Created
   } catch (err) {
