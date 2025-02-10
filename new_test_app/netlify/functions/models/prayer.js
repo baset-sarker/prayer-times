@@ -28,4 +28,4 @@ const prayerSchema = new mongoose.Schema({
 // module.exports = { Prayer }; // Export the Prayer model
 // export default Prayer; // Export the Prayer model
 
-export const Prayer = mongoose.model('Prayer', userSchema);
+export const Prayer = mongoose.model('Prayer', prayerSchema);
