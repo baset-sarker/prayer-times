@@ -50,11 +50,11 @@ function PrayerUpdate({ token }) {
           <input type="text" className="form-control" id="duhr_api" name="duhr_api" value={prayer.duhr_api} onChange={handleChange} />
         </div>
         <div className="mb-3">
-          <label htmlFor="duhr_added_time" className="form-label">Duhr Added Time</label>
+          <label htmlFor="duhr_added_time" className="form-label">Dhuhr Added Time</label>
           <input type="text" className="form-control" id="duhr_added_time" name="duhr_added_time" value={prayer.duhr_added_time} onChange={handleChange} />
         </div>
         <div className="mb-3">
-          <label htmlFor="duhr" className="form-label">Duhr</label>
+          <label htmlFor="duhr" className="form-label">Dhuhr</label>
           <input type="text" className="form-control" id="duhr" name="duhr" value={prayer.duhr} onChange={handleChange} />
         </div>
         <div className="mb-3">
