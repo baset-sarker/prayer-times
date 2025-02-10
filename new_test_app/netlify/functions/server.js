@@ -10,7 +10,7 @@ import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
 
 
-import User from './models/user.js';
+import {User} from './models/user.js';
 import Prayer from './models/prayer.js';
 
 
