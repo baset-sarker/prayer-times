@@ -8,10 +8,10 @@ import cors from 'cors'; // Enable Cross-Origin Resource Sharing
 import crypto from 'crypto';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
-// import axios from 'axios';
-// import { get } from 'http';
+
 
 import User from './models/user.js';
+import Prayer from './models/prayer.js';
 
 
 //const https = require('https');
@@ -54,36 +54,36 @@ mongoose.connect(MONGODB_URI, {
 .catch((err) => console.error('MongoDB Connection Error:', err));
 
 // Prayer Schema
-const prayerSchema = new mongoose.Schema({
-  fajr: String,
-  fajr_api: String,
-  fajr_added_time: Number,
-  sunrise: String,
-  duhr: String,
-  duhr_api: String,
-  duhr_added_time: Number,
-  jummah: String,
-  asr: String,
-  asr_api: String,
-  asr_added_time: Number,
-  magrib: String,
-  magrib_api: String,
-  magrib_added_time: Number,
-  isha: String,
-  isha_api: String,
-  isha_added_time: Number,
-  hadis1: String,
-  hadis2: String,
-  hadis3: String,
-  hadis4: String,
-  hadis5: String,
-  notice_head_line: String,
-  notice_first_line: String,
-  notice_second_line: String,
-  // user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Associate prayer with user
-});
+// const prayerSchema = new mongoose.Schema({
+//   fajr: String,
+//   fajr_api: String,
+//   fajr_added_time: Number,
+//   sunrise: String,
+//   duhr: String,
+//   duhr_api: String,
+//   duhr_added_time: Number,
+//   jummah: String,
+//   asr: String,
+//   asr_api: String,
+//   asr_added_time: Number,
+//   magrib: String,
+//   magrib_api: String,
+//   magrib_added_time: Number,
+//   isha: String,
+//   isha_api: String,
+//   isha_added_time: Number,
+//   hadis1: String,
+//   hadis2: String,
+//   hadis3: String,
+//   hadis4: String,
+//   hadis5: String,
+//   notice_head_line: String,
+//   notice_first_line: String,
+//   notice_second_line: String,
+//   // user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Associate prayer with user
+// });
 
-const Prayer = mongoose.model('Prayer', prayerSchema);
+// const Prayer = mongoose.model('Prayer', prayerSchema);
 
 // User Schema
 // const userSchema = new mongoose.Schema({
