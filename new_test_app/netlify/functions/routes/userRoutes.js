@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 // const { User } = require('../models/user'); // Import your User model
 import {User} from '../models/user.js';
+import { authenticateJWT } from '../middleware/auth.js';
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config(); // Load environment variables from .env file
@@ -10,7 +11,7 @@ const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key'; // Replace with 
 
 
 // User Routes
-router.post('/register', async (req, res) => { // No /api/auth prefix here, it's handled in server.js
+router.post('/register', authenticateJWT, async (req, res) => { // No /api/auth prefix here, it's handled in server.js
     try {
         const { username, password } = req.body;
         const newUser = new User({ username, password });
