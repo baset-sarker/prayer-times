@@ -1,11 +1,14 @@
 import express from 'express';
 import {Prayer} from '../models/prayer.js';
-import {authenticateJWT} from '../middleware/auth.js';
+import authenticateJWT from '../middleware/auth.js';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
 
 const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key'; // Replace with a strong secret key
 router = express.Router();
+
+
+
 
 router.get('/', async (req, res) => {
   try {
