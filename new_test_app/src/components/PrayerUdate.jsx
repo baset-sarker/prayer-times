@@ -46,7 +46,7 @@ function PrayerUpdate({ token }) {
           <input type="text" className="form-control" id="sunrise" name="sunrise" value={prayer.sunrise} onChange={handleChange} />
         </div>
         <div className="mb-3">
-          <label htmlFor="duhr_api" className="form-label">Duhr API</label>
+          <label htmlFor="duhr_api" className="form-label">Dhuhr API</label>
           <input type="text" className="form-control" id="duhr_api" name="duhr_api" value={prayer.duhr_api} onChange={handleChange} />
         </div>
         <div className="mb-3">

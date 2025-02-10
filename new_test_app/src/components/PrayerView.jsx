@@ -84,7 +84,7 @@ const PrayerView = () => {
                             <ul class="list-group">
                                 <li class="list-group-item">Fajr: {prayer.fajr}</li>
                                 <li class="list-group-item">Sunrise: {prayer.sunrise}</li>
-                                <li class="list-group-item">Duhr: {prayer.duhr}</li>
+                                <li class="list-group-item">Dhuhr: {prayer.duhr}</li>
                                 <li class="list-group-item">Jummah: {prayer.jummah}</li>
                                 <li class="list-group-item">Asr: {prayer.asr}</li>
                                 <li class="list-group-item">Magrib: {prayer.magrib}</li>
