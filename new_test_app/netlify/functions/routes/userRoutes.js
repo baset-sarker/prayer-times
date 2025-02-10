@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 // const { User } = require('../models/user'); // Import your User model
-import User from '../models/user.js';
+import {User} from '../models/user.js';
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config(); // Load environment variables from .env file
@@ -41,6 +41,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-const userRouter = router;
 
-export default userRouter;
+
+export const userRouter = router;
