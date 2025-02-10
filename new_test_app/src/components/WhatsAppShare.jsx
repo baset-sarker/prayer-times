@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 
 const WhatsAppShare = ({ prayer }) => {
   if (!prayer) return null; // Don't render if message is empty
-  const FormatedTextForWhatsapp= `\nالسلام عليكم ورحمة الله تعالى وبركاته
-                                  Please inform others\n
-                                  These are not prayer times, these are times we gather at our masjid for salat\n
-                                  Fajr: ${prayer.fajr}\n
-                                  Sunrise: ${prayer.sunrise}\n
-                                  Duhr: ${prayer.duhr}\n
-                                  Jummah: ${prayer.jummah}\n
-                                  Asr: ${prayer.asr}\n
-                                  Magrib: ${prayer.magrib}\n
-                                  Isha: ${prayer.isha}\n
-                                  For update visit: https://potsdammasjid.netlify.app/\n`;
+  const FormatedTextForWhatsapp= `السلام عليكم ورحمة الله تعالى وبركاته
+                                  Please inform others
+                                  These are not prayer times, these are times we gather at our masjid for salat
+                                  Fajr: ${prayer.fajr}
+                                  Sunrise: ${prayer.sunrise}
+                                  Duhr: ${prayer.duhr}
+                                  Jummah: ${prayer.jummah}
+                                  Asr: ${prayer.asr}
+                                  Magrib: ${prayer.magrib}
+                                  Isha: ${prayer.isha}
+                                  For update visit: https://potsdammasjid.netlify.app/`;
   const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(FormatedTextForWhatsapp)}`;
 
   return (
