@@ -9,7 +9,9 @@ import crypto from 'crypto';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
 // import axios from 'axios';
-import { get } from 'http';
+// import { get } from 'http';
+
+import User from './models/user.js';
 
 
 //const https = require('https');
@@ -84,24 +86,25 @@ const prayerSchema = new mongoose.Schema({
 const Prayer = mongoose.model('Prayer', prayerSchema);
 
 // User Schema
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
+// const userSchema = new mongoose.Schema({
+//   username: { type: String, required: true, unique: true },
+//   password: { type: String, required: true },
+// });
 
-// Hash password before saving
-userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
-    try {
-      const salt = await bcrypt.genSalt(10);
-      this.password = await bcrypt.hash(this.password, salt);
-      next();
-    } catch (err) {
-      return next(err);
-    }
-  });
+// // Hash password before saving
+// userSchema.pre('save', async function (next) {
+//     if (!this.isModified('password')) return next();
+//     try {
+//       const salt = await bcrypt.genSalt(10);
+//       this.password = await bcrypt.hash(this.password, salt);
+//       next();
+//     } catch (err) {
+//       return next(err);
+//     }
+//   });
 
-const User = mongoose.model('User', userSchema);
+// const User = mongoose.model('User', userSchema);
+
 
 
 // User Schema
@@ -412,7 +415,6 @@ function convert24to12(time24) {
 
 
   
-  // fetchData();
 
 
 // module.exports.handler = //serverless(app);
