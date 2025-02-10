@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import WhatsAppShare from './WhatsAppShare';
 
 const PrayerView = () => {
     const apiUrl = '/api/prayer'; // Make sure this path is correct relative to your frontend
-
+    
     const [prayer, setPrayer] = useState({
       fajr_api: "",
       fajr_added_time: 0,
@@ -89,6 +90,10 @@ const PrayerView = () => {
                                 <li class="list-group-item">Magrib: {prayer.magrib}</li>
                                 <li class="list-group-item">Isha: {prayer.isha}</li>
                             </ul>
+                            {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}
+                            <br></br>
+                            *This is not prayer time, this is gathering time for prayer in the masjid.
+                            
                         </div>
                         <div className="col-lg-6">
                             <h2 style={{ textAlign: 'center' }}>Prayer Time</h2>
@@ -101,6 +106,7 @@ const PrayerView = () => {
                                 <li class="list-group-item">Magrib: {prayer.magrib_api}</li>
                                 <li class="list-group-item">Isha: {prayer.isha_api}</li>
                             </ul>
+                            *Prayer time is taken from API (https://aladhan.com/), please check before follow. 
                         </div> 
                     </div>
                     )}

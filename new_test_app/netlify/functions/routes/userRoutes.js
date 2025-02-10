@@ -8,11 +8,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config(); // Load environment variables from .env file
 const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key'; // Replace with a strong secret key
 
-// API route
-router.get("/test", (req, res) => {
-    res.json({ message: "Hello from Express on Netlify!" });
-});
-  
 
 // User Routes
 router.post('/register', async (req, res) => { // No /api/auth prefix here, it's handled in server.js

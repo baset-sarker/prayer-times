@@ -1,6 +1,7 @@
 import express from 'express';
 import {Prayer} from '../models/prayer.js';
 import {authenticateJWT} from '../middleware/auth.js';
+import { fetchData,convert24to12 } from '../helpers/helper_func.js';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
 
@@ -87,53 +88,7 @@ router.get('/:id', authenticateJWT, async (req, res) => {
 });
 
 
-  
-function convert24to12(time24) {
-  const [hours, minutes] = time24.split(':');
-  let hours12 = hours % 12 || 12; // Handle midnight (00:00)
-  const ampm = hours < 12 || hours === 24 ? 'AM' : 'PM'; // Determine AM/PM
-  hours12 = hours12 % 12 || 12;
-  return `${hours12}:${minutes} ${ampm}`;
-}
- 
 
-function getCurrentDateFormatted() {
-  const now = new Date();
-  const day = String(now.getDate()).padStart(2, '0'); // Pad with leading zero if needed
-  const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
-  const year = now.getFullYear();
-
-  return `${day}-${month}-${year}`;
-}
-
-const fetchData = async () => {
-  const lat = '44.676048';
-  const lon = '-74.992142';
-  const dt = getCurrentDateFormatted();
-
-  const api_url = `https://api.aladhan.com/v1/timings/${dt}?latitude=${lat}&longitude=${lon}&method=2&shafaq=general&timezonestring=America%2FNew_York&calendarMethod=UAQ`;
-
-  console.log(api_url);
-
-  try {
-      const response = await fetch(api_url, {
-          headers: {
-              'Accept': 'application/json'
-          }
-      });
-
-      if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log(data);
-      return data;
-
-  } catch (error) {
-      console.error('Error fetching data:', error.message);
-  }
-};
 
 export const prayerRouter=router;
 

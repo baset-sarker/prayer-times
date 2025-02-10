@@ -2,10 +2,7 @@ import express from 'express';
 import serverless from 'serverless-http';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import jwt from 'jsonwebtoken'; // For JWT authentication
-import bcrypt from 'bcrypt'; // For password hashing
 import cors from 'cors'; // Enable Cross-Origin Resource Sharing
-import crypto from 'crypto';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
 
@@ -14,29 +11,31 @@ import { userRouter } from './routes/userRoutes.js';
 import { prayerRouter } from './routes/prayerRoutes.js';
 import { providerRouter } from './routes/providerRoutes.js';
 
-//const PORT = process.env.PORT || 5000;
 const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key'; // Replace with a strong secret key
 const MONGODB_URI = process.env.MONGODB_URI ; // Replace with your MongoDB URI
 const ENCRYPTION_SALT = process.env.ENCRYPTION_SALT || 'sdfsdklfksldfksl'
 
-const app = express();
-app.use(cors()); // Enable CORS for all routes
-app.use(bodyParser.json()); // Essential for parsing JSON request bodies
-app.use(bodyParser.urlencoded({ extended: true })); // For form data (if needed)
-
-
 // MongoDB Connection
 mongoose.connect(MONGODB_URI, {
-  // useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB Connected'))
 .catch((err) => console.error('MongoDB Connection Error:', err));
 
 
+const app = express();
+app.use(cors()); // Enable CORS for all routes
+app.use(bodyParser.json()); // Essential for parsing JSON request bodies
+app.use(bodyParser.urlencoded({ extended: true })); // For form data (if needed)
+
 app.use('/api/auth', userRouter);
 app.use('/api/prayer', prayerRouter);
 app.use('/api/provider', providerRouter);
+
+// API route
+app.get("/test", (req, res) => {
+  res.json({ message: "Hello from Express on Netlify!" });
+});
 
 // API route
 app.get("/api/get-timezone", (req, res) => {
