@@ -11,7 +11,7 @@ dotenv.config(); // Load environment variables from .env file
 
 
 import {User} from './models/user.js';
-import Prayer from './models/prayer.js';
+import {Prayer} from './models/prayer.js';
 
 
 //const https = require('https');
