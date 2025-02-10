@@ -23,9 +23,5 @@ const prayerSchema = new mongoose.Schema({
     // user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // If you want to associate prayers with users
 });
 
-// const Prayer = mongoose.model('Prayer', prayerSchema);
-
-// module.exports = { Prayer }; // Export the Prayer model
-// export default Prayer; // Export the Prayer model
 
 export const Prayer = mongoose.model('Prayer', prayerSchema);

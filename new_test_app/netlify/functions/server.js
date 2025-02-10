@@ -12,18 +12,8 @@ dotenv.config(); // Load environment variables from .env file
 
 import {User} from './models/user.js';
 import {Prayer} from './models/prayer.js';
+import {Provider} from './models/provider.js';
 
-
-//const https = require('https');
-// const express = require("express");
-// const serverless = require("serverless-http");
-// const mongoose = require('mongoose');
-// const bodyParser = require('body-parser');
-// const jwt = require('jsonwebtoken'); // For JWT authentication
-// const bcrypt = require('bcrypt'); // For password hashing
-// const cors = require('cors'); // Enable Cross-Origin Resource Sharing
-// const crypto = require('crypto');
-// require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
 
@@ -108,13 +98,13 @@ mongoose.connect(MONGODB_URI, {
 
 
 // User Schema
-const providerSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  password_encrypted: { type: String, required: false },
-});
+// const providerSchema = new mongoose.Schema({
+//   name: { type: String, required: true, unique: true },
+//   password: { type: String, required: true },
+//   password_encrypted: { type: String, required: false },
+// });
 
-const Provider = mongoose.model('Provider', providerSchema);
+// const Provider = mongoose.model('Provider', providerSchema);
 
 
 
