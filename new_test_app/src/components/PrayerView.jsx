@@ -90,9 +90,8 @@ const PrayerView = () => {
                                 <li class="list-group-item">Magrib: {prayer.magrib}</li>
                                 <li class="list-group-item">Isha: {prayer.isha}</li>
                             </ul>
+                            *These are not prayer times, these are times we gather at our masjid for salat.
                             {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}
-                            <br></br>
-                            *This is not prayer time, this is gathering time for prayer in the masjid.
                             
                         </div>
                         <div className="col-lg-6">
