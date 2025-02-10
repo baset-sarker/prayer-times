@@ -8,7 +8,7 @@ import cors from 'cors'; // Enable Cross-Origin Resource Sharing
 import crypto from 'crypto';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
-import axios from 'axios';
+// import axios from 'axios';
 import { get } from 'http';
 
 
@@ -358,28 +358,59 @@ function convert24to12(time24) {
     return `${day}-${month}-${year}`;
   }
 
-  const fetchData = async () => {
-    const lat = '44.676048'
-    const lon = '-74.992142'
-    // date format 01-01-2025
-    const dt = getCurrentDateFormatted();
-    // const api_url = `https://api.aladhan.com/v1/timings/${dt}?latitude=${lat}&longitude=${lon}&method=3&shafaq=general&timezonestring=UTC&calendarMethod=UAQ`
-    // const api_url = `https://api.aladhan.com/v1/timings/${dt?latitude=${lat}&longitude=${lon}&method=3&shafaq=general&timezonestring=UTC&calendarMethod=UAQ`
-    const api_url = `https://api.aladhan.com/v1/timings/${dt}?latitude=44&longitude=-74&method=2&shafaq=general&timezonestring=America%2FNew_York&calendarMethod=UAQ`
-    console.log(api_url)  
-    try {
-          const response = await axios.get(api_url, {
-              headers: {
-                  'accept': 'application/json'
-              }
-          });
-          console.log(response.data);
-          return response.data;
+  // const fetchData = async () => {
+  //   const lat = '44.676048'
+  //   const lon = '-74.992142'
+  //   // date format 01-01-2025
+  //   const dt = getCurrentDateFormatted();
+  //   // const api_url = `https://api.aladhan.com/v1/timings/${dt}?latitude=${lat}&longitude=${lon}&method=3&shafaq=general&timezonestring=UTC&calendarMethod=UAQ`
+  //   // const api_url = `https://api.aladhan.com/v1/timings/${dt?latitude=${lat}&longitude=${lon}&method=3&shafaq=general&timezonestring=UTC&calendarMethod=UAQ`
+  //   const api_url = `https://api.aladhan.com/v1/timings/${dt}?latitude=44&longitude=-74&method=2&shafaq=general&timezonestring=America%2FNew_York&calendarMethod=UAQ`
+  //   console.log(api_url)  
+  //   try {
+  //         const response = await axios.get(api_url, {
+  //             headers: {
+  //                 'accept': 'application/json'
+  //             }
+  //         });
+  //         console.log(response.data);
+  //         return response.data;
           
-      } catch (error) {
-          console.error('Error fetching data:', error.message);
-      }
-  };
+  //     } catch (error) {
+  //         console.error('Error fetching data:', error.message);
+  //     }
+  // };
+
+  const fetchData = async () => {
+    const lat = '44.676048';
+    const lon = '-74.992142';
+    const dt = getCurrentDateFormatted();
+
+    const api_url = `https://api.aladhan.com/v1/timings/${dt}?latitude=${lat}&longitude=${lon}&method=2&shafaq=general&timezonestring=America%2FNew_York&calendarMethod=UAQ`;
+
+    console.log(api_url);
+
+    try {
+        const response = await fetch(api_url, {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        return data;
+
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+};
+
+
   
   // fetchData();
 
