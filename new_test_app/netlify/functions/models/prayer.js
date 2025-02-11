@@ -9,7 +9,7 @@ const prayerSchema = new mongoose.Schema({
     duhr: String,
     duhr_added_time: Number,
     duhr_api: String,
-    jumma: String,
+    jummah: String,
     asr: String,
     asr_added_time: Number,
     asr_api: String,
