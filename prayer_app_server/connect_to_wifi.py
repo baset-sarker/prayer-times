@@ -5,6 +5,7 @@ import json
 import os
 import requests
 import base64
+from connect_to_mongodb import get_prayer_time_data
 
 from dotenv import load_dotenv
 
@@ -98,16 +99,16 @@ def connect_to_wifi(ssid, password):
         return False
     
 
-def fetch_and_save_prayer_time(url):
+def fetch_and_save_prayer_time():
     try:
         # Make the GET request to fetch data
-        response = requests.get(url)
-        
+        #response = requests.get(url)
+        data = get_prayer_time_data()
         # Check if the request was successful
-        if response.status_code == 200:
-            # Parse the JSON response
-            data = response.json()
-
+        # if response.status_code == 200:
+        #     # Parse the JSON response
+        #     data = response.json()
+        if data:
             # this is just for safety
             wifi_providers = data.get('wifi_providers', [])
             with open(WIFI_CREDENTIALS_FILE, 'w', encoding='utf-8') as file:
@@ -124,7 +125,7 @@ def fetch_and_save_prayer_time(url):
                 json.dump(data, file, indent=4, ensure_ascii=False)
             print("Prayer time data has been written to prayer_time.json")
         else:
-            print(f"Failed to fetch data. Status code: {response.status_code}")
+            print(f"Failed to get data ")
     
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -149,7 +150,7 @@ def main_loop():
             if is_connected():
                 print("Wi‑Fi is connected.")
                 # call fetech data here and save it to the file
-                fetch_and_save_prayer_time(DATA_LINK)
+                fetch_and_save_prayer_time()
             else:
                 print("Wi‑Fi not connected. Scanning for networks...")
                 networks = scan_wifi()
@@ -162,7 +163,6 @@ def main_loop():
                             print(cred['name'], cred['password'])
                             if ssid == cred["name"]:
                                 password = cred["password"]
-                                password = deobfuscate_password(password)
                                 print(f"Found credentials for '{ssid}'. Attempting to connect...")
                                 if connect_to_wifi(ssid, password):
                                     connected = True
