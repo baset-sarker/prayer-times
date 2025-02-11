@@ -120,6 +120,7 @@ package-lock.json
 # Local Netlify folder
 .netlify
 .env
+venv
 new_test_app/node_modules
 wifi_credentials.json
 
