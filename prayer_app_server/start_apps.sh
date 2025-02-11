@@ -12,11 +12,11 @@ cd /home/pi/prayer-times/prayer_app_server
 npm start &
 
 # Delay before starting Electron app (e.g., 5 seconds)
-sleep 10
+sleep 30
 
 
 # Set display
-# export DISPLAY=:0
+export DISPLAY=:0
 
 # # Start Electron app
 # cd /home/pi/prayer-times/electron-prayer-app
@@ -24,4 +24,5 @@ sleep 10
 
 # Start Chromium in kiosk mode
 echo "$(date)  Starting Chromium..." >> /home/pi/start_apps.log
-chromium-browser  --kiosk http://localhost:3000 >> /home/pi/start_apps.log 2>&1 &
+#chromium-browser  --kiosk http://localhost:3000 >> /home/pi/start_apps.log 2>&1 &
+export DISPLAY=:0 && chromium-browser --no-sandbox --disable-gpu --kiosk http://localhost:3000
