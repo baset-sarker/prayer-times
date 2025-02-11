@@ -35,8 +35,9 @@
         right: 0;
         width: 100px; /* Adjust width as needed */
         height: auto; /* Maintain aspect ratio */
+        padding: 8px 12px;
+        margin: 5px;
     }
-
 
     .bismillah {
         width: 300px;
@@ -100,7 +101,7 @@
     #wifi {
         position: fixed;
         bottom: 0;
-        right: 0;
+        left: 0;
         /* Optional styling for better visibility */
         background: rgba(0, 0, 0, 0.6);
         color: #fff;
