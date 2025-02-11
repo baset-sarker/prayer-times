@@ -1,17 +1,16 @@
 [Unit]
 Description=Start Prayer App
-After=network.target graphical.target
-Wants=network.target graphical.target
+After=network.target
 
 [Service]
 Type=simple
 User=pi
-Environment=DISPLAY=:0
-ExecStart=/home/pi/prayer-times/prayer_app_server/start_apps.sh
+WorkingDirectory=/home/pi/prayer-times/prayer_app_server/
+ExecStart=/usr/bin/npm start
 Restart=always
 StandardOutput=journal
 StandardError=journal
+Environment=NODE_ENV=production
 
 [Install]
 WantedBy=multi-user.target
-

@@ -20,7 +20,6 @@ sudo systemctl start prayer_app.service
 sudo systemctl status prayer_app.service
 
 
-
 # sudo cp chromium_app.service /etc/systemd/system/chromium_app.service
 # sudo systemctl daemon-reload
 # sudo systemctl enable chromium_app.service
