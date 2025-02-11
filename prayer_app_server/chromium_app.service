@@ -1,0 +1,15 @@
+[Unit]
+Description=Chromium Browser Autostart
+After=graphical.target
+Requires=graphical.target
+
+[Service]
+Type=simple
+User=pi  # Replace 'pi' with your username if different
+ExecStart=/usr/bin/chromium-browser --kiosk --disable-infobars --no-sandbox https://localhost:8000 # Replace with your desired URL and Chromium options
+Restart=always
+RestartSec=5  # Restart after 5 seconds if Chromium crashes
+Environment=DISPLAY=:0 # Important for graphical applications
+
+[Install]
+WantedBy=multi-user.target
