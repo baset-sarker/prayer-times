@@ -176,7 +176,7 @@ def main_loop():
         except Exception as e:
             print("An error occurred:", e)
 
-      #  time.sleep(CHECK_INTERVAL)
+        time.sleep(CHECK_INTERVAL)
  
 
 if __name__ == '__main__':
