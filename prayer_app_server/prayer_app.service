@@ -1,0 +1,15 @@
+[Unit]
+Description=Start Prayer App
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/home/pi/prayer-times/prayer_app_server/start_apps.sh
+Restart=always
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
