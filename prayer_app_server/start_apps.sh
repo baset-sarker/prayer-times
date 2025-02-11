@@ -25,4 +25,4 @@ export DISPLAY=:0
 # Start Chromium in kiosk mode
 echo "$(date)  Starting Chromium..." >> /home/pi/start_apps.log
 #chromium-browser  --kiosk http://localhost:3000 >> /home/pi/start_apps.log 2>&1 &
-export DISPLAY=:0 && chromium-browser --no-sandbox --disable-gpu --kiosk www.google.com >> /home/pi/start_apps.log 2>&1 &
+export DISPLAY=:0 && chromium-browser --no-sandbox --disable-gpu --kiosk https://www.google.com >> /home/pi/start_apps.log 2>&1 &
