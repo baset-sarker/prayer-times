@@ -3,6 +3,7 @@
 # Delay before starting the apps (e.g., 10 seconds)
 sleep 5
 
+echo "$(date)  Starting Node.." >> /home/pi/start_apps.log
 # Start Node.js app
 cd /home/pi/prayer-times/prayer_app_server
 npm start &
@@ -18,4 +19,6 @@ sleep 10
 # cd /home/pi/prayer-times/electron-prayer-app
 # npm start &
 
-chromium --kiosk http://localhost:3000 &
+# Start Chromium in kiosk mode
+echo "$(date)  Starting Chromium..." >> /home/pi/start_apps.log
+chromium-browser  --kiosk http://localhost:3000 >> /home/pi/start_apps.log 2>&1 &
