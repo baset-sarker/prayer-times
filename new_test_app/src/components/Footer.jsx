@@ -4,6 +4,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <div>
+        <div className='row'>
+           <div className="flex justify-center items-center h-screen">
+            <img 
+                src="/web_link_qr_code.png" 
+                alt="Potsdam Masjid" 
+                className="img-fluid" 
+                style={{width: '150px'}}
+            />
+            </div>
+        </div>
         <footer class="footer mb-0 py-4">
             <div class="container">
                 <div class="row align-items-center">
