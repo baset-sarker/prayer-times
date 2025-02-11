@@ -3,12 +3,17 @@ import subprocess
 import time
 import json
 import os
+import requests
 
 # How long (in seconds) to wait between connectivity checks
 CHECK_INTERVAL = 10
 
 # Path to the JSON file that contains the Wi‑Fi credentials
 WIFI_CREDENTIALS_FILE = "wifi_credentials.json"
+PRAYER_TIMES_FILE = "prayer_app_server/prayer_times.json"
+data_link = 'https://potsdammasjid.netlify.app/api/prayer/dashboard/data'
+
+
 
 def load_wifi_credentials():
     """
@@ -79,6 +84,27 @@ def connect_to_wifi(ssid, password):
     except subprocess.CalledProcessError as e:
         print(f"Failed to connect to '{ssid}'.\nOutput: {e.output}")
         return False
+    
+
+def fetch_and_save_prayer_time(url):
+    try:
+        # Make the GET request to fetch data
+        response = requests.get(url)
+        
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the JSON response
+            data = response.json()
+            
+            # Write the JSON data to a file
+            with open(PRAYER_TIMES_FILE, 'w') as file:
+                json.dump(data, file, indent=4, ensure_ascii=False)
+            print("Prayer time data has been written to prayer_time.json")
+        else:
+            print(f"Failed to fetch data. Status code: {response.status_code}")
+    
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 def main_loop():
     """
@@ -87,6 +113,9 @@ def main_loop():
       - If not, scans for available networks.
       - Attempts to connect to any SSID found that exists in the JSON credentials.
     """
+
+    fetch_and_save_prayer_time(data_link)
+    exit()
     
 
     while True:
