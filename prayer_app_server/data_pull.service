@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=pi
-ExecStartPre=/bin/sleep 20 
+ExecStartPre=/bin/sleep 60 
 WorkingDirectory=/home/pi/prayer-times/prayer_app_server/
 ExecStart=/usr/bin/python3 connect_to_wifi.py >> /home/pi/data_pull.log 2>&1
 Restart=always
