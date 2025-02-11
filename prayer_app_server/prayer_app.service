@@ -5,7 +5,6 @@ After=network.target
 [Service]
 Type=simple
 User=pi
-Environment=DISPLAY=:0
 ExecStart=/home/pi/prayer-times/prayer_app_server/start_apps.sh
 Restart=always
 StandardOutput=journal
@@ -13,3 +12,4 @@ StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
+
