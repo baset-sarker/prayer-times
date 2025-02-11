@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Start Kiosk
+Exec=/home/pi/prayer-times/prayer_app_server/start_kiosk_mode_ch.sh
+Icon=utilities-terminal
+Terminal=false
+Categories=Application;
