@@ -6,3 +6,7 @@ which node
 which npm
 node --version
 npm --version
+
+# for electron to get display
+sudo apt update
+sudo apt install xserver-xorg x11-xserver-utils xinit
