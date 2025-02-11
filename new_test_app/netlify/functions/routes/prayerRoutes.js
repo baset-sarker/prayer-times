@@ -88,5 +88,58 @@ router.get('/:id', authenticateJWT, async (req, res) => {
 });
 
 
+// Define a route to get the prayer times and notices
+router.get('/dashboard/data', async (req, res) => {
+  try {
+    const prayerData = await Prayer.findOne(); // Get the first prayer data document
+    
+    if (!prayerData) {
+      return res.status(404).json({ message: 'Prayer data not found' });
+    }
+
+    const prayers = {
+      fajr: prayerData.fajr,
+      sunrise: prayerData.sunrise, // You can adjust this if needed from DB or calculations
+      dhuhr: prayerData.duhr,
+      asr: prayerData.asr,
+      magrib: prayerData.magrib,
+      isha: prayerData.isha,
+      jummah: prayerData.jummah // Adjust if you have a specific value
+    };
+
+    const notice = {
+      head_line: prayerData.notice_head_line || "",
+      first_line: prayerData.notice_first_line || "Eid Prayer ",
+      second_line: prayerData.notice_second_line || "Please arrive 10 minutes early"
+    };
+
+    const notice_default = {
+      head_line: "Dua for entering the masjid",
+      first_line: "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+      second_line: "O Allah! open for me the doors of your mercy"
+    };
+
+    const hadis = {
+      hadis1: prayerData.hadis1,
+      hadis2: prayerData.hadis2,
+      hadis3: prayerData.hadis3,
+      hadis4: prayerData.hadis4,
+      hadis5: prayerData.hadis5
+    };
+
+    res.json({
+      prayers,
+      notice,
+      notice_default,
+      hadis
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
 export const prayerRouter=router;
 

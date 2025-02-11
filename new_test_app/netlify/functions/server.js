@@ -33,7 +33,7 @@ app.use('/api/prayer', prayerRouter);
 app.use('/api/provider', providerRouter);
 
 // API route
-app.get("/test", (req, res) => {
+app.get("/api/test", (req, res) => {
   res.json({ message: "Hello from Express on Netlify!" });
 });
 
