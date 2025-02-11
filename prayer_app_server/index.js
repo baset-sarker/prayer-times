@@ -4,9 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+const dotenv = require('dotenv');
+dotenv.config();
+const port = process.env.NODE_SERVER_PORT || 3001;
+
 const app = express();
 const session = require('express-session');
-const port = 3001;
+
 
 // Path to prayer_times.json file
 const prayerTimesFilePath = path.join(__dirname, 'prayer_times.json');
