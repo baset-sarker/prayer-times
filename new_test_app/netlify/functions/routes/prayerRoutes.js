@@ -113,6 +113,7 @@ router.get('/dashboard/data', async (req, res) => {
       fajr: prayerData.fajr,
       sunrise: prayerData.sunrise, // You can adjust this if needed from DB or calculations
       dhuhr: prayerData.duhr,
+      jummah: prayerData.jummah, // Adjust if you have a specific value
       asr: prayerData.asr,
       magrib: prayerData.magrib,
       isha: prayerData.isha,
