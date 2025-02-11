@@ -12,8 +12,10 @@ sleep 5
 
 
 # Set display
-export DISPLAY=:0
+# export DISPLAY=:0
 
-# Start Electron app
-cd /home/pi/prayer-times/electron-prayer-app
-npm start &
+# # Start Electron app
+# cd /home/pi/prayer-times/electron-prayer-app
+# npm start &
+
+chromium --kiosk http://localhost:3000 &
