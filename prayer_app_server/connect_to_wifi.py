@@ -137,39 +137,44 @@ def main_loop():
       - Attempts to connect to any SSID found that exists in the JSON credentials.
     """
 
-    #while True:
-    wifi_credentials = load_wifi_credentials()
-    if not wifi_credentials:
-        print("No Wi‑Fi credentials loaded. Please check your JSON file.")
-        return
-    
-    if is_connected():
-        print("Wi‑Fi is connected.")
-        # call fetech data here and save it to the file
-        fetch_and_save_prayer_time(DATA_LINK)
-    else:
-        print("Wi‑Fi not connected. Scanning for networks...")
-        networks = scan_wifi()
-        if networks:
-            print("Found networks:", networks)
-            connected = False
-            # Loop through the found networks and check if they are in our credentials
-            for ssid in networks:
-                for cred in wifi_credentials:
-                    print(cred['name'], cred['password'])
-                    if ssid == cred["name"]:
-                        password = cred["password"]
-                        password = deobfuscate_password(password)
-                        print(f"Found credentials for '{ssid}'. Attempting to connect...")
-                        if connect_to_wifi(ssid, password):
-                            connected = True
-                            break
-                        else:
-                            print(f"Attempt to connect to '{ssid}' with the saved password failed.")
-            if not connected:
-                print("Could not connect to any network with the saved credentials.")
-        else:
-            print("No networks found.")
+    while True:
+        try:
+            wifi_credentials = load_wifi_credentials()
+            if not wifi_credentials:
+                print("No Wi‑Fi credentials loaded. Please check your JSON file.")
+                return
+            
+            if is_connected():
+                print("Wi‑Fi is connected.")
+                # call fetech data here and save it to the file
+                fetch_and_save_prayer_time(DATA_LINK)
+            else:
+                print("Wi‑Fi not connected. Scanning for networks...")
+                networks = scan_wifi()
+                if networks:
+                    print("Found networks:", networks)
+                    connected = False
+                    # Loop through the found networks and check if they are in our credentials
+                    for ssid in networks:
+                        for cred in wifi_credentials:
+                            print(cred['name'], cred['password'])
+                            if ssid == cred["name"]:
+                                password = cred["password"]
+                                password = deobfuscate_password(password)
+                                print(f"Found credentials for '{ssid}'. Attempting to connect...")
+                                if connect_to_wifi(ssid, password):
+                                    connected = True
+                                    break
+                                else:
+                                    print(f"Attempt to connect to '{ssid}' with the saved password failed.")
+                    if not connected:
+                        print("Could not connect to any network with the saved credentials.")
+                else:
+                    print("No networks found.")
+        except Exception as e:
+            print("An error occurred:", e)
+
+        time.sleep(CHECK_INTERVAL)
  
 
 if __name__ == '__main__':

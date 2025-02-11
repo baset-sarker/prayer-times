@@ -1,0 +1,14 @@
+[Unit]
+Description=Start Data pulling
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/bin/python3 /home/pi/prayer-times/prayer_app_server/connect_to_wifi.py
+Restart=always
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

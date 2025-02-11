@@ -19,12 +19,13 @@ sudo systemctl enable prayer_app.service
 sudo systemctl start prayer_app.service
 sudo systemctl status prayer_app.service
 
+sudo systemctl disable data_pull.service
+sudo cp data_pull.service /etc/systemd/system/data_pull.service
+sudo systemctl daemon-reload
+sudo systemctl enable data_pull.service
+sudo systemctl start data_pull.service
+sudo systemctl status data_pull.service
 
-# sudo cp chromium_app.service /etc/systemd/system/chromium_app.service
-# sudo systemctl daemon-reload
-# sudo systemctl enable chromium_app.service
-# sudo systemctl start chromium_app.service
-# sudo systemctl status chromium_app.service
 
 # user video permission
 #sudo usermod -aG video pi
