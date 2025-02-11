@@ -123,3 +123,5 @@ package-lock.json
 new_test_app/node_modules
 wifi_credentials.json
 
+__pycache__
+
