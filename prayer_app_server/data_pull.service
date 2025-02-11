@@ -5,8 +5,10 @@ After=network.target
 [Service]
 Type=simple
 User=pi
+ExecStartPre=/bin/sleep 20 
 ExecStart=/usr/bin/python3 /home/pi/prayer-times/prayer_app_server/connect_to_wifi.py
 Restart=always
+RestartSec=10 
 StandardOutput=journal
 StandardError=journal
 
