@@ -1,7 +1,7 @@
 [Unit]
 Description=Start Prayer App
-After=graphical.target
-Wants=graphical.target
+After=network.target graphical.target
+Wants=network.target graphical.target
 
 [Service]
 Type=simple
