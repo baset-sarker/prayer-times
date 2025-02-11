@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Delay before starting the apps (e.g., 10 seconds)
-sleep 5
+
+# Wait for X server to start (GUI)
+until xset q &>/dev/null; do
+  sleep 1
+done
 
 echo "$(date)  Starting Node.." >> /home/pi/start_apps.log
 # Start Node.js app
