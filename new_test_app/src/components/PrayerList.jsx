@@ -60,9 +60,26 @@ function PrayerList({ token, apiUrl }) {
             {prayer.hadis3} <hr></hr>
             {prayer.hadis4} <hr></hr>
             {prayer.hadis5} <hr></hr>
-            {prayer.notice_head_line} <hr></hr>
-            {prayer.notice_first_line} <hr></hr>
-            {prayer.notice_second_line} <hr></hr>
+            {prayer.notice_head_line && (
+              <>
+                {prayer.notice_head_line}
+                <hr />
+              </>
+            )}
+
+            {prayer.notice_first_line && (
+              <>
+                {prayer.notice_first_line}
+                <hr />
+              </>
+            )}
+
+            {prayer.notice_second_line && (
+              <>
+                {prayer.notice_second_line}
+                <hr />
+              </>
+            )}
 
             {/* <button onClick={() => handleDelete(prayer._id)} className="btn btn-sm btn-danger ms-2">Delete</button> */}
           </li>

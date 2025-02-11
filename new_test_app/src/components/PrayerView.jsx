@@ -85,7 +85,7 @@ const PrayerView = () => {
                   )}
 
                     <div className="row">
-                    <h1 style={{ textAlign: 'center'}}>Prayer Time</h1>
+                    <h1 style={{ textAlign: 'center', height:"2rem"}}>Prayer Time</h1>
                     </div>
 
                     {loading && <div>Loading prayer times...</div>}
@@ -94,7 +94,7 @@ const PrayerView = () => {
                     
                     <div className='row'>
                         <div className="col-lg-6 my-3 my-lg-0" >
-                            <h2 style={{ textAlign: 'center' }}>Potsdam (Gathering Time)</h2>
+                            <h2 style={{ textAlign: 'center' }}>Prayer gathering at the masjid</h2>
                             <ul class="list-group">
                                 <li className="golden-card">Fajr: {prayer.fajr}</li>
                                 <li className="golden-card">Sunrise: {prayer.sunrise}</li>
@@ -104,12 +104,16 @@ const PrayerView = () => {
                                 <li className="golden-card">Magrib: {prayer.magrib}</li>
                                 <li className="golden-card">Isha: {prayer.isha}</li>
                             </ul>
-                            <p className='py-2'>*These are not prayer times, these are times we gather at our masjid for salat. </p>
+                            <p className='py-2'>*These are not prayer times, these are times we gather at our masjid for salat. 
                             {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}
+
+                            </p>
+                            
+                            
                             
                         </div>
                         <div className="col-lg-6">
-                            <h2 style={{ textAlign: 'center' }}>Prayer Time</h2>
+                            <h2 style={{ textAlign: 'center' }}>Prayer time</h2>
                             <ul className="list-group">
                                 <li className="golden-card">Fajr: {prayer.fajr_api}</li>
                                 <li className="golden-card">Sunrise: {prayer.sunrise}</li>

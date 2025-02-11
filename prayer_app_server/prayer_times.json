@@ -5,10 +5,10 @@
         "dhuhr": "01:00 PM",
         "asr": "03:00 PM",
         "magrib": "5:30 PM",
-        "isha": "6:25 PM"
+        "isha": "06:57 PM"
     },
     "notice": {
-        "head_line": "\n",
+        "head_line": "",
         "first_line": "Eid Prayer ",
         "second_line": "Please arrive 10 minutes early"
     },
