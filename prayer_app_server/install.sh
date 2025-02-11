@@ -20,7 +20,7 @@ npm --version
 
 
 
-sudo cp chromium_app.service /etc/systemd/system/prayer_app_server/chromium_app.service
+sudo cp chromium_app.service /etc/systemd/system/chromium_app.service
 sudo systemctl daemon-reload
 sudo systemctl enable chromium_app.service
 sudo systemctl start chromium_app.service
