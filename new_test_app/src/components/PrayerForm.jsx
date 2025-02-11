@@ -3,34 +3,61 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-function getUpdatedTime(timeString, change) {
+// function getUpdatedTime(timeString, change) {
   
+//     change = parseInt(change) || 0;
+
+//     let [time, period] = timeString.split(" ");
+//     let [hours, minutes] = time.split(":").map(Number);
+
+//     // Adjust minutes
+//     minutes += change;
+
+//     if (minutes >= 60) {
+//       minutes = 0;
+//       hours = hours === 12 ? 1 : hours + 1; // Handle 12-hour format
+//     } else if (minutes < 0) {
+//       minutes = 59;
+//       hours = hours === 1 ? 12 : hours - 1;
+//     }
+
+//     // Format back to string
+//     const updatedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
+    
+//     return updatedTime;
+// }
+
+function getUpdatedTime(timeString, change) {
   change = parseInt(change) || 0;
 
   let [time, period] = timeString.split(" ");
   let [hours, minutes] = time.split(":").map(Number);
 
-  // Adjust minutes
-  minutes += change;
+  // Convert to 24-hour format for easier calculations
+  if (period === "PM" && hours !== 12) hours += 12;
+  if (period === "AM" && hours === 12) hours = 0;
 
-  if (minutes >= 60) {
-    minutes = 0;
-    hours = hours === 12 ? 1 : hours + 1; // Handle 12-hour format
-  } else if (minutes < 0) {
-    minutes = 59;
-    hours = hours === 1 ? 12 : hours - 1;
-  }
+  // Adjust time
+  let totalMinutes = hours * 60 + minutes + change;
+  totalMinutes = (totalMinutes + 1440) % 1440; // Handle negative values and wrap around
 
-  // Format back to string
-  const updatedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
-  
-  return updatedTime;
+  // Convert back to hours and minutes
+  hours = Math.floor(totalMinutes / 60);
+  minutes = totalMinutes % 60;
+
+  // Convert back to 12-hour format
+  period = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12; // Convert 0 -> 12 for AM
+
+  // Format output
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
 }
+
 
 function PrayerForm({ token, apiUrl }) {
   const step = 1;
-  const max = 59;
-  const min = -59;
+  const max = 200;
+  const min = -200;
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -96,13 +123,15 @@ function PrayerForm({ token, apiUrl }) {
     } else if (e.target.name === 'duhr_added_time') {
       const updatedTime = getUpdatedTime(prayer.duhr_api, e.target.value);
       setPrayer({ ...prayer, duhr: updatedTime, [e.target.name]: e.target.value  });
-    }
-    else if (e.target.name === 'asr_added_time') {
+
+    }else if (e.target.name === 'asr_added_time') {
+      console.log('asr_added_time', e.target.value);  
       const updatedTime = getUpdatedTime(prayer.asr_api, e.target.value);
-      setPrayer({ ...prayer, asr: updatedTime, [e.target.name]: e.target.value });
-    }
-    else if (e.target.name === 'magrib_added_time') {
+      setPrayer({ ...prayer, asr: updatedTime, [e.target.name]: e.target.value  });
+
+    }else if (e.target.name === 'magrib_added_time') {
       const updatedTime = getUpdatedTime(prayer.magrib_api, e.target.value);
+      console.log('updatedTime', updatedTime);
       setPrayer({ ...prayer, magrib: updatedTime, [e.target.name]: e.target.value  });
     }
     else if (e.target.name === 'isha_added_time') {
@@ -145,6 +174,8 @@ function PrayerForm({ token, apiUrl }) {
     });
     
   };
+
+  
   
   const handleDecrement = (e) => {
     const api_time = e.target.dataset.api_time;
@@ -164,6 +195,8 @@ function PrayerForm({ token, apiUrl }) {
   };
 
 
+
+
   return (
     <form onSubmit={handleSubmit}>
       {error && <div className="alert alert-danger">{error}</div>}
@@ -173,7 +206,7 @@ function PrayerForm({ token, apiUrl }) {
             <div className="input-group">
               <input type="text" className="form-control" id="fajr_api" name="fajr_api" value={prayer.fajr_api} onChange={handleChange} />
               <button className="btn btn-outline-secondary" data-dec_added_time="fajr_added_time" data-api_time="fajr_api" data-db_time='fajr' type="button" onClick={handleDecrement}>-</button>
-              <input type="text" className="form-control" name='fajr_added_time' value={prayer.fajr_added_time} onChange={handleChange} min="-59" max="59" step="1"/>
+              <input type="text" className="form-control" name='fajr_added_time' value={prayer.fajr_added_time} onChange={handleChange} step="1"/>
               <button className="btn btn-outline-secondary" data-inc_added_time="fajr_added_time" data-api_time="fajr_api" data-db_time='fajr' type="button" onClick={handleIncrement}> + </button>
               <input type="text" className="form-control" id="fajr" name="fajr" value={prayer.fajr} onChange={handleChange} />
             </div>
@@ -189,37 +222,39 @@ function PrayerForm({ token, apiUrl }) {
            <div className="input-group">
               <input type="text" className="form-control" id="duhr_api" name="duhr_api" value={prayer.duhr_api} onChange={handleChange} />`
               <button className="btn btn-outline-secondary" data-dec_added_time="duhr_added_time" data-api_time="duhr_api" data-db_time="duhr" type="button" onClick={handleDecrement}>-</button>
-              <input type="text" className="form-control" name='duhr_added_time' value={prayer.duhr_added_time} onChange={handleChange} min="-59" max="59" step="1"/>
+              <input type="text" className="form-control" name='duhr_added_time' value={prayer.duhr_added_time} onChange={handleChange} step="1"/>
               <button className="btn btn-outline-secondary" data-inc_added_time="duhr_added_time" data-api_time="duhr_api"  data-db_time="duhr" type="button" onClick={handleIncrement}> + </button>
               <input type="text" className="form-control" id="duhr" name="duhr" value={prayer.duhr} onChange={handleChange} />
             </div>
         </div>
 
+        
 
         <div className="mb-3 mt-3">
           <label htmlFor="jummah" className="form-label">Jummah</label>
           <input type="text" className="form-control" id="jummah" name="jummah" value={prayer.jummah} onChange={handleChange} />
         </div>
 
-
-        <div className='mb-3 mt-3' >
+        <div className='mb-3 mt-3'>
           <label htmlFor="asr_added_time" className="form-label">Asr Global - Add/subtract - Potsdam</label>
           <div className="input-group">
             <input type="text" className="form-control" id="asr_api" name="asr_api" value={prayer.asr_api} onChange={handleChange} />
             <button className="btn btn-outline-secondary" data-dec_added_time="asr_added_time" data-api_time="asr_api" data-db_time="asr" type="button" onClick={handleDecrement}>-</button>
-            <input type="number" className="form-control" name='asr_added_time' value={prayer.asr_added_time} onChange={handleChange} min="-59" max="59" step="1"/>
+            <input type="number" className="form-control" name='asr_added_time' value={prayer.asr_added_time} onChange={handleChange} step="1"/>
             <button className="btn btn-outline-secondary" data-inc_added_time="asr_added_time" data-api_time="asr_api" data-db_time="asr" type="button" onClick={handleIncrement}> + </button>
             <input type="text" className="form-control" id="asr" name="asr" value={prayer.asr} onChange={handleChange} />
           </div>
         </div>
 
+
+       
     
         <div className='mb-3 mt-3'>
           <label htmlFor="magrib_added_time" className="form-label">Magrib Global - Add/subtract - Potsdam</label>
           <div className="input-group">
             <input type="text" className="form-control" id="magrib_api" name="magrib_api" value={prayer.magrib_api} onChange={handleChange} />
             <button className="btn btn-outline-secondary" data-dec_added_time="magrib_added_time" data-api_time="magrib_api" data-db_time="magrib" type="button" onClick={handleDecrement}>-</button>
-            <input type="number" className="form-control" name='magrib_added_time' value={prayer.magrib_added_time} onChange={handleChange} min="-59" max="59" step="1"/>
+            <input type="number" className="form-control" name='magrib_added_time' value={prayer.magrib_added_time} onChange={handleChange} step="1"/>
             <button className="btn btn-outline-secondary" data-inc_added_time="magrib_added_time" data-api_time="magrib_api" data-db_time="magrib" type="button" onClick={handleIncrement}> + </button>
             <input type="text" className="form-control" id="magrib" name="magrib" value={prayer.magrib} onChange={handleChange} />
           </div>
@@ -230,7 +265,7 @@ function PrayerForm({ token, apiUrl }) {
             <div className="input-group">
               <input type="text" className="form-control" id="isha_api" name="isha_api" value={prayer.isha_api} onChange={handleChange} />
               <button className="btn btn-outline-secondary" data-dec_added_time="isha_added_time" data-api_time="isha_api" data-db_time="isha" type="button" onClick={handleDecrement}>-</button>
-              <input type="number" className="form-control" name='isha_added_time' value={prayer.isha_added_time} onChange={handleChange} min="-59" max="59" step="1"/>
+              <input type="number" className="form-control" name='isha_added_time' value={prayer.isha_added_time} onChange={handleChange} step="1"/>
               <button className="btn btn-outline-secondary" data-inc_added_time="isha_added_time" data-api_time="isha_api" data-db_time="isha" type="button" onClick={handleIncrement}> + </button>
               <input type="text" className="form-control" id="isha" name="isha" value={prayer.isha} onChange={handleChange} />
             </div>

@@ -81,7 +81,7 @@ function App() {
               {isAuthenticated ? (
                   <>
                     <NavLink className="btn btn-link nav-link" to="prayer/edit/67a6a7f3910f6b920a5d4254">Prayers</NavLink>
-                    <NavLink className="btn btn-link nav-link" to="/provider">Provider</NavLink>
+                    <NavLink className="btn btn-link nav-link" to="/provider">Wifi Providers</NavLink>
                     <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
                   </>
                 ) : (

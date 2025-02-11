@@ -99,7 +99,7 @@ const PrayerView = () => {
                             <ul className="list-group">
                                 <li class="list-group-item">Fajr: {prayer.fajr_api}</li>
                                 <li class="list-group-item">Sunrise: {prayer.sunrise}</li>
-                                <li class="list-group-item">Duhr: {prayer.duhr_api}</li>
+                                <li class="list-group-item">Dhuhr: {prayer.duhr_api}</li>
                                 <li class="list-group-item">Jummah: {prayer.duhr_api}</li>
                                 <li class="list-group-item">Asr: {prayer.asr_api}</li>
                                 <li class="list-group-item">Magrib: {prayer.magrib_api}</li>

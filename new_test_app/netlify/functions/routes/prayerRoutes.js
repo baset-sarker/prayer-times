@@ -88,7 +88,5 @@ router.get('/:id', authenticateJWT, async (req, res) => {
 });
 
 
-
-
 export const prayerRouter=router;
 
