@@ -12,7 +12,7 @@ npm --version
 # sudo apt install xserver-xorg x11-xserver-utils xinit
 
 
-sudo prayer_app.service /etc/systemd/system/prayer_app.service
+sudo cp prayer_app.service /etc/systemd/system/prayer_app.service
 sudo systemctl daemon-reload
 sudo systemctl enable prayer_app.service
 sudo systemctl start prayer_app.service
