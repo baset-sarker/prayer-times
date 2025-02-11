@@ -130,6 +130,8 @@ def fetch_and_save_prayer_time(url):
         print(f"An error occurred: {e}")
 
 def main_loop():
+    dt = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    print(dt,"Script running...")
     """
     Main loop:
       - Checks if the device is connected.
