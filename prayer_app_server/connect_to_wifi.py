@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # How long (in seconds) to wait between connectivity checks
-CHECK_INTERVAL = 10
+CHECK_INTERVAL = 15
 
 # Path to the JSON file that contains the Wi‑Fi credentials
 WIFI_CREDENTIALS_FILE = "wifi_credentials.json"
