@@ -12,12 +12,12 @@ npm --version
 # sudo apt install xserver-xorg x11-xserver-utils xinit
 
 
-sudo systemctl disable prayer_app.service
-sudo cp prayer_app.service /etc/systemd/system/prayer_app.service
-sudo systemctl daemon-reload
-sudo systemctl enable prayer_app.service
-sudo systemctl start prayer_app.service
-sudo systemctl status prayer_app.service
+# sudo systemctl disable prayer_app.service
+# sudo cp prayer_app.service /etc/systemd/system/prayer_app.service
+# sudo systemctl daemon-reload
+# sudo systemctl enable prayer_app.service
+# sudo systemctl start prayer_app.service
+# sudo systemctl status prayer_app.service
 
 sudo systemctl disable data_pull.service
 sudo cp data_pull.service /etc/systemd/system/data_pull.service
