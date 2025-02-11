@@ -27,7 +27,10 @@ const PrayerView = () => {
       hadis2: "",
       hadis3: "",
       hadis4: "",
-      hadis5: ""
+      hadis5: "",
+      notice_head_line: "",
+      notice_first_line: "",
+      notice_second_line: ""
     });
     const [loading, setLoading] = useState(true); // Add a loading state
     const [error, setError] = useState(null);
@@ -67,11 +70,22 @@ const PrayerView = () => {
 
   return (
     <div>
-        <section class="py-4">
+        <section className="py-4">
             <div className="container">
                 <div className="align-items-center">
+                  {prayer.notice_head_line && (
                     <div className="row">
-                    <h1 style={{ textAlign: 'center' }}>Prayer Time</h1>
+                      <div style={{ marginTop: '40px', marginBottom: '40px' }}>
+                        <h1 style={{ textAlign: 'center'}}>{prayer.notice_head_line}</h1>
+                        <h2 style={{ textAlign: 'center'}}>{prayer.notice_first_line}</h2>
+                        {prayer.notice_second_line && (<h3 style={{ textAlign: 'center'}}>{prayer.notice_second_line}</h3> )}
+                        <hr />
+                      </div>
+                    </div>
+                  )}
+
+                    <div className="row">
+                    <h1 style={{ textAlign: 'center'}}>Prayer Time</h1>
                     </div>
 
                     {loading && <div>Loading prayer times...</div>}
@@ -82,30 +96,30 @@ const PrayerView = () => {
                         <div className="col-lg-6 my-3 my-lg-0" >
                             <h2 style={{ textAlign: 'center' }}>Potsdam (Gathering Time)</h2>
                             <ul class="list-group">
-                                <li class="list-group-item">Fajr: {prayer.fajr}</li>
-                                <li class="list-group-item">Sunrise: {prayer.sunrise}</li>
-                                <li class="list-group-item">Dhuhr: {prayer.duhr}</li>
-                                <li class="list-group-item">Jummah: {prayer.jummah}</li>
-                                <li class="list-group-item">Asr: {prayer.asr}</li>
-                                <li class="list-group-item">Magrib: {prayer.magrib}</li>
-                                <li class="list-group-item">Isha: {prayer.isha}</li>
+                                <li className="golden-card">Fajr: {prayer.fajr}</li>
+                                <li className="golden-card">Sunrise: {prayer.sunrise}</li>
+                                <li className="golden-card">Dhuhr: {prayer.duhr}</li>
+                                <li className="golden-card">Jummah: {prayer.jummah}</li>
+                                <li className="golden-card">Asr: {prayer.asr}</li>
+                                <li className="golden-card">Magrib: {prayer.magrib}</li>
+                                <li className="golden-card">Isha: {prayer.isha}</li>
                             </ul>
-                            *These are not prayer times, these are times we gather at our masjid for salat.
+                            <p className='py-2'>*These are not prayer times, these are times we gather at our masjid for salat. </p>
                             {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}
                             
                         </div>
                         <div className="col-lg-6">
                             <h2 style={{ textAlign: 'center' }}>Prayer Time</h2>
                             <ul className="list-group">
-                                <li class="list-group-item">Fajr: {prayer.fajr_api}</li>
-                                <li class="list-group-item">Sunrise: {prayer.sunrise}</li>
-                                <li class="list-group-item">Dhuhr: {prayer.duhr_api}</li>
-                                <li class="list-group-item">Jummah: {prayer.duhr_api}</li>
-                                <li class="list-group-item">Asr: {prayer.asr_api}</li>
-                                <li class="list-group-item">Magrib: {prayer.magrib_api}</li>
-                                <li class="list-group-item">Isha: {prayer.isha_api}</li>
+                                <li className="golden-card">Fajr: {prayer.fajr_api}</li>
+                                <li className="golden-card">Sunrise: {prayer.sunrise}</li>
+                                <li className="golden-card">Dhuhr: {prayer.duhr_api}</li>
+                                <li className="golden-card">Jummah: {prayer.duhr_api}</li>
+                                <li className="golden-card">Asr: {prayer.asr_api}</li>
+                                <li className="golden-card">Magrib: {prayer.magrib_api}</li>
+                                <li className="golden-card">Isha: {prayer.isha_api}</li>
                             </ul>
-                            *Prayer time is taken from API (https://aladhan.com/), please check before follow. 
+                            <p className='py-2'> *Prayer time is taken from API (https://aladhan.com/), please check before follow. </p>
                         </div> 
                     </div>
                     )}

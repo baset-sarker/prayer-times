@@ -117,3 +117,9 @@ package-lock.json
 
 .node_modules/
 
+# Local Netlify folder
+.netlify
+.env
+new_test_app/node_modules
+wifi_credentials.json
+

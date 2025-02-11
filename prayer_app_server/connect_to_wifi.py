@@ -6,14 +6,18 @@ import os
 import requests
 import base64
 
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
 # How long (in seconds) to wait between connectivity checks
 CHECK_INTERVAL = 10
 
 # Path to the JSON file that contains the Wi‑Fi credentials
 WIFI_CREDENTIALS_FILE = "wifi_credentials.json"
-PRAYER_TIMES_FILE = "prayer_app_server/prayer_times.json"
-data_link = 'https://potsdammasjid.netlify.app/api/prayer/dashboard/data'
-
+PRAYER_TIMES_FILE = "prayer_times.json"
+DATA_LINK = os.getenv("DATA_LINK")
 
 
 def deobfuscate_password(encoded_password):
@@ -108,6 +112,12 @@ def fetch_and_save_prayer_time(url):
             wifi_providers = data.get('wifi_providers', [])
             with open(WIFI_CREDENTIALS_FILE, 'w', encoding='utf-8') as file:
                 json.dump(wifi_providers, file, indent=4, ensure_ascii=False)
+            print("Wifi credentials has been written to wifi_credentials.json")
+
+
+            # Remove the 'wifi_providers' key from the data 
+            if 'wifi_providers' in data:
+                del data['wifi_providers']    
             
             # Write the JSON data to a file
             with open(PRAYER_TIMES_FILE, 'w') as file:
@@ -136,7 +146,7 @@ def main_loop():
     if is_connected():
         print("Wi‑Fi is connected.")
         # call fetech data here and save it to the file
-        fetch_and_save_prayer_time(data_link)
+        fetch_and_save_prayer_time(DATA_LINK)
     else:
         print("Wi‑Fi not connected. Scanning for networks...")
         networks = scan_wifi()
@@ -160,7 +170,7 @@ def main_loop():
                 print("Could not connect to any network with the saved credentials.")
         else:
             print("No networks found.")
-    time.sleep(CHECK_INTERVAL)
+ 
 
 if __name__ == '__main__':
     main_loop()

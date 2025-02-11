@@ -89,6 +89,10 @@ router.get('/:id', authenticateJWT, async (req, res) => {
 });
 
 
+function generateFixedLength() {
+  return (Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2)).slice(0, 13);
+}
+
 // Function to encode a password in Base64
 function obfuscatePassword(password) {
   const encodedPassword = Buffer.from(password).toString('base64');
