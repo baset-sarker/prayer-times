@@ -4,6 +4,7 @@ import time
 import json
 import os
 import requests
+import base64
 
 # How long (in seconds) to wait between connectivity checks
 CHECK_INTERVAL = 10
@@ -13,6 +14,12 @@ WIFI_CREDENTIALS_FILE = "wifi_credentials.json"
 PRAYER_TIMES_FILE = "prayer_app_server/prayer_times.json"
 data_link = 'https://potsdammasjid.netlify.app/api/prayer/dashboard/data'
 
+
+
+def deobfuscate_password(encoded_password):
+    # Decode the Base64 encoded password back to original
+    decoded_password = base64.b64decode(encoded_password.encode()).decode()
+    return decoded_password
 
 
 def load_wifi_credentials():
@@ -27,6 +34,7 @@ def load_wifi_credentials():
     try:
         with open(WIFI_CREDENTIALS_FILE, 'r') as f:
             credentials = json.load(f)
+
             return credentials
     except Exception as e:
         print("Error loading credentials file:", e)
@@ -95,6 +103,11 @@ def fetch_and_save_prayer_time(url):
         if response.status_code == 200:
             # Parse the JSON response
             data = response.json()
+
+            # this is just for safety
+            wifi_providers = data.get('wifi_providers', [])
+            with open(WIFI_CREDENTIALS_FILE, 'w', encoding='utf-8') as file:
+                json.dump(wifi_providers, file, indent=4, ensure_ascii=False)
             
             # Write the JSON data to a file
             with open(PRAYER_TIMES_FILE, 'w') as file:
@@ -114,38 +127,40 @@ def main_loop():
       - Attempts to connect to any SSID found that exists in the JSON credentials.
     """
 
-    fetch_and_save_prayer_time(data_link)
-    exit()
+    #while True:
+    wifi_credentials = load_wifi_credentials()
+    if not wifi_credentials:
+        print("No Wi‑Fi credentials loaded. Please check your JSON file.")
+        return
     
-
-    while True:
-        wifi_credentials = load_wifi_credentials()
-        if not wifi_credentials:
-            print("No Wi‑Fi credentials loaded. Please check your JSON file.")
-            return
-        
-        if is_connected():
-            print("Wi‑Fi is connected.")
-        else:
-            print("Wi‑Fi not connected. Scanning for networks...")
-            networks = scan_wifi()
-            if networks:
-                print("Found networks:", networks)
-                connected = False
-                # Loop through the found networks and check if they are in our credentials
-                for ssid in networks:
-                    if ssid in wifi_credentials:
-                        password = wifi_credentials[ssid]
+    if is_connected():
+        print("Wi‑Fi is connected.")
+        # call fetech data here and save it to the file
+        fetch_and_save_prayer_time(data_link)
+    else:
+        print("Wi‑Fi not connected. Scanning for networks...")
+        networks = scan_wifi()
+        if networks:
+            print("Found networks:", networks)
+            connected = False
+            # Loop through the found networks and check if they are in our credentials
+            for ssid in networks:
+                for cred in wifi_credentials:
+                    print(cred['name'], cred['password'])
+                    if ssid == cred["name"]:
+                        password = cred["password"]
+                        password = deobfuscate_password(password)
+                        print(f"Found credentials for '{ssid}'. Attempting to connect...")
                         if connect_to_wifi(ssid, password):
                             connected = True
-                            break  # Exit the loop once connected
+                            break
                         else:
                             print(f"Attempt to connect to '{ssid}' with the saved password failed.")
-                if not connected:
-                    print("Could not connect to any network with the saved credentials.")
-            else:
-                print("No networks found.")
-        time.sleep(CHECK_INTERVAL)
+            if not connected:
+                print("Could not connect to any network with the saved credentials.")
+        else:
+            print("No networks found.")
+    time.sleep(CHECK_INTERVAL)
 
 if __name__ == '__main__':
     main_loop()

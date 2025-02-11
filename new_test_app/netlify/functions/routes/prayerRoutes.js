@@ -1,5 +1,6 @@
 import express from 'express';
 import {Prayer} from '../models/prayer.js';
+import {Provider} from '../models/provider.js';
 import {authenticateJWT} from '../middleware/auth.js';
 import { fetchData,convert24to12 } from '../helpers/helper_func.js';
 import dotenv from 'dotenv'; // Load environment variables from .env file
@@ -88,13 +89,20 @@ router.get('/:id', authenticateJWT, async (req, res) => {
 });
 
 
+// Function to encode a password in Base64
+function obfuscatePassword(password) {
+  const encodedPassword = Buffer.from(password).toString('base64');
+  return encodedPassword;
+}
+
 // Define a route to get the prayer times and notices
 router.get('/dashboard/data', async (req, res) => {
   try {
     const prayerData = await Prayer.findOne(); // Get the first prayer data document
+    const providerData = await Provider.find({}) // Get prayer times from the API
     
-    if (!prayerData) {
-      return res.status(404).json({ message: 'Prayer data not found' });
+    if (!prayerData || !providerData) {
+      return res.status(404).json({ message: 'Prayer or Wifi not found data not found' });
     }
 
     const prayers = {
@@ -127,11 +135,20 @@ router.get('/dashboard/data', async (req, res) => {
       hadis5: prayerData.hadis5
     };
 
+    // wifi providers array name,password
+    const wifi_providers = providerData.map(provider => {
+      return {
+        name: provider.name,
+        password: obfuscatePassword(provider.password)
+      };
+    });
+
     res.json({
       prayers,
       notice,
       notice_default,
-      hadis
+      hadis,
+      wifi_providers
     });
 
   } catch (error) {

@@ -2,3 +2,4 @@
 .netlify
 .env
 new_test_app/node_modules
+wifi_credentials.json
