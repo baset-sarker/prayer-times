@@ -4,7 +4,7 @@
   "description": "An Electron app to load prayer times from a remote server",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron . --no-sandbox"
   },
   "keywords": [],
   "author": "",
