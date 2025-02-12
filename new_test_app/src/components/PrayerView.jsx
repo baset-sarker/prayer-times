@@ -85,7 +85,7 @@ const PrayerView = () => {
                   )}
 
                     <div className="row">
-                    <h1 style={{ textAlign: 'center', height:"2rem", color: '#d4af37'}}>Prayer Time</h1>
+                    <h1 style={{ textAlign: 'center', fontSize:"2rem", color: '#d4af37'}}>Prayer Time</h1>
                     </div>
 
                     {loading && <div>Loading prayer times...</div>}
@@ -94,7 +94,7 @@ const PrayerView = () => {
                     
                     <div className='row'>
                         <div className="col-lg-6 my-3 my-lg-0" >
-                            <h2 className="shiny-gold-text" style={{ textAlign: 'center' }}>Prayer gathering at the masjid</h2>
+                            <h2 className="shiny-gold-text" style={{ textAlign: 'center' , fontSize: '2rem' }}>Prayer gathering at the masjid</h2>
                             <ul class="list-group">
                                 <li className="golden-card shiny-gold-text">Fajr: {prayer.fajr}</li>
                                 <li className="golden-card shiny-gold-text">Sunrise: {prayer.sunrise}</li>
@@ -113,7 +113,7 @@ const PrayerView = () => {
                             
                         </div>
                         <div className="col-lg-6">
-                            <h2 className='shiny-gold-text' style={{ textAlign: 'center' }}>Prayer time</h2>
+                            <h2 className='shiny-gold-text' style={{ textAlign: 'center', fontSize: '2rem' }}>Prayer time</h2>
                             <ul className="list-group">
                                 <li className="golden-card shiny-gold-text">Fajr: {prayer.fajr_api}</li>
                                 <li className="golden-card shiny-gold-text">Sunrise: {prayer.sunrise}</li>

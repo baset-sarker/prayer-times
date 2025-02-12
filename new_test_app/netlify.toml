@@ -1,7 +1,7 @@
 [build]
   functions = "netlify/functions"
   publish = "dist"
-  command = "npm run build"
+  command = "TZ=America/New_York npm run build"
   node_bundler = "esbuild"
 
 
