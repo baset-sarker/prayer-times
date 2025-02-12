@@ -75,10 +75,10 @@ const PrayerView = () => {
                 <div className="align-items-center">
                   {prayer.notice_head_line && (
                     <div className="row">
-                      <div style={{ marginTop: '40px', marginBottom: '40px' }}>
-                        <h1 style={{ textAlign: 'center'}}>{prayer.notice_head_line}</h1>
-                        <h2 style={{ textAlign: 'center'}}>{prayer.notice_first_line}</h2>
-                        {prayer.notice_second_line && (<h3 style={{ textAlign: 'center'}}>{prayer.notice_second_line}</h3> )}
+                        <div style={{marginTop: '40px', marginBottom: '40px' }}>
+                        <h1 style={{ textAlign: 'center'}} className="shiny-gold-text">{prayer.notice_head_line}</h1>
+                        <h2 style={{ textAlign: 'center'}} className="shiny-gold-text">{prayer.notice_first_line}</h2>
+                        {prayer.notice_second_line && (<h3 style={{ textAlign: 'center'}} className="shiny-gold-text">{prayer.notice_second_line}</h3> )}
                         <hr />
                       </div>
                     </div>
