@@ -62,7 +62,7 @@ function App() {
       </nav> */}
 
       <div className='container-fluid'>
-       <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: '#04383F'}}>
+       <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: '#04383F',borderBottom: '1px solid #f3a32c'}}>
           <a className="navbar-brand text-white" href="/"> &nbsp; &nbsp; Potsdam Masjid</a>
           <button
             className="navbar-toggler"
