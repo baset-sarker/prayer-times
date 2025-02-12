@@ -176,6 +176,7 @@ def main_loop():
                 # call fetech data here and save it to the file
                 if loop_count % 3 == 0: # every 30 minutes
                     fetch_and_save_prayer_time()
+                    write_to_log("Wi‑Fi is connected.")
                     loop_count == 0
             else:
                 print("Wi‑Fi not connected. Scanning for networks...")
