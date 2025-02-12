@@ -154,14 +154,19 @@ def main_loop():
       - If not, scans for available networks.
       - Attempts to connect to any SSID found that exists in the JSON credentials.
     """
+    # first wait for 1 minute
+    print("Waiting for 1 minute before starting the loop...")
+    time.sleep(10)
 
+    loop_count = 0
     while True:
         try:
-        
             if is_connected():
                 print("Wi‑Fi is connected.")
                 # call fetech data here and save it to the file
-                fetch_and_save_prayer_time()
+                if loop_count % 3 == 0: # every 30 minutes
+                    fetch_and_save_prayer_time()
+                    loop_count == 0
             else:
                 print("Wi‑Fi not connected. Scanning for networks...")
                 wifi_credentials = load_wifi_credentials()
@@ -190,7 +195,7 @@ def main_loop():
                     print("No networks found.")
         except Exception as e:
             print("An error occurred:", e)
-
+        loop_count += 1
         time.sleep(CHECK_INTERVAL)
  
 

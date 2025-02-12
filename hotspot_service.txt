@@ -37,4 +37,13 @@ sudo systemctl enable wifi-hotspot.service
 
 
 
+# see service log : 
+# realtime log
+journalctl -u data_pull.service -f
+# since today
+journalctl -u data_pull.service --since today
+
+
+
+
 

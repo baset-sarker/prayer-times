@@ -1,11 +1,11 @@
 [Unit]
 Description=Start Data pulling
-After=network.target
+After=network.target graphical.target
 
 [Service]
 Type=simple
 User=pi
-ExecStartPre=/bin/sleep 60 
+OnBootSec=60s
 WorkingDirectory=/home/pi/prayer-times/prayer_app_server/
 ExecStart=/home/pi/prayer-times/prayer_app_server/venv/bin/python connect_to_wifi.py
 Restart=always
