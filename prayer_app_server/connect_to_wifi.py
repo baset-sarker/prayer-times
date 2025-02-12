@@ -156,7 +156,7 @@ def main_loop():
     """
     # first wait for 1 minute
     print("Waiting for 1 minute before starting the loop...")
-    time.sleep(10)
+    time.sleep(60)
 
     loop_count = 0
     while True:
