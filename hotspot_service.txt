@@ -43,7 +43,9 @@ journalctl -u data_pull.service -f
 # since today
 journalctl -u data_pull.service --since today
 
+journalctl -u myservice  --no-pager -n 5
 
 
+#ExecStartPre=/bin/sleep 60 
 
 
