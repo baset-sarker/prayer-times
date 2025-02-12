@@ -47,6 +47,51 @@ function convert24to12(time24) {
   };
 
 
+
+  function getCurrentDateFormatted_YYYY_mm_dd() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Ensure 2-digit format
+    const day = String(now.getDate()).padStart(2, '0'); // Ensure 2-digit format
+
+    return `${year}-${month}-${day}`;
+  }
+
+  const fetchIslamicFinderData = async () => {
+    const baseUrl = 'https://www.islamicfinder.us/index.php/api/prayer_times';
+
+    const dt = getCurrentDateFormatted_YYYY_mm_dd();
+
+    const params = new URLSearchParams({
+        city: 'Potsdam',
+        country: 'US',
+        date: dt,  // Use the appropriate date format as specified in the API documentation.
+        zipcode: '13676',    
+        method: '2',  
+        time_format: '0',        // Calculation method (e.g., 2 for Umm al-Qura)
+      }).toString();
+      
+      // Make the GET request to the API using Fetch.
+      const url = `${baseUrl}?${params.toString()}`; // Use toString()
+      
+      try {
+        const response = await fetch(url,  { headers: { 'Accept': 'application/json'}});
+  
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
+        const data = await response.json();
+        console.log(data);
+        return data;
+  
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+  }
+
+
   export {convert24to12,
           getCurrentDateFormatted,
+          fetchIslamicFinderData,
           fetchData}

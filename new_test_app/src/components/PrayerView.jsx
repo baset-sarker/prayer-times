@@ -123,7 +123,8 @@ const PrayerView = () => {
                                 <li className="golden-card shiny-gold-text">Magrib: {prayer.magrib_api}</li>
                                 <li className="golden-card shiny-gold-text">Isha: {prayer.isha_api}</li>
                             </ul>
-                            <p className='py-2 text-white'> *Prayer time is taken from API (https://aladhan.com/), please check before follow. </p>
+                            {/* <p className='py-2 text-white'> *Prayer time is taken from API (https://aladhan.com/), please check before follow. </p> */}
+                            <p className='py-2 text-white'> *Prayer time is taken from API (https://www.islamicfinder.us/), please check before follow. </p>
                         </div> 
                     </div>
                     )}
