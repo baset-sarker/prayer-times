@@ -83,6 +83,16 @@
           font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
 
+        .shiny-gold-text {
+            color: #ecc402;
+            background: linear-gradient(45deg, #ffd700, #ffac33, #d4af37, #f3a32c, #ffd700);
+            /* background-size: 400%; Ensure smooth animation */
+            -webkit-background-clip: text; /* Clip the gradient to the text */
+            -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
+            /* background-position: 100% 50%; */
+            animation: shine 4s linear infinite; /* Smooth and continuous animation */
+        }
+
         .golden-card {
             display: flex;
             font-size: 2rem;

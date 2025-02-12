@@ -70,8 +70,8 @@ const PrayerView = () => {
 
   return (
     <div>
-        <section className="py-4">
-            <div className="container">
+        <section className="py-4" style={{ backgroundColor: '#04383F'}} >
+            <div className="container" >
                 <div className="align-items-center">
                   {prayer.notice_head_line && (
                     <div className="row">
@@ -85,7 +85,7 @@ const PrayerView = () => {
                   )}
 
                     <div className="row">
-                    <h1 style={{ textAlign: 'center', height:"2rem"}}>Prayer Time</h1>
+                    <h1 style={{ textAlign: 'center', height:"2rem", color: '#d4af37'}}>Prayer Time</h1>
                     </div>
 
                     {loading && <div>Loading prayer times...</div>}
@@ -94,17 +94,17 @@ const PrayerView = () => {
                     
                     <div className='row'>
                         <div className="col-lg-6 my-3 my-lg-0" >
-                            <h2 style={{ textAlign: 'center' }}>Prayer gathering at the masjid</h2>
+                            <h2 className="shiny-gold-text" style={{ textAlign: 'center' }}>Prayer gathering at the masjid</h2>
                             <ul class="list-group">
-                                <li className="golden-card">Fajr: {prayer.fajr}</li>
-                                <li className="golden-card">Sunrise: {prayer.sunrise}</li>
-                                <li className="golden-card">Dhuhr: {prayer.duhr}</li>
-                                <li className="golden-card">Jummah: {prayer.jummah}</li>
-                                <li className="golden-card">Asr: {prayer.asr}</li>
-                                <li className="golden-card">Magrib: {prayer.magrib}</li>
-                                <li className="golden-card">Isha: {prayer.isha}</li>
+                                <li className="golden-card shiny-gold-text">Fajr: {prayer.fajr}</li>
+                                <li className="golden-card shiny-gold-text">Sunrise: {prayer.sunrise}</li>
+                                <li className="golden-card shiny-gold-text">Dhuhr: {prayer.duhr}</li>
+                                <li className="golden-card shiny-gold-text">Jummah: {prayer.jummah}</li>
+                                <li className="golden-card shiny-gold-text">Asr: {prayer.asr}</li>
+                                <li className="golden-card shiny-gold-text">Magrib: {prayer.magrib}</li>
+                                <li className="golden-card shiny-gold-text">Isha: {prayer.isha}</li>
                             </ul>
-                            <p className='py-2'>*These are not prayer times, these are times we gather at our masjid for salat. 
+                            <p className='py-2 text-white'>*These are not prayer times, these are times we gather at our masjid for salat. 
                             {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}
 
                             </p>
@@ -113,17 +113,17 @@ const PrayerView = () => {
                             
                         </div>
                         <div className="col-lg-6">
-                            <h2 style={{ textAlign: 'center' }}>Prayer time</h2>
+                            <h2 className='shiny-gold-text' style={{ textAlign: 'center' }}>Prayer time</h2>
                             <ul className="list-group">
-                                <li className="golden-card">Fajr: {prayer.fajr_api}</li>
-                                <li className="golden-card">Sunrise: {prayer.sunrise}</li>
-                                <li className="golden-card">Dhuhr: {prayer.duhr_api}</li>
-                                <li className="golden-card">Jummah: {prayer.duhr_api}</li>
-                                <li className="golden-card">Asr: {prayer.asr_api}</li>
-                                <li className="golden-card">Magrib: {prayer.magrib_api}</li>
-                                <li className="golden-card">Isha: {prayer.isha_api}</li>
+                                <li className="golden-card shiny-gold-text">Fajr: {prayer.fajr_api}</li>
+                                <li className="golden-card shiny-gold-text">Sunrise: {prayer.sunrise}</li>
+                                <li className="golden-card shiny-gold-text">Dhuhr: {prayer.duhr_api}</li>
+                                <li className="golden-card shiny-gold-text">Jummah: {prayer.duhr_api}</li>
+                                <li className="golden-card shiny-gold-text">Asr: {prayer.asr_api}</li>
+                                <li className="golden-card shiny-gold-text">Magrib: {prayer.magrib_api}</li>
+                                <li className="golden-card shiny-gold-text">Isha: {prayer.isha_api}</li>
                             </ul>
-                            <p className='py-2'> *Prayer time is taken from API (https://aladhan.com/), please check before follow. </p>
+                            <p className='py-2 text-white'> *Prayer time is taken from API (https://aladhan.com/), please check before follow. </p>
                         </div> 
                     </div>
                     )}
