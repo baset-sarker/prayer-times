@@ -62,8 +62,8 @@ function App() {
       </nav> */}
 
       <div className='container-fluid'>
-       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="/"> &nbsp; &nbsp; Potsdam Masjid</a>
+       <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: '#04383F'}}>
+          <a className="navbar-brand text-white" href="/"> &nbsp; &nbsp; Potsdam Masjid</a>
           <button
             className="navbar-toggler"
             type="button"
@@ -80,12 +80,12 @@ function App() {
             <ul className="navbar-nav">
               {isAuthenticated ? (
                   <>
-                    <NavLink className="btn btn-link nav-link" to="prayer/edit/67a6a7f3910f6b920a5d4254">Prayer Times</NavLink>
-                    <NavLink className="btn btn-link nav-link" to="/provider">Wifi Providers</NavLink>
-                    <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
+                    <NavLink className="btn btn-link nav-link text-white" to="prayer/edit/67a6a7f3910f6b920a5d4254">Prayer Times</NavLink>
+                    <NavLink className="btn btn-link nav-link text-white" to="/provider">Wifi Providers</NavLink>
+                    <button className="btn btn-link nav-link text-white" onClick={handleLogout}>Logout</button>
                   </>
                 ) : (
-                  <NavLink className="btn btn-link nav-link" to="/login">Login</NavLink>
+                  <NavLink className="btn btn-link nav-link text-white" to="/login">Login</NavLink>
                 )}
             </ul>
           </div>
