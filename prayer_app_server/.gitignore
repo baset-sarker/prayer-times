@@ -123,6 +123,9 @@ package-lock.json
 venv
 new_test_app/node_modules
 wifi_credentials.json
+wifi_credentials.json.bkp
+
+
 
 __pycache__
 

@@ -13,10 +13,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # How long (in seconds) to wait between connectivity checks
-CHECK_INTERVAL = 30
+CHECK_INTERVAL = 10
 
 # Path to the JSON file that contains the Wi‑Fi credentials
 WIFI_CREDENTIALS_FILE = "wifi_credentials.json"
+WIFI_CREDENTIALS_BKP = "wifi_credentials.json.bkp"
 PRAYER_TIMES_FILE = "prayer_times.json"
 DATA_LINK = os.getenv("DATA_LINK")
 
@@ -33,17 +34,31 @@ def load_wifi_credentials():
     The JSON should be a dictionary mapping SSID names to passwords.
     Returns a dictionary of credentials.
     """
+    default_credentials = []
+
     if not os.path.exists(WIFI_CREDENTIALS_FILE):
-        print(f"Credentials file '{WIFI_CREDENTIALS_FILE}' does not exist.")
-        return {}
+        print(f"Credentials file '{WIFI_CREDENTIALS_FILE}' does not exist. Creating default credentials.")
+        with open(WIFI_CREDENTIALS_FILE, 'w') as f:
+            json.dump(default_credentials, f, indent=4)
+        return default_credentials
+
     try:
         with open(WIFI_CREDENTIALS_FILE, 'r') as f:
             credentials = json.load(f)
-
+            if not isinstance(credentials, list):  # Ensure it's the expected format
+                raise ValueError("Invalid credentials format")
             return credentials
+    except (json.JSONDecodeError, ValueError) as e:
+        print("Invalid or corrupted credentials file. copy bkp credential:", e)
+        with open(WIFI_CREDENTIALS_BKP, 'r') as f:
+            credentials = json.load(f)
+        with open(WIFI_CREDENTIALS_FILE, 'w') as f:
+            json.dump(credentials, f, indent=4)
+        return credentials
+    
     except Exception as e:
         print("Error loading credentials file:", e)
-        return {}
+        return default_credentials
 
 def is_connected():
     """
@@ -142,17 +157,18 @@ def main_loop():
 
     while True:
         try:
-            wifi_credentials = load_wifi_credentials()
-            if not wifi_credentials:
-                print("No Wi‑Fi credentials loaded. Please check your JSON file.")
-                return
-            
+        
             if is_connected():
                 print("Wi‑Fi is connected.")
                 # call fetech data here and save it to the file
                 fetch_and_save_prayer_time()
             else:
                 print("Wi‑Fi not connected. Scanning for networks...")
+                wifi_credentials = load_wifi_credentials()
+                if not wifi_credentials:
+                    print("No Wi‑Fi credentials loaded. Please check your JSON file.")
+                    return
+                
                 networks = scan_wifi()
                 if networks:
                     print("Found networks:", networks)
@@ -160,10 +176,9 @@ def main_loop():
                     # Loop through the found networks and check if they are in our credentials
                     for ssid in networks:
                         for cred in wifi_credentials:
-                            print(cred['name'], cred['password'])
                             if ssid == cred["name"]:
                                 password = cred["password"]
-                                print(f"Found credentials for '{ssid}'. Attempting to connect...")
+                                print(f"Found credentials for '{ssid} password: {password}'. Attempting to connect...")
                                 if connect_to_wifi(ssid, password):
                                     connected = True
                                     break

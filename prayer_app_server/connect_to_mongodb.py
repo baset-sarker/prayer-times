@@ -5,8 +5,8 @@ import os
 load_dotenv()
 
 MONGODB_URI = os.getenv("MONGODB_URI")
-client = MongoClient(MONGODB_URI)
-db = client.get_database()
+client = None
+db = None
 
 def check_connection():
     global client
@@ -77,6 +77,9 @@ def get_prayer_time_data():
     global client, db
     data = None
     try:
+        if db is None or client is None:
+            client = MongoClient(MONGODB_URI)
+            db = client.get_database()
         if not check_connection():
             print("Reconnecting to MongoDB...")
             client = MongoClient(MONGODB_URI)  # Reconnect if disconnected

@@ -1,11 +1,11 @@
 {
     "prayers": {
         "fajr": "06:00 AM",
-        "sunrise": "7:06 AM",
+        "sunrise": "7:04 AM",
         "dhuhr": "01:00 PM",
         "jummah": "2:00 PM",
         "asr": "03:15 PM",
-        "magrib": "5:30 PM",
+        "magrib": "05:45 PM",
         "isha": "(On time)"
     },
     "notice": {
