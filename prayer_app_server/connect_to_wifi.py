@@ -145,6 +145,13 @@ def fetch_and_save_prayer_time():
     except Exception as e:
         print(f"An error occurred: {e}")
 
+def write_to_log(message):
+    dt = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    log_file = "data_pull.log"
+    message = f"{dt} - {message}"
+    with open(log_file, "a") as f:
+        f.write(f"{message}\n")
+
 def main_loop():
     dt = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print(dt,"Script running...")
@@ -156,13 +163,16 @@ def main_loop():
     """
     # first wait for 1 minute
     print("Waiting for 1 minute before starting the loop...")
+    write_to_log("Waiting for 1 minute before starting the loop...")
     time.sleep(60)
 
     loop_count = 0
     while True:
+
         try:
             if is_connected():
                 print("Wi‑Fi is connected.")
+                write_to_log("Wi‑Fi is connected.")
                 # call fetech data here and save it to the file
                 if loop_count % 3 == 0: # every 30 minutes
                     fetch_and_save_prayer_time()
@@ -189,8 +199,10 @@ def main_loop():
                                     break
                                 else:
                                     print(f"Attempt to connect to '{ssid}' with the saved password failed.")
+                                    write_to_log(f"Attempt to connect to '{ssid}' with the saved password failed.")
                     if not connected:
                         print("Could not connect to any network with the saved credentials.")
+                        write_to_log("Could not connect to any network with the saved credentials.")
                 else:
                     print("No networks found.")
         except Exception as e:
