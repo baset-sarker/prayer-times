@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=pi
+User=root
 WorkingDirectory=/home/pi/prayer-times/prayer_app_server/
 ExecStart=/home/pi/prayer-times/prayer_app_server/venv/bin/python connect_to_wifi.py
 Restart=on-failure
