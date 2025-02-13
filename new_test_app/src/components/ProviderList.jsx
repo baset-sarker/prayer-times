@@ -26,6 +26,8 @@ function ProviderList({ token, apiUrl }) {
   }, [apiUrl, token]);
 
   const handleDelete = async (id) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this provider?");
+    if (!isConfirmed) return;
     try {
       await axios.delete(`${apiUrl}/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
