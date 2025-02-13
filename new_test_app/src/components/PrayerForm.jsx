@@ -195,17 +195,15 @@ function PrayerForm({ token, apiUrl }) {
   };
 
 
-
-
-  return (
+  return (   
     <form onSubmit={handleSubmit}>
       {error && <div className="alert alert-danger">{error}</div>}
 
         <div className="mb-3 mt-3">
-            <button type="submit" className="btn btn-primary">Save Prayer Times</button>
+          <button type="submit" className="btn-green">Save Prayer Times</button>
         </div>
         <div className='mb-3 mt-3'>
-            <label htmlFor="field1" className="form-label">Fajr Global - Add/Subtract - Potsdam</label>
+            <label htmlFor="field1" className="form-label fw-bold">Fajr Global - Add/Subtract - Potsdam</label>
             <div className="input-group">
               <input type="text" className="form-control" id="fajr_api" name="fajr_api" value={prayer.fajr_api} onChange={handleChange} />
               <button className="btn btn-outline-secondary" data-dec_added_time="fajr_added_time" data-api_time="fajr_api" data-db_time='fajr' type="button" onClick={handleDecrement}>-</button>
@@ -216,12 +214,12 @@ function PrayerForm({ token, apiUrl }) {
         </div>
 
         <div className="mb-3 mt-3">
-          <label htmlFor="sunrise" className="form-label">Sunrise</label>
+          <label htmlFor="sunrise" className="form-label fw-bold">Sunrise</label>
           <input type="text" className="form-control" id="sunrise" name="sunrise" value={prayer.sunrise} onChange={handleChange} />
         </div>
 
         <div className='mb-3 mt-3'>
-           <label htmlFor="duhr_api" className="form-label">Duhr Global - Add/Subtract - Potsdam</label>
+           <label htmlFor="duhr_api" className="form-label fw-bold">Duhr Global - Add/Subtract - Potsdam</label>
            <div className="input-group">
               <input type="text" className="form-control" id="duhr_api" name="duhr_api" value={prayer.duhr_api} onChange={handleChange} />`
               <button className="btn btn-outline-secondary" data-dec_added_time="duhr_added_time" data-api_time="duhr_api" data-db_time="duhr" type="button" onClick={handleDecrement}>-</button>
@@ -234,12 +232,12 @@ function PrayerForm({ token, apiUrl }) {
         
 
         <div className="mb-3 mt-3">
-          <label htmlFor="jummah" className="form-label">Jummah</label>
+          <label htmlFor="jummah" className="form-label fw-bold">Jummah</label>
           <input type="text" className="form-control" id="jummah" name="jummah" value={prayer.jummah} onChange={handleChange} />
         </div>
 
         <div className='mb-3 mt-3'>
-          <label htmlFor="asr_added_time" className="form-label">Asr Global - Add/subtract - Potsdam</label>
+          <label htmlFor="asr_added_time" className="form-label fw-bold">Asr Global - Add/subtract - Potsdam</label>
           <div className="input-group">
             <input type="text" className="form-control" id="asr_api" name="asr_api" value={prayer.asr_api} onChange={handleChange} />
             <button className="btn btn-outline-secondary" data-dec_added_time="asr_added_time" data-api_time="asr_api" data-db_time="asr" type="button" onClick={handleDecrement}>-</button>
@@ -248,12 +246,8 @@ function PrayerForm({ token, apiUrl }) {
             <input type="text" className="form-control" id="asr" name="asr" value={prayer.asr} onChange={handleChange} />
           </div>
         </div>
-
-
-       
-    
         <div className='mb-3 mt-3'>
-          <label htmlFor="magrib_added_time" className="form-label">Magrib Global - Add/subtract - Potsdam</label>
+          <label htmlFor="magrib_added_time" className="form-label fw-bold">Magrib Global - Add/subtract - Potsdam</label>
           <div className="input-group">
             <input type="text" className="form-control" id="magrib_api" name="magrib_api" value={prayer.magrib_api} onChange={handleChange} />
             <button className="btn btn-outline-secondary" data-dec_added_time="magrib_added_time" data-api_time="magrib_api" data-db_time="magrib" type="button" onClick={handleDecrement}>-</button>
@@ -264,7 +258,7 @@ function PrayerForm({ token, apiUrl }) {
         </div>
 
         <div className="mb-3 mt-3">
-            <label htmlFor="isha_added_time" className="form-label">Add/subtract</label>
+            <label htmlFor="isha_added_time" className="form-label fw-bold">Add/subtract</label>
             <div className="input-group">
               <input type="text" className="form-control" id="isha_api" name="isha_api" value={prayer.isha_api} onChange={handleChange} />
               <button className="btn btn-outline-secondary" data-dec_added_time="isha_added_time" data-api_time="isha_api" data-db_time="isha" type="button" onClick={handleDecrement}>-</button>
@@ -274,55 +268,55 @@ function PrayerForm({ token, apiUrl }) {
             </div>
         </div>
         <div className="mb-3 mt-3">
-            <label htmlFor="isha_added_time" className="form-label">Hadis 1</label>
+            <label htmlFor="isha_added_time" className="form-label fw-bold">Hadis 1</label>
             <div className="input-group">
               <textarea type="text" rows={5} className="form-control" id="hadis1" name="hadis1" value={prayer.hadis1} onChange={handleChange} />
             </div>
         </div>
         <div className="mb-3 mt-3">
-            <label htmlFor="isha_added_time" className="form-label">Hadis 2</label>
+            <label htmlFor="isha_added_time" className="form-label fw-bold">Hadis 2</label>
             <div className="input-group">
               <textarea type="text" rows={5} className="form-control" id="hadis2" name="hadis2" value={prayer.hadis2} onChange={handleChange} />
             </div>
         </div>
         <div className="mb-3 mt-3">
-            <label htmlFor="isha_added_time" className="form-label">Hadis 3</label>
+            <label htmlFor="isha_added_time" className="form-label fw-bold">Hadis 3</label>
             <div className="input-group">
               <textarea type="text" rows={5} className="form-control" id="hadis3" name="hadis3" value={prayer.hadis3} onChange={handleChange} />
             </div>
         </div>
         <div className="mb-3 mt-3">
-            <label htmlFor="isha_added_time" className="form-label">Hadis 4</label>
+            <label htmlFor="isha_added_time" className="form-label fw-bold">Hadis 4</label>
             <div className="input-group">
               <textarea type="text" rows={5} className="form-control" id="hadis4" name="hadis4" value={prayer.hadis4} onChange={handleChange} />
             </div>
         </div>
         <div className="mb-3 mt-3">
-            <label htmlFor="isha_added_time" className="form-label">Hadis 5</label>
+            <label htmlFor="isha_added_time" className="form-label fw-bold">Hadis 5</label>
             <div className="input-group">
               <textarea type="text" rows={5} className="form-control" id="hadis5" name="hadis5" value={prayer.hadis5} onChange={handleChange} />
             </div>
         </div>
         <div className="mb-3 mt-3">
-            <label htmlFor="notice_head_line" className="form-label">Notice Headline</label>
+            <label htmlFor="notice_head_line" className="form-label fw-bold">Notice Headline</label>
             <div className="input-group">
               <textarea type="text" className="form-control" id="notice_head_line" name="notice_head_line" value={prayer.notice_head_line} onChange={handleChange} />
             </div>
         </div>
         <div className="mb-3 mt-3">
-            <label htmlFor="notice_first_line" className="form-label">Notice First Line</label>
+            <label htmlFor="notice_first_line" className="form-label fw-bold">Notice First Line</label>
             <div className="input-group">
               <textarea type="text" rows={5} className="form-control" id="notice_first_line" name="notice_first_line" value={prayer.notice_first_line} onChange={handleChange} />
             </div>
         </div>
         <div className="mb-3 mt-3">
-            <label htmlFor="notice_second_line" className="form-label">Notice Second Line</label>
+            <label htmlFor="notice_second_line" className="form-label fw-bold">Notice Second Line</label>
             <div className="input-group">
               <textarea type="text" rows={5} className="form-control" id="notice_second_line" name="notice_second_line" value={prayer.notice_second_line} onChange={handleChange} />
             </div>
         </div>
         <div className="mb-3 mt-3">
-            <button type="submit" className="btn btn-primary">Save Prayer Times</button>
+            <button type="submit" className="btn-green">Save Prayer Times</button>
         </div>
     </form>
   );

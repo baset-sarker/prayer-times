@@ -51,38 +51,62 @@ function PrayerList({ token, apiUrl }) {
       <ul className="list-group">
         {/* <h2> &nbsp; &nbsp; Prayer List</h2> */}
         {prayers?.map((prayer) => (
-          <li key={prayer._id} className="list-group-item">
-            <Link to={`/prayer/edit/${prayer._id}`} className="btn btn-sm btn-warning ms-2">Edit</Link> <br></br>
-            Fajr:{prayer.fajr}  Duhr:{prayer.duhr} Asr: {prayer.asr} Magrib{prayer.magrib} Isha:{prayer.isha}
-            <hr></hr>
-            {prayer.hadis1} <hr></hr>
-            {prayer.hadis2} <hr></hr>
-            {prayer.hadis3} <hr></hr>
-            {prayer.hadis4} <hr></hr>
-            {prayer.hadis5} <hr></hr>
-            {prayer.notice_head_line && (
-              <>
-                {prayer.notice_head_line}
-                <hr />
-              </>
-            )}
+          <div key={prayer._id} className='container'>
+            <div className='my-4'>
+            <Link to={`/prayer/edit/${prayer._id}`} className="btn-green">Edit Prayer</Link> <br></br>
+            </div>
 
-            {prayer.notice_first_line && (
-              <>
-                {prayer.notice_first_line}
-                <hr />
-              </>
-            )}
-
-            {prayer.notice_second_line && (
-              <>
-                {prayer.notice_second_line}
-                <hr />
-              </>
-            )}
-
-            {/* <button onClick={() => handleDelete(prayer._id)} className="btn btn-sm btn-danger ms-2">Delete</button> */}
-          </li>
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Prayer Times</td>
+                  <td>Fajr:{prayer.fajr} &nbsp;Sunrise: {prayer.sunrise} &nbsp; Dhuhr:{prayer.duhr} &nbsp; Jummah: {prayer.jumma}
+                      &nbsp;Asr: {prayer.asr} &nbsp;Magrib{prayer.magrib} &nbsp;Isha:{prayer.isha}</td>
+                </tr>
+                <tr>
+                  <td>Hadis1</td>
+                  <td>{prayer.hadis1}</td>
+                </tr>
+                <tr>
+                  <td>Hadis2</td>
+                  <td>{prayer.hadis2}</td>
+                </tr>
+                <tr>
+                  <td>Hadis3</td>
+                  <td>{prayer.hadis3}</td>
+                </tr>
+                <tr>
+                  <td>Hadis4</td>  
+                  <td>{prayer.hadis4}</td>
+                </tr>
+                <tr>
+                  <td>Hadis5</td>
+                  <td>{prayer.hadis5}</td>
+                </tr>
+                {prayer.notice_head_line && (
+                  <>
+                    <tr> <td>{prayer.notice_head_line}</td> </tr>
+                  </>
+                )}
+                {prayer.notice_first_line && (
+                  <>
+                    <tr> <td>{prayer.notice_first_line}</td> </tr>
+                  </>
+                )}
+                {prayer.notice_second_line && (
+                  <>
+                    <tr> <td>{prayer.notice_second_line}</td> </tr>
+                  </>
+                )}
+              </tbody>
+            </table>
+          </div>
         ))}
       </ul>
     </div>

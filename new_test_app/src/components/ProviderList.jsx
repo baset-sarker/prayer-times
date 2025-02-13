@@ -47,8 +47,31 @@ function ProviderList({ token, apiUrl }) {
   return (
     <div className="col-md-6 offset-md-3" style={{ minHeight: '800px' }}>
       <h2 className="text-center" >Wifi Provider List</h2>
-      <Link to="/provider/create" className="btn btn-primary mb-3">Create Provider</Link>
-      <ul className="list-group">
+      <div className='my-4'>
+        <Link to="/provider/create" className="btn-green mb-3">Create Provider</Link>
+      </div>
+
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {providers?.map((provider) => (
+            <tr key={provider._id}>
+              <td>{provider.name}</td>
+              <td>
+                <Link to={`/provider/edit/${provider._id}`} className="btn btn-sm btn-warning">Edit</Link>
+                <button onClick={() => handleDelete(provider._id)} className="btn btn-sm btn-danger ms-2">Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      
+      {/* <ul className="list-group">
         {providers?.map((provider) => (
           <li key={provider._id} className="list-group-item">
             {provider.name}
@@ -56,7 +79,7 @@ function ProviderList({ token, apiUrl }) {
             <button onClick={() => handleDelete(provider._id)} className="btn btn-sm btn-danger ms-2">Delete</button>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
