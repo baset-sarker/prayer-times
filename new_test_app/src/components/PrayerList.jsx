@@ -67,7 +67,7 @@ function PrayerList({ token, apiUrl }) {
                 <tr>
                   <td>Prayer Times</td>
                   <td>Fajr:{prayer.fajr} &nbsp;Sunrise: {prayer.sunrise} &nbsp; Dhuhr:{prayer.duhr} &nbsp; Jummah: {prayer.jumma}
-                      &nbsp;Asr: {prayer.asr} &nbsp;Magrib{prayer.magrib} &nbsp;Isha:{prayer.isha}</td>
+                      &nbsp;Asr: {prayer.asr} &nbsp;Magrib{prayer.magrib} &nbsp;Isha:{prayer.isha} &nbsp;Tarawih:{prayer.tarawih}</td>
                 </tr>
                 <tr>
                   <td>Hadis1</td>
@@ -90,19 +90,23 @@ function PrayerList({ token, apiUrl }) {
                   <td>{prayer.hadis5}</td>
                 </tr>
                 {prayer.notice_head_line && (
-                  <>
-                    <tr> <td>{prayer.notice_head_line}</td> </tr>
-                  </>
+                    <tr> 
+                      <td>Notice Headline</td>
+                      <td>{prayer.notice_head_line}</td> 
+                    </tr>
                 )}
                 {prayer.notice_first_line && (
-                  <>
-                    <tr> <td>{prayer.notice_first_line}</td> </tr>
-                  </>
+                    <tr> 
+                      <td>Notice First Line</td>
+                      <td>{prayer.notice_first_line}</td> 
+                    </tr>
+                
                 )}
                 {prayer.notice_second_line && (
-                  <>
-                    <tr> <td>{prayer.notice_second_line}</td> </tr>
-                  </>
+                    <tr> 
+                      <td>Notice Second Line</td>
+                      <td>{prayer.notice_second_line}</td> 
+                    </tr>
                 )}
               </tbody>
             </table>
