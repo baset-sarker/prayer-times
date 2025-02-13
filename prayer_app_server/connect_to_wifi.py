@@ -197,6 +197,7 @@ def main_loop():
                         if ssid in cred_dict:  # Check if SSID exists in our credentials
                             password = cred_dict[ssid]
                             print(f"Found credentials for '{ssid}'. Attempting to connect...")
+                            write_to_log(f"Found credentials for '{ssid}'. Attempting to connect...")
 
                             if connect_to_wifi(ssid, password):
                                 print(f"Successfully connected to '{ssid}'.")
