@@ -6,7 +6,8 @@
         "jummah": "2:00 PM",
         "asr": "03:15 PM",
         "magrib": "05:45 PM",
-        "isha": "(On time)"
+        "isha": "(On time)",
+        "tarawih": ""
     },
     "notice": {
         "head_line": "",

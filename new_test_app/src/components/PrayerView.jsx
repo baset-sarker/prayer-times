@@ -23,6 +23,7 @@ const PrayerView = () => {
       isha_api: "",
       isha_added_time: 0,
       isha: "",
+      tarawih: "",
       hadis1: "",
       hadis2: "",
       hadis3: "",
@@ -103,6 +104,7 @@ const PrayerView = () => {
                                 <li className="golden-card shiny-gold-text">Asr: {prayer.asr}</li>
                                 <li className="golden-card shiny-gold-text">Magrib: {prayer.magrib}</li>
                                 <li className="golden-card shiny-gold-text">Isha: {prayer.isha}</li>
+                                {prayer.tarawih && (<li className="golden-card shiny-gold-text">Tarawi: {prayer.tarawih}</li>)}
                             </ul>
                             <p className='py-2 text-white'>*These are not prayer times, these are times we gather at our masjid for salat. 
                             {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}

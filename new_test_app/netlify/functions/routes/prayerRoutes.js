@@ -136,7 +136,8 @@ router.get('/dashboard/data', async (req, res) => {
       jummah: prayerData.jummah, // Adjust if you have a specific value
       asr: prayerData.asr,
       magrib: prayerData.magrib,
-      isha: prayerData.isha
+      isha: prayerData.isha,
+      tarawih: prayerData.tarawih
     };
 
     const notice = {

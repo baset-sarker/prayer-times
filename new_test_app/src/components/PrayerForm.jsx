@@ -79,6 +79,7 @@ function PrayerForm({ token, apiUrl }) {
     isha_api: "",
     isha_added_time: 0, // Initialize to 0
     isha: "",
+    tarawih: "",
     hadis1: "",
     hadis2: "",
     hadis3: "",
@@ -258,7 +259,7 @@ function PrayerForm({ token, apiUrl }) {
         </div>
 
         <div className="mb-3 mt-3">
-            <label htmlFor="isha_added_time" className="form-label fw-bold">Add/subtract</label>
+            <label htmlFor="isha_added_time" className="form-label fw-bold">Isha Global - Add/subtract - Potsdam</label>
             <div className="input-group">
               <input type="text" className="form-control" id="isha_api" name="isha_api" value={prayer.isha_api} onChange={handleChange} />
               <button className="btn btn-outline-secondary" data-dec_added_time="isha_added_time" data-api_time="isha_api" data-db_time="isha" type="button" onClick={handleDecrement}>-</button>
@@ -266,6 +267,10 @@ function PrayerForm({ token, apiUrl }) {
               <button className="btn btn-outline-secondary" data-inc_added_time="isha_added_time" data-api_time="isha_api" data-db_time="isha" type="button" onClick={handleIncrement}> + </button>
               <input type="text" className="form-control" id="isha" name="isha" value={prayer.isha} onChange={handleChange} />
             </div>
+        </div>
+        <div className="mb-3 mt-3">
+          <label htmlFor="tarawih" className="form-label fw-bold">Tarawih</label>
+          <input type="text" className="form-control" id="tarawih" name="tarawih" value={prayer.tarawih} onChange={handleChange} />
         </div>
         <div className="mb-3 mt-3">
             <label htmlFor="isha_added_time" className="form-label fw-bold">Hadis 1</label>

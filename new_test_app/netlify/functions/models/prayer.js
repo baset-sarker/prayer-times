@@ -19,6 +19,7 @@ const prayerSchema = new mongoose.Schema({
     isha: String,
     isha_added_time: Number,
     isha_api: String,
+    tarawih:String,
     hadis1: String,
     hadis2: String,
     hadis3: String,

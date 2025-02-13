@@ -34,8 +34,8 @@ def get_prayer_and_provider_data():
         "jummah": prayer_data.get("jummah"),
         "asr": prayer_data.get("asr"),
         "magrib": prayer_data.get("magrib"),
-        "isha": prayer_data.get("isha")
-        
+        "isha": prayer_data.get("isha"),
+        "tarawih": prayer_data.get("tarawih")
     }
 
     notice = {
