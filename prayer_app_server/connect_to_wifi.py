@@ -103,7 +103,7 @@ def connect_to_wifi(ssid, password):
     try:
         print(f"Attempting to connect to SSID: '{ssid}' using the saved password.")
         output = subprocess.check_output(
-            ['nmcli', 'dev', 'wifi', 'connect', ssid, 'password', password],
+            ['nmcli', 'dev', 'wifi', 'connect', f'{ssid}', 'password', f'{password}'],
             stderr=subprocess.STDOUT,
             universal_newlines=True
         )
@@ -164,7 +164,7 @@ def main_loop():
     # first wait for 1 minute
     print("Waiting for 1 minute before starting the loop...")
     write_to_log("Waiting for 1 minute before starting the loop...")
-    time.sleep(60)
+    # time.sleep(60)
 
     loop_count = 0
     while True:
@@ -186,24 +186,28 @@ def main_loop():
                     return
                 
                 networks = scan_wifi()
+
                 if networks:
                     print("Found networks:", networks)
-                    connected = False
-                    # Loop through the found networks and check if they are in our credentials
+                    
+                    # Convert credentials list into a dictionary for faster lookup
+                    cred_dict = {cred["name"]: cred["password"] for cred in wifi_credentials}
+
                     for ssid in networks:
-                        for cred in wifi_credentials:
-                            if ssid == cred["name"]:
-                                password = cred["password"]
-                                print(f"Found credentials for '{ssid} password: {password}'. Attempting to connect...")
-                                if connect_to_wifi(ssid, password):
-                                    connected = True
-                                    break
-                                else:
-                                    print(f"Attempt to connect to '{ssid}' with the saved password failed.")
-                                    write_to_log(f"Attempt to connect to '{ssid}' with the saved password failed.")
-                    if not connected:
+                        if ssid in cred_dict:  # Check if SSID exists in our credentials
+                            password = cred_dict[ssid]
+                            print(f"Found credentials for '{ssid}'. Attempting to connect...")
+
+                            if connect_to_wifi(ssid, password):
+                                print(f"Successfully connected to '{ssid}'.")
+                                break  # Stop trying once connected
+                            else:
+                                print(f"Attempt to connect to '{ssid}' failed.")
+                                write_to_log(f"Attempt to connect to '{ssid}' failed.")
+                    else:
                         print("Could not connect to any network with the saved credentials.")
                         write_to_log("Could not connect to any network with the saved credentials.")
+
                 else:
                     print("No networks found.")
         except Exception as e:

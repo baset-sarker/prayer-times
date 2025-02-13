@@ -51,7 +51,7 @@ function ProviderList({ token, apiUrl }) {
       <ul className="list-group">
         {providers?.map((provider) => (
           <li key={provider._id} className="list-group-item">
-            {provider.name} {provider.password}
+            {provider.name}
             <Link to={`/provider/edit/${provider._id}`} className="btn btn-sm btn-warning ms-2">Edit</Link> 
             <button onClick={() => handleDelete(provider._id)} className="btn btn-sm btn-danger ms-2">Delete</button>
           </li>

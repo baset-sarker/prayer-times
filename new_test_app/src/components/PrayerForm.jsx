@@ -201,6 +201,9 @@ function PrayerForm({ token, apiUrl }) {
     <form onSubmit={handleSubmit}>
       {error && <div className="alert alert-danger">{error}</div>}
 
+        <div className="mb-3 mt-3">
+            <button type="submit" className="btn btn-primary">Save Prayer Times</button>
+        </div>
         <div className='mb-3 mt-3'>
             <label htmlFor="field1" className="form-label">Fajr Global - Add/Subtract - Potsdam</label>
             <div className="input-group">
@@ -318,7 +321,9 @@ function PrayerForm({ token, apiUrl }) {
               <textarea type="text" rows={5} className="form-control" id="notice_second_line" name="notice_second_line" value={prayer.notice_second_line} onChange={handleChange} />
             </div>
         </div>
-      <button type="submit" className="btn btn-primary">Save</button>
+        <div className="mb-3 mt-3">
+            <button type="submit" className="btn btn-primary">Save Prayer Times</button>
+        </div>
     </form>
   );
 }
