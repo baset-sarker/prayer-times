@@ -178,9 +178,6 @@ def main_loop():
       - Attempts to connect to any SSID found that exists in the JSON credentials.
     """
     # first wait for 1 minute
-    print("Waiting for 1 minute before starting the loop...")
-    
-
     if not args.test:
         write_to_log("Waiting for 1 minute before starting the loop...")
         time.sleep(60)
@@ -225,13 +222,14 @@ def main_loop():
                             # pass original ssid
                             if connect_to_wifi(ssid, password):
                                 print(f"Successfully connected to '{ssid}'.")
+                                write_to_log(f"Successfully connected to '{ssid}'.")
                                 break  # Stop trying once connected
                             else:
                                 print(f"Attempt to connect to '{ssid}' failed.")
                                 write_to_log(f"Attempt to connect to '{ssid}' failed.")
-                    else:
-                        print("Could not connect to any network with the saved credentials.")
-                        write_to_log("Could not connect to any network with the saved credentials.")
+                        else:
+                            print("Did not match any credentials.")
+                            write_to_log("Did not match any credentials.")
 
                 else:
                     print("No networks found.")
