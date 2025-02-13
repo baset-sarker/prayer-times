@@ -22,6 +22,13 @@ PRAYER_TIMES_FILE = "prayer_times.json"
 DATA_LINK = os.getenv("DATA_LINK")
 
 
+import re
+
+def standardize_apostrophes(text):
+    """Replaces "smart" apostrophes with straight apostrophes."""
+    return re.sub(r"[’‘]", "'", text)
+
+
 def deobfuscate_password(encoded_password):
     # Decode the Base64 encoded password back to original
     decoded_password = base64.b64decode(encoded_password.encode()).decode()
@@ -102,8 +109,9 @@ def connect_to_wifi(ssid, password):
     """
     try:
         print(f"Attempting to connect to SSID: '{ssid}' using the saved password.")
+        print("command: " ,['nmcli', 'dev', 'wifi', 'connect', f"{ssid}", 'password', f"{password}"])
         output = subprocess.check_output(
-            ['nmcli', 'dev', 'wifi', 'connect', f'{ssid}', 'password', f'{password}'],
+            ['nmcli', 'dev', 'wifi', 'connect', f"{ssid}", 'password', f"{password}"],
             stderr=subprocess.STDOUT,
             universal_newlines=True
         )
@@ -164,7 +172,7 @@ def main_loop():
     # first wait for 1 minute
     print("Waiting for 1 minute before starting the loop...")
     write_to_log("Waiting for 1 minute before starting the loop...")
-    time.sleep(60)
+    #time.sleep(60)
 
     loop_count = 0
     while True:
@@ -194,11 +202,16 @@ def main_loop():
                     cred_dict = {cred["name"]: cred["password"] for cred in wifi_credentials}
 
                     for ssid in networks:
-                        if ssid in cred_dict:  # Check if SSID exists in our credentials
+                        # for only chcking  the network with the saved credentials
+                        # as we savd on standarized method, 
+                        # but when making connection need to pass original ssid   
+                        standardize_ssid = standardize_apostrophes(ssid)
+                        if standardize_ssid in cred_dict:  # Check if SSID exists in our credentials
                             password = cred_dict[ssid]
                             print(f"Found credentials for '{ssid}'. Attempting to connect...")
                             write_to_log(f"Found credentials for '{ssid}'. Attempting to connect...")
-
+                            
+                            # pass original ssid
                             if connect_to_wifi(ssid, password):
                                 print(f"Successfully connected to '{ssid}'.")
                                 break  # Stop trying once connected

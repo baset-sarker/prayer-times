@@ -8,6 +8,12 @@ const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key'; // Replace with 
 router = express.Router();
 
 
+function standardizeApostrophes(text) {
+  if (typeof text === 'string') {
+    return text.replace(/[’‘]/g, "'");
+  }
+  return text;
+}
 
 // Provider Routes (Protected)
 router.get('/',authenticateJWT, async (req, res) => {
@@ -25,6 +31,10 @@ router.post('/', authenticateJWT, async (req, res) => {
     // const password_encrypted = encrypt(password, SECRET_KEY, ENCRYPTION_SALT);
     // console.log("password_encrypted",password_encrypted)
     // const newProvider = new Provider({ name, password, password_encrypted }); // Associate with user
+    
+    if (req.body.name) { // Check if 'name' exists in req.body
+      req.body.name = standardizeApostrophes(req.body.name);
+    }
 
     const newProvider = new Provider({ ...req.body, user: req.user.userId }); // Associate with user
     await newProvider.save();
@@ -34,15 +44,33 @@ router.post('/', authenticateJWT, async (req, res) => {
   }
 });
 
+
+
 router.put('/:id', authenticateJWT, async (req, res) => {
+  // try {
+  //   const updatedProvider = await Provider.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  //   if (!updatedProvider) {
+  //     return res.status(404).json({ message: 'Provider not found' });
+  //   }
+  //   res.json(updatedProvider);
+  // } catch (err) {
+  //   res.status(500).json({ message: err.message });
+  // }
+  
   try {
-    const updatedProvider = await Provider.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedProvider) {
-      return res.status(404).json({ message: 'Provider not found' });
-    }
-    res.json(updatedProvider);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+      if (req.body.name) { // Check if 'name' exists in req.body
+        req.body.name = standardizeApostrophes(req.body.name);
+      }
+    
+      const updatedProvider = await Provider.findByIdAndUpdate(
+        req.params.id,
+        req.body, // Now req.body is modified only for the 'name' field
+        { new: true }
+      );
+      res.send(updatedProvider)
+  } catch (error) {
+    console.error("Error updating provider:", error);
+    res.status(500).send({ error: "Failed to update provider" });
   }
 });
 
