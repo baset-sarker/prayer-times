@@ -106,11 +106,7 @@ const PrayerView = () => {
                             </ul>
                             <p className='py-2 text-white'>*These are not prayer times, these are times we gather at our masjid for salat. 
                             {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}
-
                             </p>
-                            
-                            
-                            
                         </div>
                         <div className="col-lg-6">
                             <h2 className='shiny-gold-text' style={{ textAlign: 'center', fontSize: '2rem' }}>Prayer time</h2>
