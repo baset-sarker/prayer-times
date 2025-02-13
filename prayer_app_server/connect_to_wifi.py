@@ -6,6 +6,7 @@ import os
 import requests
 import base64
 from connect_to_mongodb import get_prayer_time_data
+import argparse
 
 from dotenv import load_dotenv
 
@@ -22,8 +23,15 @@ PRAYER_TIMES_FILE = "prayer_times.json"
 DATA_LINK = os.getenv("DATA_LINK")
 
 
-import re
+# Create the parser
+parser = argparse.ArgumentParser()
+# Add the --test argument
+parser.add_argument('--test', action='store_true', help="Check if the --test argument is passed")
+# Parse the arguments
+args = parser.parse_args()
 
+
+import re
 def standardize_apostrophes(text):
     """Replaces "smart" apostrophes with straight apostrophes."""
     return re.sub(r"[’‘]", "'", text)
@@ -171,8 +179,11 @@ def main_loop():
     """
     # first wait for 1 minute
     print("Waiting for 1 minute before starting the loop...")
-    write_to_log("Waiting for 1 minute before starting the loop...")
-    #time.sleep(60)
+    
+
+    if not args.test:
+        write_to_log("Waiting for 1 minute before starting the loop...")
+        time.sleep(60)
 
     loop_count = 0
     while True:
