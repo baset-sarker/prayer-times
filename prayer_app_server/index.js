@@ -150,11 +150,11 @@ app.get('/prayer-times',async (req, res) => {
     try{
         ssid = await getSSID();
         if (!ssid) {
-           ssid = 'Connecting...';   
+           ssid = 'Scanning...';   
         }
     } catch (parseErr){
         console.error('Error Getting ssid:', parseErr);
-        ssid = 'Connecting...';   
+        ssid = 'Scanning...';   
     }
     
  

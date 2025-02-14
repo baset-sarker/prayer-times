@@ -7,7 +7,7 @@ import requests
 import base64
 from connect_to_mongodb import get_prayer_time_data
 import argparse
-
+import re
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -31,7 +31,7 @@ parser.add_argument('--test', action='store_true', help="Check if the --test arg
 args = parser.parse_args()
 
 
-import re
+
 def standardize_apostrophes(text):
     """Replaces "smart" apostrophes with straight apostrophes."""
     return re.sub(r"[’‘]", "'", text)
