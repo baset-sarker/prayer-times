@@ -86,7 +86,7 @@ const PrayerView = () => {
                   )}
 
                     <div className="row">
-                    <h1 style={{ textAlign: 'center', fontSize:"2rem", color: '#d4af37'}}>Prayer Time</h1>
+                    <h1 style={{ textAlign: 'center', fontSize:"2rem", color: '#d4af37'}}>&nbsp;</h1>
                     </div>
 
                     {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading prayer times...</div>}

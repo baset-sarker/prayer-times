@@ -110,6 +110,22 @@
         let hadisArray = [];
         let current_hadis = 0; // Track the current index
 
+        function getCurrentHourMin() {
+            const date = new Date();
+            let hours = date.getHours();
+            const minutes = date.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+
+            // Convert 24-hour time to 12-hour format
+            hours = hours % 12 || 12; // Convert 0 to 12
+
+            // Format minutes to always have two digits
+            const formattedMinutes = minutes.toString().padStart(2, '0');
+
+            const time12hr = `${hours}:${formattedMinutes} ${ampm}`;
+            console.log(time12hr);
+        }
+
 
         function getNextHadis() {
 
@@ -128,6 +144,7 @@
                 const response = await fetch('/prayer-times');
                 const data = await response.json();
                 console.log(data);
+
 
                 if (data.prayers) {
                    
