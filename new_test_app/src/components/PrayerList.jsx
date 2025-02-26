@@ -66,8 +66,10 @@ function PrayerList({ token, apiUrl }) {
               <tbody>
                 <tr>
                   <td>Prayer Times</td>
-                  <td>Fajr:{prayer.fajr} &nbsp;Sunrise: {prayer.sunrise} &nbsp; Dhuhr:{prayer.duhr} &nbsp; Jummah: {prayer.jumma}
-                      &nbsp;Asr: {prayer.asr} &nbsp;Magrib{prayer.magrib} &nbsp;Isha:{prayer.isha} &nbsp;Tarawih:{prayer.tarawih}</td>
+                  <td>Fajr:{prayer.fajr} &nbsp;Sunrise:{prayer.sunrise} &nbsp; Dhuhr:{prayer.duhr} &nbsp; Jummah:{prayer.jummah}
+                      &nbsp;Asr:{prayer.asr} &nbsp; Magrib:{prayer.magrib} &nbsp;Isha:{prayer.isha} &nbsp;Tarawih:{prayer.tarawih} 
+                      
+                  </td>
                 </tr>
                 <tr>
                   <td>Hadis1</td>
@@ -108,6 +110,7 @@ function PrayerList({ token, apiUrl }) {
                       <td>{prayer.notice_second_line}</td> 
                     </tr>
                 )}
+                &nbsp; Auto-update at: {prayer.updated_at}
               </tbody>
             </table>
           </div>

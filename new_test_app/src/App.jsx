@@ -6,10 +6,8 @@ import PrayerList from './components/PrayerList';
 import PrayerForm from './components/PrayerForm';
 import Home from './components/Home';
 import Footer from './components/Footer';
-import PrayerView from './components/PrayerView';
 import ProviderList from './components/ProviderList';
 import ProviderForm from './components/ProviderForm';
-import Contact from './components/Contact';
 
 
 const API_URL_PRAYER = '/api/prayer';
