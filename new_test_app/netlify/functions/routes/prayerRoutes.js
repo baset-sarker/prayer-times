@@ -10,12 +10,14 @@ const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key'; // Replace with 
 router = express.Router();
 
 router.get('/', async (req, res) => {
+  console.log("get all prayer=======")
   try {
     //const prayers = await Prayer.find({ user: req.user.userId }); // Get prayers for logged-in user
     const prayers = await Prayer.find({})
     let prayer = prayers[0];
     // allaathan api data
     
+    // one api
     // const api_data = await fetchData();
     // prayer.fajr_api = convert24to12(api_data.data.timings.Fajr)
     // prayer.duhr_api = convert24to12(api_data.data.timings.Dhuhr)
@@ -25,13 +27,13 @@ router.get('/', async (req, res) => {
     // prayer.sunrise = convert24to12(api_data.data.timings.Sunrise)
 
     // allaathan api data
-    const api_data = await fetchIslamicFinderData();
-    prayer.fajr_api = convert24to12(api_data.results.Fajr)
-    prayer.sunrise = convert24to12(api_data.results.Duha)
-    prayer.duhr_api = convert24to12(api_data.results.Dhuhr)
-    prayer.asr_api = convert24to12(api_data.results.Asr)
-    prayer.magrib_api = convert24to12(api_data.results.Maghrib)
-    prayer.isha_api = convert24to12(api_data.results.Isha)
+    // const api_data = await fetchIslamicFinderData();
+    // prayer.fajr_api = convert24to12(api_data.results.Fajr)
+    // prayer.sunrise = convert24to12(api_data.results.Duha)
+    // prayer.duhr_api = convert24to12(api_data.results.Dhuhr)
+    // prayer.asr_api = convert24to12(api_data.results.Asr)
+    // prayer.magrib_api = convert24to12(api_data.results.Maghrib)
+    // prayer.isha_api = convert24to12(api_data.results.Isha)
     
     res.json([prayer]);
   } catch (err) {
@@ -75,6 +77,7 @@ router.put('/:id', authenticateJWT, async (req, res) => {
 // });
 
 router.get('/:id', authenticateJWT, async (req, res) => {
+    console.log("get one for edit prayer=======")
     try {
       //const prayer = await Prayer.findById(req.params.id)
       const prayer = await Prayer.findById("67a6a7f3910f6b920a5d4254");
