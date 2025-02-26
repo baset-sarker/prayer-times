@@ -234,7 +234,7 @@ function PrayerForm({ token, apiUrl }) {
 
         <div className="mb-3 mt-3">
           <label htmlFor="jummah" className="form-label fw-bold">Jummah</label>
-          <input type="text" className="form-control" id="jummah" name="jummah" value={prayer.jummah} onChange={handleChange} readOnly/>
+          <input type="text" className="form-control" id="jummah" name="jummah" value={prayer.jummah} onChange={handleChange}/>
         </div>
 
         <div className='mb-3 mt-3'>

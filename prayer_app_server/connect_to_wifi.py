@@ -216,6 +216,7 @@ def main_loop():
                         standardize_ssid = standardize_apostrophes(ssid)
                         if standardize_ssid in cred_dict:  # Check if SSID exists in our credentials
                             password = cred_dict[ssid]
+                            print("passpowrd deobfuscate: ", deobfuscate_password(password))
                             print(f"Found credentials for '{ssid}'. Attempting to connect...")
                             # write_to_log(f"Found credentials for '{ssid}'. Attempting to connect...")
                             

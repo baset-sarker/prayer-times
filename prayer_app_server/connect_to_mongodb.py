@@ -59,6 +59,7 @@ def get_prayer_and_provider_data():
     }
 
     wifi_providers = [
+        # {"name": provider.get("name"), "password": provider.get("password_encrypted", "")}
         {"name": provider.get("name"), "password": provider.get("password", "")}
         for provider in provider_data
     ]
