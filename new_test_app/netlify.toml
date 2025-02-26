@@ -17,13 +17,6 @@
   to = "/index.html"
   status = 200
 
-#[build.environment]
-#  TZ = "UTC-5:00"
-
-#[[functions.schedule]]
-#function = "daily-task"
-#cron = "0 0 * * *" 
-#schedule = "*/5 * * * *"
 
 [functions."daily-task"]
   schedule = "0 */6 * * *"

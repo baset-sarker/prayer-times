@@ -89,7 +89,7 @@ const PrayerView = () => {
                     <h1 style={{ textAlign: 'center', fontSize:"2rem", color: '#d4af37'}}>Prayer Time</h1>
                     </div>
 
-                    {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/public/loading.gif'></img> Loading prayer times...</div>}
+                    {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading prayer times...</div>}
                     {error && <div style={{ color: 'red' }}>Error: {error}</div>}
                     {!loading && !error && (
                     

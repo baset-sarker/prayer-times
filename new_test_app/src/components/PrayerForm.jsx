@@ -206,7 +206,7 @@ function PrayerForm({ token, apiUrl }) {
         <div className='mb-3 mt-3'>
             <label htmlFor="field1" className="form-label fw-bold">Fajr Global - Add/Subtract - Potsdam</label>
             <div className="input-group">
-              <input type="text" className="form-control" id="fajr_api" name="fajr_api" value={prayer.fajr_api} onChange={handleChange} />
+              <input type="text" className="form-control" id="fajr_api" name="fajr_api" value={prayer.fajr_api} onChange={handleChange} readOnly />
               <button className="btn btn-outline-secondary" data-dec_added_time="fajr_added_time" data-api_time="fajr_api" data-db_time='fajr' type="button" onClick={handleDecrement}>-</button>
               <input type="text" className="form-control" name='fajr_added_time' value={prayer.fajr_added_time} onChange={handleChange} step="1"/>
               <button className="btn btn-outline-secondary" data-inc_added_time="fajr_added_time" data-api_time="fajr_api" data-db_time='fajr' type="button" onClick={handleIncrement}> + </button>
@@ -216,13 +216,13 @@ function PrayerForm({ token, apiUrl }) {
 
         <div className="mb-3 mt-3">
           <label htmlFor="sunrise" className="form-label fw-bold">Sunrise</label>
-          <input type="text" className="form-control" id="sunrise" name="sunrise" value={prayer.sunrise} onChange={handleChange} />
+          <input type="text" className="form-control" id="sunrise" name="sunrise" value={prayer.sunrise} onChange={handleChange} readOnly/>
         </div>
 
         <div className='mb-3 mt-3'>
            <label htmlFor="duhr_api" className="form-label fw-bold">Duhr Global - Add/Subtract - Potsdam</label>
            <div className="input-group">
-              <input type="text" className="form-control" id="duhr_api" name="duhr_api" value={prayer.duhr_api} onChange={handleChange} />`
+              <input type="text" className="form-control" id="duhr_api" name="duhr_api" value={prayer.duhr_api} onChange={handleChange} readOnly/>`
               <button className="btn btn-outline-secondary" data-dec_added_time="duhr_added_time" data-api_time="duhr_api" data-db_time="duhr" type="button" onClick={handleDecrement}>-</button>
               <input type="text" className="form-control" name='duhr_added_time' value={prayer.duhr_added_time} onChange={handleChange} step="1"/>
               <button className="btn btn-outline-secondary" data-inc_added_time="duhr_added_time" data-api_time="duhr_api"  data-db_time="duhr" type="button" onClick={handleIncrement}> + </button>
@@ -234,13 +234,13 @@ function PrayerForm({ token, apiUrl }) {
 
         <div className="mb-3 mt-3">
           <label htmlFor="jummah" className="form-label fw-bold">Jummah</label>
-          <input type="text" className="form-control" id="jummah" name="jummah" value={prayer.jummah} onChange={handleChange} />
+          <input type="text" className="form-control" id="jummah" name="jummah" value={prayer.jummah} onChange={handleChange} readOnly/>
         </div>
 
         <div className='mb-3 mt-3'>
           <label htmlFor="asr_added_time" className="form-label fw-bold">Asr Global - Add/subtract - Potsdam</label>
           <div className="input-group">
-            <input type="text" className="form-control" id="asr_api" name="asr_api" value={prayer.asr_api} onChange={handleChange} />
+            <input type="text" className="form-control" id="asr_api" name="asr_api" value={prayer.asr_api} onChange={handleChange} readOnly/>
             <button className="btn btn-outline-secondary" data-dec_added_time="asr_added_time" data-api_time="asr_api" data-db_time="asr" type="button" onClick={handleDecrement}>-</button>
             <input type="number" className="form-control" name='asr_added_time' value={prayer.asr_added_time} onChange={handleChange} step="1"/>
             <button className="btn btn-outline-secondary" data-inc_added_time="asr_added_time" data-api_time="asr_api" data-db_time="asr" type="button" onClick={handleIncrement}> + </button>
@@ -250,7 +250,7 @@ function PrayerForm({ token, apiUrl }) {
         <div className='mb-3 mt-3'>
           <label htmlFor="magrib_added_time" className="form-label fw-bold">Magrib Global - Add/subtract - Potsdam</label>
           <div className="input-group">
-            <input type="text" className="form-control" id="magrib_api" name="magrib_api" value={prayer.magrib_api} onChange={handleChange} />
+            <input type="text" className="form-control" id="magrib_api" name="magrib_api" value={prayer.magrib_api} onChange={handleChange} readOnly/>
             <button className="btn btn-outline-secondary" data-dec_added_time="magrib_added_time" data-api_time="magrib_api" data-db_time="magrib" type="button" onClick={handleDecrement}>-</button>
             <input type="number" className="form-control" name='magrib_added_time' value={prayer.magrib_added_time} onChange={handleChange} step="1"/>
             <button className="btn btn-outline-secondary" data-inc_added_time="magrib_added_time" data-api_time="magrib_api" data-db_time="magrib" type="button" onClick={handleIncrement}> + </button>
@@ -261,7 +261,7 @@ function PrayerForm({ token, apiUrl }) {
         <div className="mb-3 mt-3">
             <label htmlFor="isha_added_time" className="form-label fw-bold">Isha Global - Add/subtract - Potsdam</label>
             <div className="input-group">
-              <input type="text" className="form-control" id="isha_api" name="isha_api" value={prayer.isha_api} onChange={handleChange} />
+              <input type="text" className="form-control" id="isha_api" name="isha_api" value={prayer.isha_api} onChange={handleChange} readOnly/>
               <button className="btn btn-outline-secondary" data-dec_added_time="isha_added_time" data-api_time="isha_api" data-db_time="isha" type="button" onClick={handleDecrement}>-</button>
               <input type="number" className="form-control" name='isha_added_time' value={prayer.isha_added_time} onChange={handleChange} step="1"/>
               <button className="btn btn-outline-secondary" data-inc_added_time="isha_added_time" data-api_time="isha_api" data-db_time="isha" type="button" onClick={handleIncrement}> + </button>
