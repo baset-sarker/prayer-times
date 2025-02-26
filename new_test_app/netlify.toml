@@ -26,4 +26,4 @@
 #schedule = "*/5 * * * *"
 
 [functions."daily-task"]
-  schedule = "*/5 * * * *"  
+  schedule = "0 */6 * * *"
