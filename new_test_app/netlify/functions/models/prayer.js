@@ -28,6 +28,7 @@ const prayerSchema = new mongoose.Schema({
     notice_head_line: String,
     notice_first_line: String,
     notice_second_line: String,
+    updated_at: String,
     // user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // If you want to associate prayers with users
 });
 

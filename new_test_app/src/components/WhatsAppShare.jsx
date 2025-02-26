@@ -14,6 +14,7 @@ const WhatsAppShare = ({ prayer }) => {
                                   Asr: ${prayer.asr}
                                   Magrib: ${prayer.magrib}
                                   Isha: ${prayer.isha}
+                                  Tarawih: ${prayer.tarawih}
                                   For update visit: https://potsdammasjid.netlify.app/`;
   const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(FormatedTextForWhatsapp)}`;
 

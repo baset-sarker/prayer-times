@@ -179,7 +179,7 @@ def main_loop():
     """
     # first wait for 1 minute
     if not args.test:
-        write_to_log("Waiting for 1 minute before starting the loop...")
+        # write_to_log("Waiting for 1 minute before starting the loop...")
         time.sleep(60)
 
     loop_count = 0
@@ -188,11 +188,11 @@ def main_loop():
         try:
             if is_connected():
                 print("Wi‑Fi is connected.")
-                write_to_log("Wi‑Fi is connected.")
+                # write_to_log("Wi‑Fi is connected.")
                 # call fetech data here and save it to the file
                 if loop_count % 6 == 0: # every 30 minutes
                     fetch_and_save_prayer_time()
-                    write_to_log("Wi‑Fi is connected.")
+                    # write_to_log("Wi‑Fi is connected.")
                     loop_count == 0
             else:
                 print("Wi‑Fi not connected. Scanning for networks...")
@@ -217,19 +217,19 @@ def main_loop():
                         if standardize_ssid in cred_dict:  # Check if SSID exists in our credentials
                             password = cred_dict[ssid]
                             print(f"Found credentials for '{ssid}'. Attempting to connect...")
-                            write_to_log(f"Found credentials for '{ssid}'. Attempting to connect...")
+                            # write_to_log(f"Found credentials for '{ssid}'. Attempting to connect...")
                             
                             # pass original ssid
                             if connect_to_wifi(ssid, password):
                                 print(f"Successfully connected to '{ssid}'.")
-                                write_to_log(f"Successfully connected to '{ssid}'.")
+                                # write_to_log(f"Successfully connected to '{ssid}'.")
                                 break  # Stop trying once connected
                             else:
                                 print(f"Attempt to connect to '{ssid}' failed.")
-                                write_to_log(f"Attempt to connect to '{ssid}' failed.")
+                                # write_to_log(f"Attempt to connect to '{ssid}' failed.")
                         else:
                             print("Did not match any credentials.")
-                            write_to_log("Did not match any credentials.")
+                            # write_to_log("Did not match any credentials.")
 
                 else:
                     print("No networks found.")

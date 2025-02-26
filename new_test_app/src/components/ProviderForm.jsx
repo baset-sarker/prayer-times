@@ -68,7 +68,6 @@ function PrayerForm({ token, apiUrl }) {
         <label htmlFor="password" className="form-label">Password</label>
         <input type="text" className="form-control" id="password" name="password" onChange={handleChange} required/>
       </div>
-
       <button type="submit" className="btn btn-primary">Save</button>
     </form>
   );
