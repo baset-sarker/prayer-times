@@ -98,7 +98,7 @@ const PrayerView = () => {
                             <h2 className="shiny-gold-text" style={{ textAlign: 'center' , fontSize: '2rem' }}>Prayer gathering at the masjid</h2>
                             <ul class="list-group">
                                 <li className="golden-card shiny-gold-text">Fajr: {prayer.fajr}</li>
-                                <li className="golden-card shiny-gold-text">Sunrise: {prayer.sunrise}</li>
+                                {/* <li className="golden-card shiny-gold-text">Sunrise: {prayer.sunrise}</li> */}
                                 <li className="golden-card shiny-gold-text">Dhuhr: {prayer.duhr}</li>
                                 <li className="golden-card shiny-gold-text">Jummah: {prayer.jummah}</li>
                                 <li className="golden-card shiny-gold-text">Asr: {prayer.asr}</li>
