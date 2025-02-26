@@ -14,6 +14,7 @@ const Footer = () => {
             />
             </div>
         </div> */}
+
         <footer class="footer mb-0 py-4 text-white" style={{backgroundColor: '#04383F' , borderTop: '1px solid #f3a32c'}}>
             <div class="container">
                 <div class="row align-items-center">

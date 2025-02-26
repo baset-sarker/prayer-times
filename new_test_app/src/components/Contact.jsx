@@ -2,6 +2,7 @@ import React from 'react';
 
 const Contact = () => {
   return (
+
         <section className="page-section" id="contact" >
             <div className="container">
                 <div className="row my-5">
