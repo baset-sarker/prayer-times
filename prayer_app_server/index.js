@@ -151,6 +151,8 @@ app.get('/prayer-times',async (req, res) => {
         ssid = await getSSID();
         if (!ssid) {
            ssid = 'Scanning...';   
+        }else{
+            ssid = "Connected";
         }
     } catch (parseErr){
         console.error('Error Getting ssid:', parseErr);

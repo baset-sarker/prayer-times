@@ -62,11 +62,11 @@ function PrayerForm({ token, apiUrl }) {
 
       <div className="mb-3">
         <label htmlFor="name" className="form-label">Wifi Name</label>
-        <input type="text" className="form-control" id="name" name="name" value={provider.name} onChange={handleChange} />
+        <input type="text" className="form-control" id="name" name="name" value={provider.name} onChange={handleChange} required/>
       </div>
       <div className="mb-3">
         <label htmlFor="password" className="form-label">Password</label>
-        <input type="text" className="form-control" id="password" name="password" value={provider.password} onChange={handleChange} />
+        <input type="text" className="form-control" id="password" name="password" onChange={handleChange} required/>
       </div>
 
       <button type="submit" className="btn btn-primary">Save</button>
