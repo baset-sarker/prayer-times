@@ -8,10 +8,12 @@ import Home from './components/Home';
 import Footer from './components/Footer';
 import ProviderList from './components/ProviderList';
 import ProviderForm from './components/ProviderForm';
+import UserList from './components/UserList';
 
 
 const API_URL_PRAYER = '/api/prayer';
 const API_URL_PROVIDER = '/api/provider';
+const API_URL_USER = '/api/auth';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -81,6 +83,7 @@ function App() {
                   <>
                     <NavLink className="btn btn-link nav-link text-white" to="prayer/edit/67a6a7f3910f6b920a5d4254">Prayer Times</NavLink>
                     <NavLink className="btn btn-link nav-link text-white" to="/provider">Wifi Providers</NavLink>
+                    <NavLink className="btn btn-link nav-link text-white" to="/user">Admins</NavLink>
                     <button className="btn btn-link nav-link text-white" onClick={handleLogout}>Logout</button>
                   </>
                 ) : (
@@ -103,6 +106,10 @@ function App() {
             <Route path="/provider" element={<ProviderList token={token} apiUrl={API_URL_PROVIDER} />} />
             <Route path="/provider/create" element={<ProviderForm token={token} apiUrl={API_URL_PROVIDER} />} />
             <Route path="/provider/edit/:id" element={<ProviderForm token={token} apiUrl={API_URL_PROVIDER} />} />
+
+            <Route path="/user" element={<UserList token={token} apiUrl={API_URL_USER} />} />
+            {/* <Route path="/user/create" element={<ProviderForm token={token} apiUrl={API_URL_USER} />} /> */}
+            {/* <Route path="/user/edit/:id" element={<ProviderForm token={token} apiUrl={API_URL_USER} />} /> */}
 
             {/* <Route path="/prayer/edit/67a6a7f3910f6b920a5d4254" element={<PrayerUpdate token={token} />} /> */}
           </>
