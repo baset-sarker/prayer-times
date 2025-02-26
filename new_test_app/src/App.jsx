@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import PrayerView from './components/PrayerView';
 import ProviderList from './components/ProviderList';
 import ProviderForm from './components/ProviderForm';
+import Contact from './components/Contact';
 
 
 const API_URL_PRAYER = '/api/prayer';
@@ -109,6 +110,7 @@ function App() {
           </>
         )}
       </Routes>
+      <Contact />
       <Footer />
       
     </div>
