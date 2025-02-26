@@ -11,6 +11,7 @@ const Contact = () => {
                             Email: masjid110@hotmail.com <br></br>
                             Address: 110 Elm St, Potsdam, NY 13676
                         </h3>
+                        <br></br>
                     </div>
                    <div className="col-lg-6 col-md-6 text-center">
                         <a href="https://www.google.com/maps?q=44.67031633145772,-74.96599605289967" target="_blank">
