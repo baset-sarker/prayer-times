@@ -110,7 +110,6 @@ function App() {
           </>
         )}
       </Routes>
-      <Contact />
       <Footer />
       
     </div>
