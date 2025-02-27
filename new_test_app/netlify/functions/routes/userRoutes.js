@@ -40,6 +40,8 @@ router.post('/login', async (req, res) => {
 });
 
 
+
+// Get all users
 router.get('/',authenticateJWT, async (req, res) => {
   try {
      // want to exclude password field
