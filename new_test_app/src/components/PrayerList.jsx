@@ -37,7 +37,8 @@ function PrayerList({ token, apiUrl }) {
   };
 
   if (loading) {
-    return <div>Loading prayers...</div>;
+    // return <div>Loading prayers...</div>;
+    return <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>
   }
 
   if (error) {

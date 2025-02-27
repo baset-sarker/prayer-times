@@ -39,7 +39,7 @@ function ProviderList({ token, apiUrl }) {
   };
 
   if (loading) {
-    return <div>Loading providers...</div>;
+    return <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>
   }
 
   if (error) {
