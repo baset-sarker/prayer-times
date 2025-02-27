@@ -25,22 +25,22 @@
                     <h1 onclick="window.location.href='/update'" class="text-white" id="pt">Prayer Gathering At The Masjid</h1>
                 </div>              
                 <div class="row justify-content-center">
-                        <div class="col-lg-4 col-sm-6 col-xs-6" style="height: auto !important;">
-                            <div class="golden-card">
+                        <div class="col-lg-4 col-sm-6 col-xs-6">
+                            <div class="golden-card" id="asr_card">
                                 <div class="prayer_text shiny-gold-text">(عصر)</div>
                                 <div class="prayer_text shiny-gold-text" id="asr"></div>
                             </div>
                         </div>
                         
                         <div class="col-lg-4 col-sm-6 col-xs-6">
-                            <div class="golden-card">
+                            <div class="golden-card" id="dhuhr_card">
                                 <div class="prayer_text shiny-gold-text">(ظهر)</div>
                                 <div class="prayer_text shiny-gold-text" id="dhuhr"></div>
                                 <div class="prayer_text shiny-gold-text" id="jummah"></div>  
                             </div>
                         </div>
                         <div class="col-lg-4 col-sm-6 col-xs-6">
-                            <div class="golden-card">
+                            <div class="golden-card" id="fajr_card">
                                 <div class="prayer_text shiny-gold-text">(فجر)</div>
                                 <div class="prayer_text shiny-gold-text" id="fajr"></div>
                                 <div class="prayer_text shiny-gold-text" id="sunrise"></div>    
@@ -49,14 +49,14 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-sm-6 col-xs-6">
-                            <div class="golden-card">
+                            <div class="golden-card" id="isha_card">
                                 <div class="prayer_text shiny-gold-text">(عشاء)</div>
                                 <div class="prayer_text shiny-gold-text" id="isha"></div>
                                 <div class="prayer_text shiny-gold-text" id="tarawih"></div>  
                             </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 col-xs-6">
-                            <div class="golden-card">
+                            <div class="golden-card" id="magrib_card">
                                 <div class="prayer_text shiny-gold-text">(مغرب)</div>
                                 <div class="prayer_text shiny-gold-text" id="magrib"></div>
                                 
@@ -109,23 +109,7 @@
 
         let hadisArray = [];
         let current_hadis = 0; // Track the current index
-
-        function getCurrentHourMin() {
-            const date = new Date();
-            let hours = date.getHours();
-            const minutes = date.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-
-            // Convert 24-hour time to 12-hour format
-            hours = hours % 12 || 12; // Convert 0 to 12
-
-            // Format minutes to always have two digits
-            const formattedMinutes = minutes.toString().padStart(2, '0');
-
-            const time12hr = `${hours}:${formattedMinutes} ${ampm}`;
-            console.log(time12hr);
-        }
-
+      
 
         function getNextHadis() {
 
@@ -143,9 +127,7 @@
             try {
                 const response = await fetch('/prayer-times');
                 const data = await response.json();
-                console.log(data);
-
-
+      
                 if (data.prayers) {
                    
                     if(data.prayers.fajr){
@@ -219,6 +201,12 @@
                         document.getElementById('hadis_today_text').textContent = getNextHadis();
                     }   
                 }
+
+
+                // highlight active prayer
+                if (data.prayers) {
+                    highlightActivePrayer(data.prayers);
+                }
             } catch (error) {
                 console.error('Error fetching or parsing prayer times:', error);
             }
@@ -269,6 +257,60 @@
             isDiv1Visible = !isDiv1Visible; // Toggle state
         }
 
+
+        // Function to convert "hh:mm AM/PM" to minutes since midnight
+        function timeToMinutes(time) {
+            const [timePart, period] = time.split(" ");
+            let [hours, minutes] = timePart.split(":").map(Number);
+
+            if (period === "PM" && hours !== 12) hours += 12; // Convert PM hours to 24-hour format
+            if (period === "AM" && hours === 12) hours = 0;   // Convert 12 AM to 0
+
+            return hours * 60 + minutes; // Return total minutes since midnight
+        }
+
+
+        // Function to determine the active prayer
+        function highlightActivePrayer(prayerTimes) {
+            const now = new Date();
+            const currentTime = now.getHours() * 60 + now.getMinutes();
+
+            let activePrayer = null;
+            
+            try {
+
+                // Convert API prayer times to minutes
+                const fajrTime = timeToMinutes(prayerTimes.fajr_api);
+                const sunriseTime = timeToMinutes(prayerTimes.sunrise);
+                const duhrTime = timeToMinutes(prayerTimes.dhuhr_api);
+                const asrTime = timeToMinutes(prayerTimes.asr_api);
+                const magribTime = timeToMinutes(prayerTimes.magrib_api);
+                const ishaTime = timeToMinutes(prayerTimes.isha_api);
+
+                // Determine active prayer
+                if (currentTime >= fajrTime && currentTime < sunriseTime) {
+                    activePrayer = "fajr_card";
+                } else if (currentTime >= duhrTime && currentTime < asrTime) {
+                    activePrayer = "dhuhr_card";
+                } else if (currentTime >= asrTime && currentTime < magribTime) {
+                    activePrayer = "asr_card";
+                } else if (currentTime >= magribTime && currentTime < ishaTime) {
+                    activePrayer = "magrib_card";
+                } else if (currentTime >= ishaTime || currentTime < fajrTime) {
+                    activePrayer = "isha_card"; // Keep Esha active until Fajr
+                }
+
+                // Remove previous active class
+                document.querySelectorAll(".golden-card").forEach(div => div.classList.remove("golden-card-active"));
+
+                // Add active class to the current prayer
+                if (activePrayer) {
+                    document.getElementById(activePrayer).classList.add("golden-card-active");
+                }
+            } catch (error) {
+                console.error('Error highlighting active prayer:', error);
+            }
+        }
 
 
        // Use the timerAPI to setInterval

@@ -29,12 +29,17 @@ def get_prayer_and_provider_data():
     
     prayers = {
         "fajr": prayer_data.get("fajr"),
+        "fajr_api": prayer_data.get("fajr_api"),
         "sunrise": prayer_data.get("sunrise"),
         "dhuhr": prayer_data.get("duhr"),
+        "dhuhr_api": prayer_data.get("duhr_api"),
         "jummah": prayer_data.get("jummah"),
         "asr": prayer_data.get("asr"),
+        "asr_api": prayer_data.get("asr_api"),
         "magrib": prayer_data.get("magrib"),
+        "magrib_api": prayer_data.get("magrib_api"),
         "isha": prayer_data.get("isha"),
+        "isha_api": prayer_data.get("isha_api"),
         "tarawih": prayer_data.get("tarawih")
     }
 

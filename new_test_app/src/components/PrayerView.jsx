@@ -74,6 +74,10 @@ const PrayerView = () => {
         <section className="py-4" style={{ backgroundColor: '#04383F'}} >
             <div className="container" >
                 <div className="align-items-center">
+                    <div className="row">
+                      <h1 style={{ textAlign: 'center', fontSize:"2rem", color: '#d4af37'}}>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
+                    </div>
+    
                   {prayer.notice_head_line && (
                     <div className="row">
                         <div style={{marginTop: '40px', marginBottom: '40px' }}>
@@ -85,9 +89,7 @@ const PrayerView = () => {
                     </div>
                   )}
 
-                    <div className="row">
-                    <h1 style={{ textAlign: 'center', fontSize:"2rem", color: '#d4af37'}}>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
-                    </div>
+                    
 
                     {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading prayer times...</div>}
                     {error && <div style={{ color: 'red' }}>Error: {error}</div>}
@@ -116,13 +118,15 @@ const PrayerView = () => {
                                 <li className="golden-card shiny-gold-text">Fajr: {prayer.fajr_api}</li>
                                 <li className="golden-card shiny-gold-text">Sunrise: {prayer.sunrise}</li>
                                 <li className="golden-card shiny-gold-text">Dhuhr: {prayer.duhr_api}</li>
-                                <li className="golden-card shiny-gold-text">Jummah: {prayer.duhr_api}</li>
+                                {/* <li className="golden-card shiny-gold-text">Jummah: {prayer.duhr_api}</li> */}
                                 <li className="golden-card shiny-gold-text">Asr: {prayer.asr_api}</li>
                                 <li className="golden-card shiny-gold-text">Magrib: {prayer.magrib_api}</li>
                                 <li className="golden-card shiny-gold-text">Isha: {prayer.isha_api}</li>
                             </ul>
                             {/* <p className='py-2 text-white'> *Prayer time is taken from API (https://aladhan.com/), please check before follow. </p> */}
-                            <p className='py-2 text-white'> *Prayer time is taken from API (https://www.islamicfinder.us/), please check before follow. </p>
+                            <p className='py-2 text-white'> *Prayer times are taken from API (<a href='https://www.islamicfinder.us/'>islamicfinder.us</a>), 
+                                                             method: ISNA - Islamic Society of North America, juristic: Standard (Shafi, Hanbli, Maliki), Place: Potsdam, NY, USA. 
+                                                             please check before follow. </p>
                         </div> 
                     </div>
                     )}

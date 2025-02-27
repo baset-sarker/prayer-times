@@ -74,6 +74,12 @@
         /* background-position: 100% 50%; */
         animation: shine 4s linear infinite; /* Smooth and continuous animation */
     }
+
+    .golden-card-active {
+        border: 5px solid #f3a32c;
+        transform: scale(1.05); 
+        box-shadow: 0px 0px 30px 30px rgba(211, 192, 18, 0.3);
+    }
     
     #pt {
         font-size: 2.9em;
