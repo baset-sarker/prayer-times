@@ -94,7 +94,7 @@ const PrayerView = () => {
                     {error && <div style={{ color: 'red' }}>Error: {error}</div>}
                     {!loading && !error && (
                     <div className="row w-100 d-flex flex-column justify-content-center align-items-center py-4">
-                      <div className="text-center" id="div1" style={{width: "90%", paddingLeft: '3%'}} >  
+                      <div className="text-center" id="div1">  
                           <div class="row justify-content-center">
                               <h1 className="text-white py-4" id="pt">Prayer Gathering At The Masjid</h1>
                           </div>              
