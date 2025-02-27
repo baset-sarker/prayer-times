@@ -49,8 +49,6 @@ export const handler = async (event, context) => {
 
 
 // await handler();
-
-
 // _id
 // 67a6a7f3910f6b920a5d4254
 // fajr_api

@@ -18,7 +18,7 @@ function PrayerUpdate({ token }) {
             });
             setPrayer(response.data);
         } catch (err) {
-            setError(err.response?.data?.message || 'Error fetching prayer');
+            setError(err.response?.data?.message || 'Error fetching prayer login first');
         }
         };
     

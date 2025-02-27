@@ -16,7 +16,7 @@ function UserList({ token, apiUrl }) {
         });
         setUsers(response.data);
       } catch (err) {
-        setError(err.response?.data?.message || 'Error fetching users');
+        setError(err.response?.data?.message || 'Error fetching users login first');
       } finally {
         setLoading(false);
       }

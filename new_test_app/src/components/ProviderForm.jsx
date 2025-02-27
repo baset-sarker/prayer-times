@@ -25,7 +25,7 @@ function PrayerForm({ token, apiUrl }) {
           setPrayer(response.data);
           console.log(response.data);
         } catch (err) {
-          setError(err.response?.data?.message || 'Error fetching provider');
+          setError(err.response?.data?.message || 'Error fetching provider login first');
           
         }
       }

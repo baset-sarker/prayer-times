@@ -32,7 +32,7 @@ function PrayerList({ token, apiUrl }) {
       });
       setPrayers(prayers.filter((prayer) => prayer._id !== id)); // Update state after delete
     } catch (err) {
-      setError(err.response?.data?.message || 'Error deleting prayer');
+      setError(err.response?.data?.message || 'Error deleting prayer login first');
     }
   };
 

@@ -16,7 +16,7 @@ function ProviderList({ token, apiUrl }) {
         });
         setProviders(response.data);
       } catch (err) {
-        setError(err.response?.data?.message || 'Error fetching providers');
+        setError(err.response?.data?.message || 'Error fetching providers login first');
       } finally {
         setLoading(false);
       }
