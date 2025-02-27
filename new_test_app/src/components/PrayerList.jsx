@@ -1,12 +1,14 @@
 // src/components/PrayerList.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function PrayerList({ token, apiUrl }) {
   const [prayers, setPrayers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPrayers = async () => {
@@ -17,6 +19,9 @@ function PrayerList({ token, apiUrl }) {
         setPrayers(response.data);
       } catch (err) {
         setError(err.response?.data?.message || 'Error fetching prayers');
+        if ([401, 403].includes(err.response?.status)) {
+          navigate('/login');
+        }
       } finally {
         setLoading(false);
       }

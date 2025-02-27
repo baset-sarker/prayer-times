@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import { useNavigate } from 'react-router-dom';
 
 function PrayerUpdate({ token }) {
   // ... (state, useEffect, handleChange as before)
@@ -19,6 +20,9 @@ function PrayerUpdate({ token }) {
             setPrayer(response.data);
         } catch (err) {
             setError(err.response?.data?.message || 'Error fetching prayer login first');
+            if ([401, 403].includes(err.response?.status)) {
+            navigate('/login');
+            }
         }
         };
     

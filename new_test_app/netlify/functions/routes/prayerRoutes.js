@@ -9,7 +9,7 @@ dotenv.config(); // Load environment variables from .env file
 const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key'; // Replace with a strong secret key
 router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/',authenticateJWT ,async (req, res) => {
   console.log("get all prayer=======")
   try {
     //const prayers = await Prayer.find({ user: req.user.userId }); // Get prayers for logged-in user
@@ -35,6 +35,18 @@ router.get('/', async (req, res) => {
     // prayer.magrib_api = convert24to12(api_data.results.Maghrib)
     // prayer.isha_api = convert24to12(api_data.results.Isha)
     
+    res.json([prayer]);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get('/homepage', async (req, res) => {
+  console.log("get all prayer for homepage=======")
+  try {
+    //const prayers = await Prayer.find({ user: req.user.userId }); // Get prayers for logged-in user
+    const prayers = await Prayer.find({})
+    let prayer = prayers[0];
     res.json([prayer]);
   } catch (err) {
     res.status(500).json({ message: err.message });

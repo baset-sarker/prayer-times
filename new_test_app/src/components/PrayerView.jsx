@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import WhatsAppShare from './WhatsAppShare';
 
 const PrayerView = () => {
-    const apiUrl = '/api/prayer'; // Make sure this path is correct relative to your frontend
+    const apiUrl = '/api/prayer/homepage'; // Make sure this path is correct relative to your frontend
     
     const [prayer, setPrayer] = useState({
       fajr_api: "",

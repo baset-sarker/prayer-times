@@ -106,6 +106,9 @@ function PrayerForm({ token, apiUrl }) {
           console.log(response.data);
         } catch (err) {
           setError(err.response?.data?.message || 'Error fetching prayer');
+          if ([401, 403].includes(err.response?.status)) {
+            navigate('/login');
+          }
           
         }
       }

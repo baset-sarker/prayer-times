@@ -26,6 +26,10 @@ function PrayerForm({ token, apiUrl }) {
           console.log(response.data);
         } catch (err) {
           setError(err.response?.data?.message || 'Error fetching provider login first');
+          // is status 401 or 403, redirect to login
+          if ([401, 403].includes(err.response?.status)) {
+            navigate('/login');
+          }
           
         }
       }

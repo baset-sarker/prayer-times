@@ -1,12 +1,13 @@
 // src/components/UserList.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 function UserList({ token, apiUrl }) {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -17,6 +18,9 @@ function UserList({ token, apiUrl }) {
         setUsers(response.data);
       } catch (err) {
         setError(err.response?.data?.message || 'Error fetching users login first');
+        if ([401, 403].includes(err.response?.status)) {
+          navigate('/login');
+        }
       } finally {
         setLoading(false);
       }

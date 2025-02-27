@@ -1,12 +1,13 @@
 // src/components/ProviderList.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 function ProviderList({ token, apiUrl }) {
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -17,6 +18,9 @@ function ProviderList({ token, apiUrl }) {
         setProviders(response.data);
       } catch (err) {
         setError(err.response?.data?.message || 'Error fetching providers login first');
+        if ([401, 403].includes(err.response?.status)) {
+          navigate('/login');
+        }
       } finally {
         setLoading(false);
       }
