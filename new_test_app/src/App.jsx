@@ -81,7 +81,7 @@ function App() {
             <ul className="navbar-nav">
               {isAuthenticated ? (
                   <>
-                    <NavLink className="btn btn-link nav-link text-white" to="prayer/edit/67a6a7f3910f6b920a5d4254">Prayer Times</NavLink>
+                    <NavLink className="btn btn-link nav-link text-white" to="/prayer">Prayer Times</NavLink>
                     <NavLink className="btn btn-link nav-link text-white" to="/provider">Wifi Providers</NavLink>
                     <NavLink className="btn btn-link nav-link text-white" to="/user">Admins</NavLink>
                     <button className="btn btn-link nav-link text-white" onClick={handleLogout}>Logout</button>
