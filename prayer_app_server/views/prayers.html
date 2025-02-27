@@ -28,6 +28,7 @@
                         <div class="col-lg-4 col-sm-6 col-xs-6">
                             <div class="golden-card" id="asr_card">
                                 <div class="prayer_text shiny-gold-text">(عصر)</div>
+                                <div class="prayer_text shiny-gold-text" id="asr_api"></div>
                                 <div class="prayer_text shiny-gold-text" id="asr"></div>
                             </div>
                         </div>
@@ -35,6 +36,7 @@
                         <div class="col-lg-4 col-sm-6 col-xs-6">
                             <div class="golden-card" id="dhuhr_card">
                                 <div class="prayer_text shiny-gold-text">(ظهر)</div>
+                                <div class="prayer_text shiny-gold-text" id="dhuhr_api"></div>
                                 <div class="prayer_text shiny-gold-text" id="dhuhr"></div>
                                 <div class="prayer_text shiny-gold-text" id="jummah"></div>  
                             </div>
@@ -42,6 +44,7 @@
                         <div class="col-lg-4 col-sm-6 col-xs-6">
                             <div class="golden-card" id="fajr_card">
                                 <div class="prayer_text shiny-gold-text">(فجر)</div>
+                                <div class="prayer_text shiny-gold-text" id="fajr_api"></div>
                                 <div class="prayer_text shiny-gold-text" id="fajr"></div>
                                 <div class="prayer_text shiny-gold-text" id="sunrise"></div>   
                             </div>
@@ -51,6 +54,7 @@
                     <div class="col-lg-4 col-sm-6 col-xs-6">
                             <div class="golden-card" id="isha_card">
                                 <div class="prayer_text shiny-gold-text">(عشاء)</div>
+                                <div class="prayer_text shiny-gold-text" id="isha_api"></div>
                                 <div class="prayer_text shiny-gold-text" id="isha"></div>
                                 <div class="prayer_text shiny-gold-text" id="tarawih"></div>  
                             </div>
@@ -58,6 +62,7 @@
                     <div class="col-lg-4 col-sm-6 col-xs-6">
                             <div class="golden-card" id="magrib_card">
                                 <div class="prayer_text shiny-gold-text">(مغرب)</div>
+                                <div class="prayer_text shiny-gold-text" id="magrib_api"></div>
                                 <div class="prayer_text shiny-gold-text" id="magrib"></div>
                                 
                             </div>
@@ -69,7 +74,7 @@
         
             <div id="div2" style="display: none;" class="">
                 <div class="row justify-content-center">
-                    <div id="hadis_today_text"></div>
+                    <div id="hadis_today_text" style="white-space: pre-wrap;"></div>
                 </div>
             </div>
         
@@ -129,10 +134,15 @@
                 const data = await response.json();
       
                 if (data.prayers) {
-                   
+
+                    if(data.prayers.fajr){
+                        const element = document.getElementById('fajr_api');
+                        element.innerHTML = 'Fajr '+data.prayers.fajr_api
+                    } 
+
                     if(data.prayers.fajr){
                         const element = document.getElementById('fajr');
-                        element.innerHTML = 'Fajr '+data.prayers.fajr
+                        element.innerHTML = 'Fajr (Jamat) '+data.prayers.fajr
                     }
 
                     if(data.prayers.sunrise){
@@ -140,9 +150,14 @@
                         element.innerHTML = 'Sunrise '+data.prayers.sunrise
                     }
 
+                    if(data.prayers.dhuhr_api){
+                        const element = document.getElementById('dhuhr_api');
+                        element.innerHTML = 'Dhuhr '+data.prayers.dhuhr_api
+                    }
+
                     if(data.prayers.dhuhr){
                         const element = document.getElementById('dhuhr');
-                        element.innerHTML = 'Dhuhr '+data.prayers.dhuhr
+                        element.innerHTML = 'Dhuhr (Jamat) '+data.prayers.dhuhr
                     }
 
                     if(data.prayers.jummah){
@@ -150,19 +165,35 @@
                         element.innerHTML = 'Jummah '+data.prayers.jummah
                     }
 
+                    if(data.prayers.asr_api){
+                        const element = document.getElementById('asr_api');
+                        element.innerHTML = 'Asr '+data.prayers.asr_api
+                    }
+
+
                     if(data.prayers.asr){
                         const element = document.getElementById('asr');
-                        element.innerHTML = 'Asr '+data.prayers.asr
+                        element.innerHTML = 'Asr (Jamat) '+data.prayers.asr
+                    }
+
+                    if(data.prayers.magrib_api){
+                        const element = document.getElementById('magrib_api');
+                        element.innerHTML = 'Magrib '+data.prayers.magrib_api
                     }
 
                     if(data.prayers.magrib){
                         const element = document.getElementById('magrib');
-                        element.innerHTML = 'Magrib '+data.prayers.magrib
+                        element.innerHTML = 'Magrib (Jamat) '+data.prayers.magrib
+                    }
+
+                    if(data.prayers.isha_api){
+                        const element = document.getElementById('isha_api');
+                        element.innerHTML = 'Isha '+data.prayers.isha_api
                     }
 
                     if(data.prayers.isha){
                         const element = document.getElementById('isha');
-                        element.innerHTML = 'Isha '+data.prayers.isha
+                        element.innerHTML = 'Isha (Jamat) '+data.prayers.isha
                     }
                     if(data.prayers.tarawih){
                         const element = document.getElementById('tarawih');

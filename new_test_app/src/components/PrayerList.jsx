@@ -79,23 +79,23 @@ function PrayerList({ token, apiUrl }) {
                 </tr>
                 <tr>
                   <td>Hadis1</td>
-                  <td>{prayer.hadis1}</td>
+                  <td style={{textAlign: 'center',  whiteSpace: "pre-wrap"}}>{prayer.hadis1}</td>
                 </tr>
                 <tr>
                   <td>Hadis2</td>
-                  <td>{prayer.hadis2}</td>
+                  <td style={{textAlign: 'center',  whiteSpace: "pre-wrap"}}>{prayer.hadis2}</td>
                 </tr>
                 <tr>
                   <td>Hadis3</td>
-                  <td>{prayer.hadis3}</td>
+                  <td style={{textAlign: 'center',  whiteSpace: "pre-wrap"}}>{prayer.hadis3}</td>
                 </tr>
                 <tr>
                   <td>Hadis4</td>  
-                  <td>{prayer.hadis4}</td>
+                  <td style={{textAlign: 'center',  whiteSpace: "pre-wrap"}}>{prayer.hadis4}</td>
                 </tr>
                 <tr>
                   <td>Hadis5</td>
-                  <td>{prayer.hadis5}</td>
+                  <td style={{textAlign: 'center',  whiteSpace: "pre-wrap"}}>{prayer.hadis5}</td>
                 </tr>
                 {prayer.notice_head_line && (
                     <tr> 
@@ -116,7 +116,11 @@ function PrayerList({ token, apiUrl }) {
                       <td>{prayer.notice_second_line}</td> 
                     </tr>
                 )}
-                &nbsp; Auto-update at: {prayer.updated_at}
+                <tr>
+                  <td>Auto-update at:</td>
+                  <td>&nbsp;  {prayer.updated_at}</td>
+                </tr>
+                
               </tbody>
             </table>
           </div>

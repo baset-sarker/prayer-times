@@ -22,7 +22,7 @@
         color: solid gold !important; 
       }
       
-      header.masthead {
+        header.masthead {
           padding-top: 10.5rem;
           padding-bottom: 6rem;
           text-align: center;
@@ -48,26 +48,8 @@
           margin-bottom: 2rem;
           font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
-        @media (max-width: 768px) {
-          header.masthead {
-            padding-top: 17rem;
-            padding-bottom: 12.5rem;
-            height: 250px;
-          }
-          
-          header.masthead .masthead-subheading {
-            font-size: 2.25rem;
-            font-style: italic;
-            line-height: 2.25rem;
-            margin-bottom: 2rem;
-          }
-          header.masthead .masthead-heading {
-            font-size: 4.5rem;
-            font-weight: 300;
-            line-height: 4.5rem;
-            margin-bottom: 4rem;
-          } 
-        }
+
+        
 
         #contact {
           overflow-x: hidden;
@@ -96,6 +78,8 @@
           font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
 
+
+
         .shiny-gold-text {
             color: #ecc402;
             background: linear-gradient(45deg, #ffd700, #ffac33, #d4af37, #f3a32c, #ffd700);
@@ -106,23 +90,49 @@
             animation: shine 4s linear infinite; /* Smooth and continuous animation */
         }
 
+      
         .golden-card {
-            display: flex;
-            font-size: 2rem;
-            height: 50px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 99%; /* Responsive width */
-            max-width: 100%;
-            margin-top: 10px;
-            border: 1px solid gold; 
-            /* border: 1px solid gray; */
-            border-radius: 20px; /* Increased border radius */
-            background-color: transparent; /* Transparent background */
-            box-shadow: 5px 5px 5px rgba(211, 192, 18, 0.3);
-            /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3); Shadow */
-        }
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              height: auto; /* Allow it to grow */
+              min-height: 290px;
+              width: 90%; /* Responsive width */
+              max-width: 100%;
+              margin-top: 30px;
+              
+              border: 1px solid gold; /* Thick border */
+              border-radius: 40px; /* Increased border radius */
+              background-color: transparent; /* Transparent background */
+              box-shadow: 20px 25px 25px rgba(211, 192, 18, 0.3); /* Increased shadow */
+          }
+
+          /* Left image */
+          .left-image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 300px; /* Adjust width as needed */
+              height: auto; /* Maintain aspect ratio */
+              z-index: -1; /*  image to the back */
+          }
+
+          /* Right image */
+          .right-image {
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 300px; /* Adjust width as needed */
+              height: auto; /* Maintain aspect ratio */
+              z-index: -1; /* image to the back */
+          }
+
+          .prayer_text {
+              font-size: 2.8em;
+          }
+
+
         .btn-green {
             background-color: #04383F;
             color: white;
@@ -133,9 +143,63 @@
             opacity: 0.9;
         }
 
-        .navbar-toggler-icon {
+        .navbar-toggler-icon {color: #ecc402;
+          background: linear-gradient(45deg, #ffd700, #ffac33, #d4af37, #f3a32c, #ffd700);
               filter: invert(1);
           }
+         
+        #bismillah_text {
+          text-align: center ;
+          color: #f3a32c;
+          font-size: 2.8rem;
+        }
+
+        @media (max-width: 768px) {
+          header.masthead {
+            padding-top: 17rem;
+            padding-bottom: 12.5rem;
+            height: 300px;
+          }
+          
+          header.masthead .masthead-subheading {
+            font-size: 2.25rem;
+            font-style: italic;
+            line-height: 2.25rem;
+            margin-bottom: 2rem;
+          }
+          header.masthead .masthead-heading {
+            font-size: 4.5rem;
+            font-weight: 300;
+            line-height: 4.5rem;
+            margin-bottom: 4rem;
+          } 
+
+          .golden-card {
+              height: auto !important;
+              min-height: fit-content;
+              /* clear: both; */
+              justify-content: center;
+              text-align: center;
+              padding-bottom: 2px;
+              padding-top: 2px;
+              margin-top: 10px;
+              margin-left: 32px;
+              box-shadow: 10px 15px 15px rgba(211, 192, 18, 0.3); /* Increased shadow */
+          }
+
+          .prayer_text {
+            font-size: 1.5rem;
+           }
+
+           #pt{
+            margin-left: 35px;
+           }
+
+           #bismillah_text {
+            font-size: 1.5rem;
+            }
+
+        }
         </style>
   </head>
   <body id="page-top">

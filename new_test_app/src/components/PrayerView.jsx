@@ -72,15 +72,15 @@ const PrayerView = () => {
   return (
     <div>
         <section className="py-4" style={{ backgroundColor: '#04383F'}} >
-            <div className="container" >
+            <div className="" >
                 <div className="align-items-center">
                     <div className="row">
-                      <h1 style={{ textAlign: 'center', fontSize:"2rem", color: '#d4af37'}}>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
+                      <h1 id="bismillah_text">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
                     </div>
     
                   {prayer.notice_head_line && (
                     <div className="row">
-                        <div style={{marginTop: '40px', marginBottom: '40px' }}>
+                      <div style={{marginTop: '40px', marginBottom: '40px' }}>
                         <h1 style={{ textAlign: 'center'}} className="shiny-gold-text">{prayer.notice_head_line}</h1>
                         <h2 style={{ textAlign: 'center'}} className="shiny-gold-text">{prayer.notice_first_line}</h2>
                         {prayer.notice_second_line && (<h3 style={{ textAlign: 'center'}} className="shiny-gold-text">{prayer.notice_second_line}</h3> )}
@@ -89,46 +89,74 @@ const PrayerView = () => {
                     </div>
                   )}
 
-                    
-
+                  
                     {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading prayer times...</div>}
                     {error && <div style={{ color: 'red' }}>Error: {error}</div>}
                     {!loading && !error && (
+                    <div className="row w-100 d-flex flex-column justify-content-center align-items-center py-4">
+                      <div className="text-center" id="div1" style={{width: "90%", paddingLeft: '3%'}} >  
+                          <div class="row justify-content-center">
+                              <h1 className="text-white py-4" id="pt">Prayer Gathering At The Masjid</h1>
+                          </div>              
+                          <div className="row justify-content-center">
+                                  
+
+                                  <div class="col-lg-4 col-sm-6 col-xs-6">
+                                      <div class="golden-card" id="fajr_card">
+                                          <div class="prayer_text shiny-gold-text">(فجر)</div>
+                                          <div class="prayer_text shiny-gold-text" id="fajr_api">Fajr {prayer.fajr_api}</div>
+                                          <div class="prayer_text shiny-gold-text" id="fajr">Fajr (Jamat) {prayer.fajr}</div>
+                                          <div class="prayer_text shiny-gold-text" id="sunrise">Sunrise {prayer.sunrise}</div>   
+                                      </div>
+                                  </div>
+                                  
+                                  <div class="col-lg-4 col-sm-6 col-xs-6">
+                                      <div class="golden-card" id="dhuhr_card">
+                                          <div class="prayer_text shiny-gold-text">(ظهر)</div>
+                                          <div class="prayer_text shiny-gold-text" id="dhuhr_api">Dhuhr {prayer.duhr_api}</div>
+                                          <div class="prayer_text shiny-gold-text" id="dhuhr">Dhuhr (Jamat) {prayer.duhr}</div>
+                                          <div class="prayer_text shiny-gold-text" id="jummah">Jummah {prayer.jummah}</div>  
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-4 col-sm-6 col-xs-6">
+                                      <div class="golden-card" id="asr_card">
+                                          <div class="prayer_text shiny-gold-text">(عصر)</div>
+                                          <div class="prayer_text shiny-gold-text" id="asr_api"> Asr {prayer.asr_api}</div>
+                                          <div class="prayer_text shiny-gold-text" id="asr">Asr (Jamat) {prayer.asr} </div>
+                                      </div>
+                                  </div>
+                                  
+                          </div>
+                          <div class="row justify-content-center">
+                            <div class="col-lg-4 col-sm-6 col-xs-6">
+                                      <div class="golden-card" id="magrib_card">
+                                          <div class="prayer_text shiny-gold-text">(مغرب)</div>
+                                          <div class="prayer_text shiny-gold-text" id="magrib_api">Magrib {prayer.magrib_api}</div>
+                                          <div class="prayer_text shiny-gold-text" id="magrib">Magrib (Jamat) {prayer.magrib}</div>
+                                          
+                                      </div>
+                              </div>
+                              <div class="col-lg-4 col-sm-6 col-xs-6">
+                                      <div class="golden-card" id="isha_card">
+                                          <div class="prayer_text shiny-gold-text">(عشاء)</div>
+                                          <div class="prayer_text shiny-gold-text" id="isha_api">Isha {prayer.isha_api}</div>
+                                          <div class="prayer_text shiny-gold-text" id="isha">Isha (Jamat) {prayer.isha}</div>
+                                          {prayer.tarawih && <div class="prayer_text shiny-gold-text" id="tarawih">Tarawih {prayer.tarawih}</div> }
+                                      </div>
+                              </div>
+                              
+                          </div>
+                  
+                          </div> 
+                          <p className='py-4 text-white text-center'> *Prayer times are taken from API (<a href='https://www.islamicfinder.us/'>islamicfinder.us</a>), 
+                                                           method: ISNA - Islamic Society of North America, juristic: Standard (Shafi, Hanbli, Maliki), Place: Potsdam, NY, USA. 
+                                                           please check before follow. </p>
+
+                        {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}
+                         <hr></hr>
+                      </div>
+                      
                     
-                    <div className='row'>
-                        <div className="col-lg-6 my-3 my-lg-0" >
-                            <h2 className="shiny-gold-text" style={{ textAlign: 'center' , fontSize: '2rem' }}>Prayer gathering at the masjid</h2>
-                            <ul class="list-group">
-                                <li className="golden-card shiny-gold-text">Fajr: {prayer.fajr}</li>
-                                {/* <li className="golden-card shiny-gold-text">Sunrise: {prayer.sunrise}</li> */}
-                                <li className="golden-card shiny-gold-text">Dhuhr: {prayer.duhr}</li>
-                                <li className="golden-card shiny-gold-text">Jummah: {prayer.jummah}</li>
-                                <li className="golden-card shiny-gold-text">Asr: {prayer.asr}</li>
-                                <li className="golden-card shiny-gold-text">Magrib: {prayer.magrib}</li>
-                                <li className="golden-card shiny-gold-text">Isha: {prayer.isha}</li>
-                                {prayer.tarawih && (<li className="golden-card shiny-gold-text">Tarawih: {prayer.tarawih}</li>)}
-                            </ul>
-                            <p className='py-2 text-white'>*These are not prayer times, these are times we gather at our masjid for salat. 
-                            {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}
-                            </p>
-                        </div>
-                        <div className="col-lg-6">
-                            <h2 className='shiny-gold-text' style={{ textAlign: 'center', fontSize: '2rem' }}>Prayer time</h2>
-                            <ul className="list-group">
-                                <li className="golden-card shiny-gold-text">Fajr: {prayer.fajr_api}</li>
-                                <li className="golden-card shiny-gold-text">Sunrise: {prayer.sunrise}</li>
-                                <li className="golden-card shiny-gold-text">Dhuhr: {prayer.duhr_api}</li>
-                                {/* <li className="golden-card shiny-gold-text">Jummah: {prayer.duhr_api}</li> */}
-                                <li className="golden-card shiny-gold-text">Asr: {prayer.asr_api}</li>
-                                <li className="golden-card shiny-gold-text">Magrib: {prayer.magrib_api}</li>
-                                <li className="golden-card shiny-gold-text">Isha: {prayer.isha_api}</li>
-                            </ul>
-                            {/* <p className='py-2 text-white'> *Prayer time is taken from API (https://aladhan.com/), please check before follow. </p> */}
-                            <p className='py-2 text-white'> *Prayer times are taken from API (<a href='https://www.islamicfinder.us/'>islamicfinder.us</a>), 
-                                                             method: ISNA - Islamic Society of North America, juristic: Standard (Shafi, Hanbli, Maliki), Place: Potsdam, NY, USA. 
-                                                             please check before follow. </p>
-                        </div> 
-                    </div>
                     )}
 
                 </div>
