@@ -153,8 +153,16 @@ const PrayerView = () => {
                                                            please check before follow. </p>
 
                         {prayer ? <WhatsAppShare prayer={prayer} /> : <p>Loading prayer...</p>}
-                         <hr></hr>
-                      </div>
+                            <div style={{
+                            color: '#f3a32c', 
+                            width: '40%', 
+                            height: '1px', 
+                            marginTop: '50px', 
+                            backgroundColor: '#f3a32c', 
+                            borderColor : '#f3a32c',
+                            // border: 'none'
+                             }} />
+                        </div>
                       
                     
                     )}
