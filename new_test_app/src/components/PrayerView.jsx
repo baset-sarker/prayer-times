@@ -105,7 +105,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="fajr_card">
                                           <div class="prayer_text shiny-gold-text">(فجر)</div>
                                           <div class="prayer_text shiny-gold-text" id="fajr_api">Fajr {prayer.fajr_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="fajr">Fajr (Jamat) {prayer.fajr}</div>
+                                          <div class="prayer_text shiny-gold-text" id="fajr">Iqama {prayer.fajr}</div>
                                           <div class="prayer_text shiny-gold-text" id="sunrise">Sunrise {prayer.sunrise}</div>   
                                       </div>
                                   </div>
@@ -114,7 +114,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="dhuhr_card">
                                           <div class="prayer_text shiny-gold-text">(ظهر)</div>
                                           <div class="prayer_text shiny-gold-text" id="dhuhr_api">Dhuhr {prayer.duhr_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="dhuhr">Dhuhr (Jamat) {prayer.duhr}</div>
+                                          <div class="prayer_text shiny-gold-text" id="dhuhr">Iqama {prayer.duhr}</div>
                                           <div class="prayer_text shiny-gold-text" id="jummah">Jummah {prayer.jummah}</div>  
                                       </div>
                                   </div>
@@ -122,7 +122,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="asr_card">
                                           <div class="prayer_text shiny-gold-text">(عصر)</div>
                                           <div class="prayer_text shiny-gold-text" id="asr_api"> Asr {prayer.asr_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="asr">Asr (Jamat) {prayer.asr} </div>
+                                          <div class="prayer_text shiny-gold-text" id="asr">Iqama {prayer.asr} </div>
                                       </div>
                                   </div>
                                   
@@ -132,7 +132,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="magrib_card">
                                           <div class="prayer_text shiny-gold-text">(مغرب)</div>
                                           <div class="prayer_text shiny-gold-text" id="magrib_api">Magrib {prayer.magrib_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="magrib">Magrib (Jamat) {prayer.magrib}</div>
+                                          <div class="prayer_text shiny-gold-text" id="magrib">Iqama {prayer.magrib}</div>
                                           
                                       </div>
                               </div>
@@ -140,7 +140,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="isha_card">
                                           <div class="prayer_text shiny-gold-text">(عشاء)</div>
                                           <div class="prayer_text shiny-gold-text" id="isha_api">Isha {prayer.isha_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="isha">Isha (Jamat) {prayer.isha}</div>
+                                          <div class="prayer_text shiny-gold-text" id="isha">Iqama {prayer.isha}</div>
                                           {prayer.tarawih && <div class="prayer_text shiny-gold-text" id="tarawih">Tarawih {prayer.tarawih}</div> }
                                       </div>
                               </div>
