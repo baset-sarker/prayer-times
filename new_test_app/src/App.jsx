@@ -22,10 +22,32 @@ function App() {
 
   const [isCollapsed, setIsCollapsed] = useState(true);
 
+
+  // useEffect(() => {
+  //   // Close navbar on link click
+  //   const menuToggle = document.getElementById('navbarNav');
+  //   const navLinks = document.querySelectorAll('.nav-link');
+
+  //   navLinks.forEach(link => {
+  //     link.addEventListener('click', () => {
+  //        handleCollapse();
+  //     });
+  //   });
+  // }, []);
+
+
   useEffect(() => {
     if (token) {
       setIsAuthenticated(true);
     }
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        handleToggle();
+      });
+    });
+
   }, [token]);
 
   const handleLogin = (newToken) => {
@@ -43,8 +65,17 @@ function App() {
   };
 
   const handleToggle = () => {
+    console.log('handleToggle =====');
     setIsCollapsed(!isCollapsed);
   };
+
+
+  const closeNavbar = () => {
+    console.log("called closeNavbar");
+    setIsCollapsed(true);
+  };
+
+  
 
   return (
     <div className="row">
@@ -81,9 +112,9 @@ function App() {
             <ul className="navbar-nav">
               {isAuthenticated ? (
                   <>
-                    <NavLink className="btn btn-link nav-link text-white" to="/prayer">Prayer Times</NavLink>
-                    <NavLink className="btn btn-link nav-link text-white" to="/provider">Wifi Providers</NavLink>
-                    <NavLink className="btn btn-link nav-link text-white" to="/user">Admins</NavLink>
+                    <NavLink className="btn btn-link nav-link text-white" to="/prayer"  onClick={closeNavbar} >Prayer Times</NavLink>
+                    <NavLink className="btn btn-link nav-link text-white" to="/provider"  onClick={closeNavbar}>Wifi Providers</NavLink>
+                    <NavLink className="btn btn-link nav-link text-white" to="/user"  onClick={closeNavbar}>Admins</NavLink>
                     <button className="btn btn-link nav-link text-white" onClick={handleLogout}>Logout</button>
                   </>
                 ) : (
