@@ -67,6 +67,7 @@ app.get('/ssid', async (req, res) => {
 
 // GET /update - Read prayer times and pass to update.html
 app.get('/update', (req, res) => {
+    return res.redirect('/');
     const message = req.session.message || null; // Retrieve the message from the session
     req.session.message = null; // Clear the message after rendering
     
@@ -86,10 +87,6 @@ app.get('/update', (req, res) => {
 
 // POST /update - Handle form submission to update prayer times
 app.post('/update', (req, res) => {
-    const { fajr,sunrise, dhuhr, asr, magrib, isha, jummah, head_line, first_line, second_line,
-        hadis1, hadis2, hadis3, hadis4, hadis5
-    } = req.body;
-    
 
     
     const updatedData = {
