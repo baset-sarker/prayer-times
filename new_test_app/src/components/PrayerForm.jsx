@@ -90,10 +90,13 @@ function PrayerForm({ token, apiUrl }) {
     notice_second_line: "",
   });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const isEditing = !!id;
 
   useEffect(() => {
+    
     const fetchPrayer = async () => {
+      setLoading(true);
       if (isEditing) {
         try {
           console.log('fetching prayer',`${apiUrl}/${id}`);
@@ -104,6 +107,7 @@ function PrayerForm({ token, apiUrl }) {
           setPrayer(response.data);
       
           console.log(response.data);
+          setLoading(false);
         } catch (err) {
           setError(err.response?.data?.message || 'Error fetching prayer');
           if ([401, 403].includes(err.response?.status)) {
@@ -147,6 +151,7 @@ function PrayerForm({ token, apiUrl }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       if (isEditing) {
         await axios.put(`${apiUrl}/${id}`, prayer, {
@@ -160,6 +165,8 @@ function PrayerForm({ token, apiUrl }) {
       navigate('/prayer'); // Redirect to the prayer list after save
     } catch (err) {
       setError(err.response?.data?.message || 'Error saving prayer');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -201,6 +208,7 @@ function PrayerForm({ token, apiUrl }) {
 
   return (   
     <form onSubmit={handleSubmit}>
+      {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>}
       {error && <div className="alert alert-danger">{error}</div>}
 
         <div className="mb-3 mt-3">

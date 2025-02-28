@@ -41,10 +41,10 @@ function PrayerList({ token, apiUrl }) {
     }
   };
 
-  if (loading) {
-    // return <div>Loading prayers...</div>;
-    return <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>
-  }
+  // if (loading) {
+  //   // return <div>Loading prayers...</div>;
+  //   return <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>
+  // }
 
   if (error) {
     return <div className="alert alert-danger">{error}</div>;
@@ -52,6 +52,8 @@ function PrayerList({ token, apiUrl }) {
 
   return (
     <div style={{ minHeight: '800px' }}>
+
+      {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>}
       
       {/* <Link to="/prayers/create" className="btn btn-primary mb-3">Create Prayer</Link> */}
       <ul className="list-group">
