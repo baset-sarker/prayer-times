@@ -134,8 +134,9 @@ function ContactForm() {
 
             <div className="col-md-6 text-center" id="map_section">
                     <a href="https://www.google.com/maps?q=44.67031633145772,-74.96599605289967" target="_blank">
-                             <img src="/masjid_location.png" width={'80%'} id="map" alt="Potsdam Masjid Location" className="img-fluid mx-auto" />
+                             <img src="/masjid_location.png" id="map" alt="Potsdam Masjid Location" className="img-fluid mx-auto" />
                     </a> 
+                    <br/>
                     <br/>
                     <h3 className="section-subheading text-white">
                              Email: masjid110@hotmail.com <br></br>
