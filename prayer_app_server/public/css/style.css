@@ -34,11 +34,13 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        width: 100px; /* Adjust width as needed */
+        /* width: 100px; Adjust width as needed */
         height: auto; /* Maintain aspect ratio */
         padding: 8px 12px;
         margin: 5px;
     }
+    
+
 
     .bismillah {
         width: 300px;
