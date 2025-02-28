@@ -89,8 +89,9 @@ const PrayerView = () => {
                     </div>
                   )}
 
-                  
-                    {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading prayer times...</div>}
+
+                    {loading && <div style={{color: 'white', textAlign: 'center',marginTop:'10px'}}> <img height={'30px'} src='/loading.gif'></img> Loading prayer times...</div>}
+
                     {error && <div style={{ color: 'red' }}>Error: {error}</div>}
                     {!loading && !error && (
                     <div className="row w-100 d-flex flex-column justify-content-center align-items-center py-4">

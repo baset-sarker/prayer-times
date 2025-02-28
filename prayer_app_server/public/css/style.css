@@ -3,7 +3,8 @@
         padding: 0;
         height: 100vh; /* Full viewport height */
         position: relative; /* Ensures positioning context for child elements */
-        font-family: 'Sawarabi Mincho', serif;
+        /* font-family: 'Sawarabi Mincho', serif; */
+        font-family: 'Times New Roman', Times, serif;
         display: flex;
         background-color:#04383F
     }

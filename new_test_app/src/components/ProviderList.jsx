@@ -42,9 +42,9 @@ function ProviderList({ token, apiUrl }) {
     }
   };
 
-  if (loading) {
-    return <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>
-  }
+  // if (loading) {
+  //   return <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>
+  // }
 
   if (error) {
     return <div className="alert alert-danger">{error}</div>;
@@ -52,6 +52,7 @@ function ProviderList({ token, apiUrl }) {
 
   return (
     <div className="col-md-6 offset-md-3" style={{ minHeight: '800px' }}>
+      {loading && <div style={{color: 'white',textAlign: 'center',marginTop:'10px'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>}
       <h2 className="text-center" >Wifi Provider List</h2>
       <div className='my-4'>
         <Link to="/provider/create" className="btn-green mb-3">Create Provider</Link>

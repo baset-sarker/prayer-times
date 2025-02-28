@@ -53,7 +53,7 @@ function PrayerList({ token, apiUrl }) {
   return (
     <div style={{ minHeight: '800px' }}>
 
-      {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>}
+      {loading && <div style={{color: 'white',textAlign: 'center',marginTop:'10px'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>}
       
       {/* <Link to="/prayers/create" className="btn btn-primary mb-3">Create Prayer</Link> */}
       <ul className="list-group">
