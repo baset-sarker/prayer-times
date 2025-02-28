@@ -4,33 +4,6 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <div>
-
-
-        <footer className="footer mb-0 py-4 text-white" style={{backgroundColor: '#04383F' , 
-                                                                backgroundImage: 'url(/map-image.png)', 
-                                                                backgroundRepeat: 'no-repeat', 
-                                                                backgroundPosition: 'center', 
-                                                                fontFamily: 'Times New Roman, Times, serif',
-                                                                backgroundSize: 'contain'}}>
-            <div className="container">
-                <div className="row align-items-center">
-                    <div className="col-lg-6 col-md-6 text-center">
-                        <h2 className="section-heading text-uppercase">Contact</h2>
-                         <h3 className="section-subheading text-white">
-                             Email: masjid110@hotmail.com <br></br>
-                             Address: 110 Elm St, Potsdam, NY 13676
-                         </h3>
-                         <br></br>
-                    </div>
-                    <div className="col-lg-6 col-md-6 text-center">
-                            <a href="https://www.google.com/maps?q=44.67031633145772,-74.96599605289967" target="_blank">
-                             <img src="/masjid_location.png" alt="Potsdam Masjid Location" className="img-fluid mx-auto" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
         <footer class="footer mb-0 py-4 text-white" style={{backgroundColor: '#04383F' , borderTop: '1px solid #f3a32c'}}>
             <div class="container">
                 <div class="row align-items-center">
