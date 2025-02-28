@@ -7,7 +7,7 @@ function ContactForm() {
     phone: '',
     message: '',
     access_key:'c9dade09-c849-42c1-bc42-8ce2b1ff9244',
-    subject:'Potsdam Masjid Website new message'
+    subject:'Potsdam Masjid Website New Message'
   });
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
@@ -132,16 +132,16 @@ function ContactForm() {
                 </div>
             </div>
 
-            <div className="col-md-6 text-center">
-                   <a href="https://www.google.com/maps?q=44.67031633145772,-74.96599605289967" target="_blank">
-                             <img src="/masjid_location.png" alt="Potsdam Masjid Location" className="img-fluid mx-auto" />
-                    </a>
-                    <br/>
+            <div className="col-md-6 text-center" id="map_section">
+                    <a href="https://www.google.com/maps?q=44.67031633145772,-74.96599605289967" target="_blank">
+                             <img src="/masjid_location.png" width={'80%'} id="map" alt="Potsdam Masjid Location" className="img-fluid mx-auto" />
+                    </a> 
                     <br/>
                     <h3 className="section-subheading text-white">
                              Email: masjid110@hotmail.com <br></br>
                              Address: 110 Elm St, Potsdam, NY 13676
                     </h3>
+                     
             </div>
           </div>
           {/* <div className="text-center">
