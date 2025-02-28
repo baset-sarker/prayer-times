@@ -126,7 +126,7 @@ function ContactForm() {
                 <div className="text-center">
                   <br/>
                   {result && <h3 id="contact_success" className="section-subheading text-white">{result}</h3>}
-                  <button className="btn btn-xl text-uppercase" style={{backgroundColor: '#f3a32c'}} type="submit" disabled={loading}>
+                  <button className="btn btn-xl text-uppercase" style={{backgroundColor: '#f3a32c', color: 'white'}} type="submit" disabled={loading}>
                     {loading ? "Sending..." : "Send Message"}
                   </button>
                 </div>
