@@ -44,7 +44,7 @@ const PrayerTimesTable = () => {
     <section className="page-section" id="calender">
         <div className="container">
             <div className="text-center">
-                    <h2 className="section-heading text-uppercase">Calender</h2>
+                    <h2 className="section-heading text-uppercase">Calendar</h2>
                     <h4 className="section-subheading text-white">{currentMonth}, Potsdam, NY</h4>
                     <br />
                 </div>
