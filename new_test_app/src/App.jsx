@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, NavLink } from 'react-router-dom';
-import axios from 'axios';
 import Login from './components/Login';
 import PrayerList from './components/PrayerList';
 import PrayerForm from './components/PrayerForm';

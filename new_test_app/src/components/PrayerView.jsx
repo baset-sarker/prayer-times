@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import WhatsAppShare from './WhatsAppShare';
 import ContactForm from './ContactForm';
+import Calender from './Calender';
 
 const PrayerView = () => {
     const apiUrl = '/api/prayer/homepage'; // Make sure this path is correct relative to your frontend
@@ -207,6 +208,9 @@ const PrayerView = () => {
 
                 </div>
             </div>
+        </section>
+        <section>
+          <Calender/>
         </section>
         <ContactForm/>
     </div>

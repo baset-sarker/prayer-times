@@ -106,6 +106,8 @@
         text-align: center; /* Ensures text inside spans multiple lines properly */
     }
 
+    
+
     #wifi {
         position: fixed;
         bottom: 0;
