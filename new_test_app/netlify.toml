@@ -20,4 +20,4 @@
 
 [functions."daily-task"]
   #schedule = "0 */6 * * *"
-  schedule = "@hourly"
+  schedule = "@daily"
