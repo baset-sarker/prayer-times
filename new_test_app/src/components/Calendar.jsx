@@ -58,7 +58,6 @@ const PrayerTimesTable = () => {
                             <th className="border p-2">Sunrise</th>
                             <th className="border p-2">Dhuhr</th>
                             <th className="border p-2">Asr</th>
-                            <th className="border p-2">Sunset</th>
                             <th className="border p-2">Maghrib</th>
                             <th className="border p-2">Isha</th>
                             <th className="border p-2">Midnight</th>
@@ -72,7 +71,6 @@ const PrayerTimesTable = () => {
                             <td className="border p-2">{entry.sunrise}</td>
                             <td className="border p-2">{entry.dhuhr}</td>
                             <td className="border p-2">{entry.asr}</td>
-                            <td className="border p-2">{entry.sunset}</td>
                             <td className="border p-2">{entry.maghrib}</td>
                             <td className="border p-2">{entry.isha}</td>
                             <td className="border p-2">{entry.midnight}</td>
