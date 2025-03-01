@@ -77,6 +77,7 @@ const PrayerTimesTable = () => {
                         </tbody>
                         
                     </table>
+                    *Calender calculations are taken from <a href="https://praytimes.org/">PrayTimes.org</a>
                 </div>
             </div>
         </div>
