@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -74,4 +74,245 @@ button:focus-visible {
 
 
 
+ */
 
+
+ body {
+  overflow-x: hidden;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+#root {
+/* font-family: Arial, sans-serif; */
+font-family: 'Times New Roman', Times, serif;
+overflow-x: hidden;
+}
+.text-gold{
+color: solid gold !important; 
+}
+.page-section {
+padding: 3rem 0;
+}
+    
+header.masthead {
+  padding-top: 10.5rem;
+  padding-bottom: 6rem;
+  text-align: center;
+  color: #fff;
+  background-image: url("header-bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  height: 750px;
+  border-bottom: 1px solid #f3a32c;
+  
+}
+header.masthead .masthead-subheading {
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.5rem;
+  margin-bottom: 25px;
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+header.masthead .masthead-heading {
+  font-size: 3.25rem;
+  font-weight: 300;
+  line-height: 3.25rem;
+  margin-bottom: 2rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
+
+
+
+
+.footer {
+  background-color: #d3d3d3;
+  text-align: center;
+  font-size: 0.9rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
+
+.shiny-gold-text {
+    color: #ecc402;
+    background: linear-gradient(45deg, #ffd700, #ffac33, #d4af37, #f3a32c, #ffd700);
+    /* background-size: 400%; Ensure smooth animation */
+    -webkit-background-clip: text; /* Clip the gradient to the text */
+    -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
+    /* background-position: 100% 50%; */
+    animation: shine 4s linear infinite; /* Smooth and continuous animation */
+}
+
+
+.golden-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: auto; /* Allow it to grow */
+      min-height: 290px;
+      width: 90%; /* Responsive width */
+      max-width: 100%;
+      margin-top: 30px;
+      
+      border: 1px solid gold; /* Thick border */
+      border-radius: 40px; /* Increased border radius */
+      background-color: transparent; /* Transparent background */
+      box-shadow: 20px 25px 25px rgba(211, 192, 18, 0.3); /* Increased shadow */
+  }
+
+  #div1 {
+    width: 80%;
+    padding-left: 3%;
+  }
+
+  .prayer_text {
+      font-size: 2.5rem;
+  }
+
+
+.btn-green {
+    background-color: #04383F;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.navbar-toggler-icon {
+      filter: invert(1);
+}
+ 
+#bismillah_text {
+  text-align: center ;
+  color: #f3a32c;
+  font-size: 2.8rem;
+}
+
+
+section#contact {
+  background-color: #04383F;
+  background-image: url("/map-image.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+section#contact .section-heading {
+  color: #fff;
+}
+section#contact form#contactForm .form-group {
+  margin-bottom: 1.5rem;
+}
+section#contact form#contactForm .form-group input,
+section#contact form#contactForm .form-group textarea {
+  padding: 1.25rem;
+}
+section#contact form#contactForm .form-group input.form-control {
+  height: auto;
+}
+section#contact form#contactForm .form-group-textarea {
+  height: 30%;
+}
+section#contact form#contactForm .form-group-textarea textarea {
+  height: 100%;
+  min-height: 5rem;
+}
+section#contact form#contactForm p.help-block {
+  margin: 0;
+}
+section#contact form#contactForm .form-control:focus {
+  border-color: #ffc800;
+  box-shadow: none;
+}
+section#contact form#contactForm ::-webkit-input-placeholder {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  color: #ced4da;
+}
+section#contact form#contactForm :-moz-placeholder {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  color: #ced4da;
+}
+section#contact form#contactForm ::-moz-placeholder {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  color: #ced4da;
+}
+section#contact form#contactForm :-ms-input-placeholder {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  color: #ced4da;
+}
+
+#map {
+    width: 85%;
+    border-radius: 3%;
+    border: 2px solid gray;
+  }
+
+@media (max-width: 768px) {
+  header.masthead {
+    padding-top: 17rem;
+    padding-bottom: 12.5rem;
+    height: 300px;
+   
+  }
+  
+  header.masthead .masthead-subheading {
+    font-size: 2.25rem;
+    font-style: italic;
+    line-height: 2.25rem;
+    margin-bottom: 2rem;
+  }
+  header.masthead .masthead-heading {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 4.5rem;
+    margin-bottom: 4rem;
+  } 
+
+  .golden-card {
+      height: auto !important;
+      min-height: fit-content;
+      /* clear: both; */
+      justify-content: center;
+      text-align: center;
+      padding-bottom: 2px;
+      padding-top: 2px;
+      margin-top: 10px;
+      margin-left: 30px;
+      box-shadow: 10px 15px 15px rgba(211, 192, 18, 0.3); /* Increased shadow */
+  }
+
+  .prayer_text {
+    font-size: 1.5rem;
+   }
+
+   #pt{
+    margin-left: 35px;
+   }
+
+   #bismillah_text {
+    font-size: 2rem;
+    }
+
+    #div1 {
+    width: 100%;
+    padding-left: 3%;
+  }
+
+  #map_section {
+    margin-top: 120px;
+  }
+
+  #map {
+    width: 100%;
+  }
+
+}
