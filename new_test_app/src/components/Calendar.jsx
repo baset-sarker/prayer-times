@@ -77,8 +77,9 @@ const PrayerTimesTable = () => {
                         </tbody>
                         
                     </table>
-                    *Calender calculations are taken from <a href="https://praytimes.org/">PrayTimes.org</a>
+                    
                 </div>
+                *Prayer times are only for Potsdam, NY. Calendar calculations are taken from <a href="https://praytimes.org/"> PrayTimes.org</a> method: ISNA - Islamic Society of North America, juristic: Standard (Shafi, Hanbli, Maliki), Place: Potsdam, NY
             </div>
         </div>
 
