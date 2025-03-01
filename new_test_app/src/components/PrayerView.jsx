@@ -70,6 +70,21 @@ const PrayerView = () => {
       fetchPrayer(); // No need for isEditing condition if you always want to fetch on mount.
     }, []);  // Empty dependency array ensures this runs only once on mount
 
+
+    const formatDate = (dateString) => {
+      const date = new Date(dateString);
+      return new Intl.DateTimeFormat("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      }).format(date);
+    };
+
   return (
     <div>
         <section className="py-4" style={{ backgroundColor: '#04383F'}} >
@@ -98,7 +113,8 @@ const PrayerView = () => {
                     <div className="row w-100 d-flex flex-column justify-content-center align-items-center py-4">
                       <div className="text-center" id="div1">  
                           <div class="row justify-content-center">
-                              <h1 className="text-white py-4" id="pt">Prayer Gathering At The Masjid</h1>
+                              <h1 className="text-white pt-4" id="pt">Prayer Gathering At The Masjid</h1>
+                              <h4 className="text-white">{formatDate(prayer.updated_at)}</h4>
                           </div>              
                           <div className="row justify-content-center">
                                   
