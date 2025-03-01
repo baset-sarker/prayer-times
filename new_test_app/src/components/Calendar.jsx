@@ -5,17 +5,17 @@ import {PrayTimes} from './PrayerTime'
 const PrayerTimesTable = () => {
   const [prayerTimes, setPrayerTimes] = useState([]);
   const [currentMonth, setCurrentMonth] = useState([]);
+  const [currentDay, setCurrentDay] = useState([]);
 
   useEffect(() => {
-   
- 
-
     const fetchPrayerTimes = async () => {
       const today = new Date();
       const year = today.getFullYear();
       const month = today.getMonth();
       const daysInMonth = new Date(year, month + 1, 0).getDate();
       const timesArray = [];
+
+      setCurrentDay(today.toLocaleDateString());
 
       const long_month = today.toLocaleString('default', { month: 'long' });
       setCurrentMonth(`${long_month} ${year}`);
@@ -25,7 +25,7 @@ const PrayerTimesTable = () => {
     //   console.log(prayTimes.getTimes(new Date(), [44.6611,-74.9708], -5));
       
       var timezone = new Date().getTimezoneOffset()/-60;
-      console.log(timezone);
+      console.log("Timezone: ",timezone);
       
       for (let day = 1; day <= daysInMonth; day++) {
         const date = new Date(year, month, day);
@@ -67,7 +67,7 @@ const PrayerTimesTable = () => {
                         </thead>
                         <tbody>
                         {prayerTimes.map((entry, index) => (
-                            <tr key={index} className="text-center border-t">
+                            <tr key={index} className={entry.date === currentDay ? 'shiny-gold-text text-center' : 'text-center'}>
                             <td className="border p-2">{entry.date}</td>
                             <td className="border p-2">{entry.imsak}</td>
                             <td className="border p-2">{entry.fajr}</td>
