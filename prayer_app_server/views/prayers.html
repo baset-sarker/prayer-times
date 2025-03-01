@@ -139,14 +139,15 @@
       
                 if (data.prayers) {
 
-                    if(data.prayers.fajr){
+                    if(data.prayers.fajr_api){
                         const element = document.getElementById('fajr_api');
                         element.innerHTML = 'Fajr '+data.prayers.fajr_api
                     } 
 
                     if(data.prayers.fajr){
+                        const fajr = getIqaamahTime(data.prayers.fajr_api, data.prayers.fajr);
                         const element = document.getElementById('fajr');
-                        element.innerHTML = 'Iqama '+data.prayers.fajr
+                        element.innerHTML = 'Iqama '+fajr
                     }
 
                     if(data.prayers.sunrise){
@@ -160,8 +161,9 @@
                     }
 
                     if(data.prayers.dhuhr){
+                        const dhuhr = getIqaamahTime(data.prayers.dhuhr_api, data.prayers.dhuhr);
                         const element = document.getElementById('dhuhr');
-                        element.innerHTML = 'Iqama '+data.prayers.dhuhr
+                        element.innerHTML = 'Iqama '+dhuhr
                     }
 
                     if(data.prayers.jummah){
@@ -176,8 +178,9 @@
 
 
                     if(data.prayers.asr){
+                        const asr = getIqaamahTime(data.prayers.asr_api, data.prayers.asr);
                         const element = document.getElementById('asr');
-                        element.innerHTML = 'Iqama '+data.prayers.asr
+                        element.innerHTML = 'Iqama '+asr
                     }
 
                     if(data.prayers.magrib_api){
@@ -186,8 +189,9 @@
                     }
 
                     if(data.prayers.magrib){
+                        const magrib = getIqaamahTime(data.prayers.magrib_api, data.prayers.magrib);
                         const element = document.getElementById('magrib');
-                        element.innerHTML = 'Iqama '+data.prayers.magrib
+                        element.innerHTML = 'Iqama '+magrib
                     }
 
                     if(data.prayers.isha_api){
@@ -196,8 +200,9 @@
                     }
 
                     if(data.prayers.isha){
+                        const isha = getIqaamahTime(data.prayers.isha_api, data.prayers.isha);
                         const element = document.getElementById('isha');
-                        element.innerHTML = 'Iqama '+data.prayers.isha
+                        element.innerHTML = 'Iqama '+isha
                     }
                     if(data.prayers.tarawih){
                         const element = document.getElementById('tarawih');
@@ -295,13 +300,33 @@
 
         // Function to convert "hh:mm AM/PM" to minutes since midnight
         function timeToMinutes(time) {
-            const [timePart, period] = time.split(" ");
-            let [hours, minutes] = timePart.split(":").map(Number);
+            try {
+                const [timePart, period] = time.split(" ");
+                let [hours, minutes] = timePart.split(":").map(Number);
+            
+                if (period === "PM" && hours !== 12) hours += 12; // Convert PM hours to 24-hour format
+                if (period === "AM" && hours === 12) hours = 0;   // Convert 12 AM to 0
+            
+                return hours * 60 + minutes; // Return total minutes since midnight
+            } catch (error) {
+                console.error("Error converting time to minutes:", error);
+                return null;
+            }
+            
+        }
 
-            if (period === "PM" && hours !== 12) hours += 12; // Convert PM hours to 24-hour format
-            if (period === "AM" && hours === 12) hours = 0;   // Convert 12 AM to 0
+        function getIqaamahTime(prayerTimeApi, prayerTime) {
+            let apiTimeInMinutes = timeToMinutes(prayerTimeApi);
+            let timeInMinutes = timeToMinutes(prayerTime);
 
-            return hours * 60 + minutes; // Return total minutes since midnight
+            if (timeInMinutes === null) {
+                return prayerTimeApi;
+            }
+            if (apiTimeInMinutes >= timeInMinutes) {
+                return prayerTimeApi;
+            }else {
+                return prayerTime;
+            }
         }
 
 

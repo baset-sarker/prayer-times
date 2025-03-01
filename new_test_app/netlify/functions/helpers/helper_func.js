@@ -6,6 +6,22 @@ function convert24to12(time24) {
     hours12 = hours12 % 12 || 12;
     return `${hours12}:${minutes} ${ampm}`;
   }
+
+  function timeToMinutes(time) {
+    try {
+      const [timePart, period] = time.split(" ");
+      let [hours, minutes] = timePart.split(":").map(Number);
+  
+      if (period === "PM" && hours !== 12) hours += 12; // Convert PM hours to 24-hour format
+      if (period === "AM" && hours === 12) hours = 0;   // Convert 12 AM to 0
+  
+      return hours * 60 + minutes; // Return total minutes since midnight
+    } catch (error) {
+      console.error("Error converting time to minutes:", error);
+      return null;
+    }
+    
+}
    
   
   function getCurrentDateFormatted() {
@@ -94,4 +110,5 @@ function convert24to12(time24) {
   export {convert24to12,
           getCurrentDateFormatted,
           fetchIslamicFinderData,
+          timeToMinutes,
           fetchData}
