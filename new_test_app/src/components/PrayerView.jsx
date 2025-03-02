@@ -127,13 +127,14 @@ const PrayerView = () => {
 
   // prayerTime is Iqama time
   function getIqaamahTime(prayerTimeApi, prayerTime, add_or_sub = 0) {
+      let add_or_sub_int = parseInt(add_or_sub) || 0;
       // prayer time contains @ symbol remove @ symbol and return 
       if (prayerTime.includes('@')) {
           return prayerTime.replace('@', '');
       }
-
-      if (add_or_sub !== 0) {
-          return getUpdatedTime(prayerTimeApi, add_or_sub);
+ 
+      if (add_or_sub_int !== -1) {
+          return getUpdatedTime(prayerTimeApi, add_or_sub_int);
       }
       
     
