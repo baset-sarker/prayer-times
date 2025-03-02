@@ -140,73 +140,73 @@
                 if (data.prayers) {
 
                     if(data.prayers.fajr_api){
-                        const element = document.getElementById('fajr_api');
-                        element.innerHTML = 'Fajr '+data.prayers.fajr_api
+                        const element_fajr_api = document.getElementById('fajr_api');
+                        element_fajr_api.innerHTML = 'Fajr '+data.prayers.fajr_api
                     } 
 
                     if(data.prayers.fajr){
                         const fajr = getIqaamahTime(data.prayers.fajr_api, data.prayers.fajr, data.prayers.fajr_added_time);
-                        const element = document.getElementById('fajr');
-                        element.innerHTML = 'Iqama '+fajr
+                        const element_fajr = document.getElementById('fajr');
+                        element_fajr.innerHTML = 'Iqama '+fajr
                     }
 
                     if(data.prayers.sunrise){
-                        const element = document.getElementById('sunrise');
-                        element.innerHTML = 'Sunrise '+data.prayers.sunrise
+                        const element_sunrise = document.getElementById('sunrise');
+                        element_sunrise.innerHTML = 'Sunrise '+data.prayers.sunrise
                     }
 
                     if(data.prayers.dhuhr_api){
-                        const element = document.getElementById('dhuhr_api');
-                        element.innerHTML = 'Dhuhr '+data.prayers.dhuhr_api
+                        const element_dhuhr_api = document.getElementById('dhuhr_api');
+                        element_dhuhr_api.innerHTML = 'Dhuhr '+data.prayers.dhuhr_api
                     }
 
                     if(data.prayers.dhuhr){
                         const dhuhr = getIqaamahTime(data.prayers.dhuhr_api, data.prayers.dhuhr, data.prayers.dhuhr_added_time);
-                        const element = document.getElementById('dhuhr');
-                        element.innerHTML = 'Iqama '+dhuhr
+                        const element_dhuhr = document.getElementById('dhuhr');
+                        element_dhuhr.innerHTML = 'Iqama '+dhuhr
                     }
 
                     if(data.prayers.jummah){
-                        const element = document.getElementById('jummah');
-                        element.innerHTML = 'Jummah '+data.prayers.jummah
+                        const element_jummah = document.getElementById('jummah');
+                        element_jummah.innerHTML = 'Jummah '+data.prayers.jummah
                     }
 
                     if(data.prayers.asr_api){
-                        const element = document.getElementById('asr_api');
-                        element.innerHTML = 'Asr '+data.prayers.asr_api
+                        const element_asr_api = document.getElementById('asr_api');
+                        element_asr_api.innerHTML = 'Asr '+data.prayers.asr_api
                     }
 
 
                     if(data.prayers.asr){
                         const asr = getIqaamahTime(data.prayers.asr_api, data.prayers.asr,data.prayers.asr_added_time);
-                        const element = document.getElementById('asr');
-                        element.innerHTML = 'Iqama '+asr
+                        const element_asr = document.getElementById('asr');
+                        element_asr.innerHTML = 'Iqama '+asr
                     }
 
                     if(data.prayers.magrib_api){
-                        const element = document.getElementById('magrib_api');
-                        element.innerHTML = 'Magrib '+data.prayers.magrib_api
+                        const element_magrib_api = document.getElementById('magrib_api');
+                        element_magrib_api.innerHTML = 'Magrib '+data.prayers.magrib_api
                     }
 
                     if(data.prayers.magrib){
                         const magrib = getIqaamahTime(data.prayers.magrib_api, data.prayers.magrib,data.prayers.magrib_added_time);
-                        const element = document.getElementById('magrib');
-                        element.innerHTML = 'Iqama '+magrib
+                        const element_magrib = document.getElementById('magrib');
+                        element_magrib.innerHTML = 'Iqama '+magrib
                     }
 
                     if(data.prayers.isha_api){
-                        const element = document.getElementById('isha_api');
-                        element.innerHTML = 'Isha '+data.prayers.isha_api
+                        const element_isha_api = document.getElementById('isha_api');
+                        element_isha_api.innerHTML = 'Isha '+data.prayers.isha_api
                     }
 
                     if(data.prayers.isha){
                         const isha = getIqaamahTime(data.prayers.isha_api, data.prayers.isha,data.prayers.isha_added_time);
-                        const element = document.getElementById('isha');
-                        element.innerHTML = 'Iqama '+isha
+                        const element_isha = document.getElementById('isha');
+                        element_isha.innerHTML = 'Iqama '+isha
                     }
                     if(data.prayers.tarawih){
-                        const element = document.getElementById('tarawih');
-                        element.innerHTML = 'Tarawih '+data.prayers.tarawih
+                        const element_tarawih = document.getElementById('tarawih');
+                        element_tarawih.innerHTML = 'Tarawih '+data.prayers.tarawih
                     }
                    
                 }
