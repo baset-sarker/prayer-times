@@ -119,25 +119,6 @@ app.post('/update', (req, res) => {
     res.redirect('/update');
 });
 
-// Route to update prayer_times.json
-// app.get('/update-prayer-times', (req, res) => {
-//     const prayerTimes = req.query;
-
-//     if (!Object.keys(prayerTimes).length) {
-//         return res.status(400).json({ message: 'No data provided in query parameters.' });
-//     }
-
-//     fs.writeFile(prayerTimesFilePath, JSON.stringify(prayerTimes, null, 2), 'utf8', (err) => {
-//         if (err) {
-//             console.error('Error writing to file:', err);
-//             return res.status(500).json({ message: 'Failed to update prayer times.' });
-//         }
-
-//         res.json({ message: 'Prayer times updated successfully!', data: prayerTimes });
-//     });
-// });
-
-
 
 
 // Route to get the content of prayer_times.json

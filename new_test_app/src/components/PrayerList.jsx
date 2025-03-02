@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { getIqaamahTime } from './helper';
+
+
 
 function PrayerList({ token, apiUrl }) {
   const [prayers, setPrayers] = useState([]);
@@ -74,8 +77,14 @@ function PrayerList({ token, apiUrl }) {
               <tbody>
                 <tr>
                   <td>Prayer Times</td>
-                  <td>Fajr:{prayer.fajr} &nbsp;Sunrise:{prayer.sunrise} &nbsp; Dhuhr:{prayer.duhr} &nbsp; Jummah:{prayer.jummah}
-                      &nbsp;Asr:{prayer.asr} &nbsp; Magrib:{prayer.magrib} &nbsp;Isha:{prayer.isha} &nbsp;Tarawih:{prayer.tarawih} 
+                  <td>Fajr Iqama:{getIqaamahTime(prayer.fajr_api, prayer.fajr, prayer.fajr_added_time)} 
+                      &nbsp;Sunrise:{prayer.sunrise} 
+                      &nbsp; Dhuhr Iqama:{getIqaamahTime(prayer.duhr_api, prayer.duhr, prayer.duhr_added_time)}
+                      &nbsp; Jummah:{prayer.jummah}
+                      &nbsp;Asr Iqama:{getIqaamahTime(prayer.asr_api, prayer.asr, prayer.asr_added_time)}
+                      &nbsp; Magrib Iqama:{getIqaamahTime(prayer.magrib_api, prayer.magrib, prayer.magrib_added_time)} 
+                      &nbsp;Isha Iqama:{getIqaamahTime(prayer.isha_api, prayer.isha, prayer.isha_added_time)} 
+                      &nbsp;Tarawih:{prayer.tarawih} 
                       
                   </td>
                 </tr>

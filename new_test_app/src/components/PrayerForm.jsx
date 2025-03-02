@@ -2,56 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-
-// function getUpdatedTime(timeString, change) {
-  
-//     change = parseInt(change) || 0;
-
-//     let [time, period] = timeString.split(" ");
-//     let [hours, minutes] = time.split(":").map(Number);
-
-//     // Adjust minutes
-//     minutes += change;
-
-//     if (minutes >= 60) {
-//       minutes = 0;
-//       hours = hours === 12 ? 1 : hours + 1; // Handle 12-hour format
-//     } else if (minutes < 0) {
-//       minutes = 59;
-//       hours = hours === 1 ? 12 : hours - 1;
-//     }
-
-//     // Format back to string
-//     const updatedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
-    
-//     return updatedTime;
-// }
-
-function getUpdatedTime(timeString, change) {
-  change = parseInt(change) || 0;
-
-  let [time, period] = timeString.split(" ");
-  let [hours, minutes] = time.split(":").map(Number);
-
-  // Convert to 24-hour format for easier calculations
-  if (period === "PM" && hours !== 12) hours += 12;
-  if (period === "AM" && hours === 12) hours = 0;
-
-  // Adjust time
-  let totalMinutes = hours * 60 + minutes + change;
-  totalMinutes = (totalMinutes + 1440) % 1440; // Handle negative values and wrap around
-
-  // Convert back to hours and minutes
-  hours = Math.floor(totalMinutes / 60);
-  minutes = totalMinutes % 60;
-
-  // Convert back to 12-hour format
-  period = hours >= 12 ? "PM" : "AM";
-  hours = hours % 12 || 12; // Convert 0 -> 12 for AM
-
-  // Format output
-  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
-}
+import { updateIqamaTimeForFirstTim, getUpdatedTime } from './helper';
 
 
 function PrayerForm({ token, apiUrl }) {
@@ -92,9 +43,8 @@ function PrayerForm({ token, apiUrl }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const isEditing = !!id;
-
+  
   useEffect(() => {
-    
     const fetchPrayer = async () => {
       setLoading(true);
       if (isEditing) {
@@ -103,9 +53,10 @@ function PrayerForm({ token, apiUrl }) {
           const response = await axios.get(`${apiUrl}/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
-
-          setPrayer(response.data);
-      
+          
+          let updatedPrayer = updateIqamaTimeForFirstTim(response.data);
+          setPrayer(updatedPrayer);
+          console.log('updatedPrayer', updatedPrayer);
           console.log(response.data);
           setLoading(false);
         } catch (err) {
