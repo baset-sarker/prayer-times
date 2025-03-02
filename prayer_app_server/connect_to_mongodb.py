@@ -30,16 +30,21 @@ def get_prayer_and_provider_data():
     prayers = {
         "fajr": prayer_data.get("fajr"),
         "fajr_api": prayer_data.get("fajr_api"),
+        "fajr_added_time": prayer_data.get("fajr_added_time"),
         "sunrise": prayer_data.get("sunrise"),
         "dhuhr": prayer_data.get("duhr"),
         "dhuhr_api": prayer_data.get("duhr_api"),
+        "dhuhr_added_time": prayer_data.get("duhr_added_time"),
         "jummah": prayer_data.get("jummah"),
         "asr": prayer_data.get("asr"),
         "asr_api": prayer_data.get("asr_api"),
+        "asr_added_time": prayer_data.get("asr_added_time"),
         "magrib": prayer_data.get("magrib"),
         "magrib_api": prayer_data.get("magrib_api"),
+        "magrib_added_time": prayer_data.get("magrib_added_time"),
         "isha": prayer_data.get("isha"),
         "isha_api": prayer_data.get("isha_api"),
+        "isha_added_time": prayer_data.get("isha_added_time"),
         "tarawih": prayer_data.get("tarawih")
     }
 

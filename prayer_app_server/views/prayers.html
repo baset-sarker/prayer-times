@@ -316,6 +316,10 @@
         }
 
         function getIqaamahTime(prayerTimeApi, prayerTime) {
+            if (prayerTime.includes('@')) {
+                return prayerTime.replace('@', '');
+            }
+
             let apiTimeInMinutes = timeToMinutes(prayerTimeApi);
             let timeInMinutes = timeToMinutes(prayerTime);
 

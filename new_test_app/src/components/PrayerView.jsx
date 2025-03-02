@@ -101,6 +101,11 @@ const PrayerView = () => {
   }
 
   function getIqaamahTime(prayerTimeApi, prayerTime) {
+      // prayer time contains @ symbol remove @ symbol and return 
+      if (prayerTime.includes('@')) {
+          return prayerTime.replace('@', '');
+      }
+      
       let apiTimeInMinutes = timeToMinutes(prayerTimeApi);
       let timeInMinutes = timeToMinutes(prayerTime);
 
