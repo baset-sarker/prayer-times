@@ -207,16 +207,19 @@ function PrayerForm({ token, apiUrl }) {
 
 
   return (   
+    <div style={{minHeight: '100vh'}}>
+
     <form onSubmit={handleSubmit}>
       {loading && <div style={{color: 'white'}}> <img height={'30px'} src='/loading.gif'></img> Loading...</div>}
       {error && <div className="alert alert-danger">{error}</div>}
 
         <div className="mb-3 mt-3">
           <button type="submit" className="btn-green">Save Prayer Times</button><br/>
-          {/* *add @ in Iqama not to update automatically */}
+          Note: *Setting add/subtract to 0 will make the Iqama time manual. <br/>
+          *If add/subtract has any value other than 0, the Iqama time will automatically updated as (API time + add/subtract value).
         </div>
         <div className='mb-3 mt-3'>
-            <label htmlFor="field1" className="form-label fw-bold">Fajr Global - Add/Subtract - Iqama</label>
+            <label htmlFor="field1" className="form-label fw-bold">Fajr API - Add/Subtract - Iqama</label>
             <div className="input-group">
               <input type="text" className="form-control" id="fajr_api" name="fajr_api" value={prayer.fajr_api} onChange={handleChange} readOnly />
               <button className="btn btn-outline-secondary" data-dec_added_time="fajr_added_time" data-api_time="fajr_api" data-db_time='fajr' type="button" onClick={handleDecrement}>-</button>
@@ -232,7 +235,7 @@ function PrayerForm({ token, apiUrl }) {
         </div>
 
         <div className='mb-3 mt-3'>
-           <label htmlFor="duhr_api" className="form-label fw-bold">Duhr Global - Add/Subtract - Iqama</label>
+           <label htmlFor="duhr_api" className="form-label fw-bold">Duhr API - Add/Subtract - Iqama</label>
            <div className="input-group">
               <input type="text" className="form-control" id="duhr_api" name="duhr_api" value={prayer.duhr_api} onChange={handleChange} readOnly/>`
               <button className="btn btn-outline-secondary" data-dec_added_time="duhr_added_time" data-api_time="duhr_api" data-db_time="duhr" type="button" onClick={handleDecrement}>-</button>
@@ -249,7 +252,7 @@ function PrayerForm({ token, apiUrl }) {
         </div>
 
         <div className='mb-3 mt-3'>
-          <label htmlFor="asr_added_time" className="form-label fw-bold">Asr Global - Add/subtract - Iqama</label>
+          <label htmlFor="asr_added_time" className="form-label fw-bold">Asr API - Add/subtract - Iqama</label>
           <div className="input-group">
             <input type="text" className="form-control" id="asr_api" name="asr_api" value={prayer.asr_api} onChange={handleChange} readOnly/>
             <button className="btn btn-outline-secondary" data-dec_added_time="asr_added_time" data-api_time="asr_api" data-db_time="asr" type="button" onClick={handleDecrement}>-</button>
@@ -259,7 +262,7 @@ function PrayerForm({ token, apiUrl }) {
           </div>
         </div>
         <div className='mb-3 mt-3'>
-          <label htmlFor="magrib_added_time" className="form-label fw-bold">Magrib Global - Add/subtract - Iqama</label>
+          <label htmlFor="magrib_added_time" className="form-label fw-bold">Magrib API - Add/subtract - Iqama</label>
           <div className="input-group">
             <input type="text" className="form-control" id="magrib_api" name="magrib_api" value={prayer.magrib_api} onChange={handleChange} readOnly/>
             <button className="btn btn-outline-secondary" data-dec_added_time="magrib_added_time" data-api_time="magrib_api" data-db_time="magrib" type="button" onClick={handleDecrement}>-</button>
@@ -270,7 +273,7 @@ function PrayerForm({ token, apiUrl }) {
         </div>
 
         <div className="mb-3 mt-3">
-            <label htmlFor="isha_added_time" className="form-label fw-bold">Isha Global - Add/subtract - Iqama</label>
+            <label htmlFor="isha_added_time" className="form-label fw-bold">Isha API - Add/subtract - Iqama</label>
             <div className="input-group">
               <input type="text" className="form-control" id="isha_api" name="isha_api" value={prayer.isha_api} onChange={handleChange} readOnly/>
               <button className="btn btn-outline-secondary" data-dec_added_time="isha_added_time" data-api_time="isha_api" data-db_time="isha" type="button" onClick={handleDecrement}>-</button>
@@ -335,6 +338,7 @@ function PrayerForm({ token, apiUrl }) {
             <button type="submit" className="btn-green">Save Prayer Times</button>
         </div>
     </form>
+    </div>
   );
 }
 

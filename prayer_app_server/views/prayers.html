@@ -145,7 +145,7 @@
                     } 
 
                     if(data.prayers.fajr){
-                        const fajr = getIqaamahTime(data.prayers.fajr_api, data.prayers.fajr);
+                        const fajr = getIqaamahTime(data.prayers.fajr_api, data.prayers.fajr, data.prayers.fajr_added_time);
                         const element = document.getElementById('fajr');
                         element.innerHTML = 'Iqama '+fajr
                     }
@@ -161,7 +161,7 @@
                     }
 
                     if(data.prayers.dhuhr){
-                        const dhuhr = getIqaamahTime(data.prayers.dhuhr_api, data.prayers.dhuhr);
+                        const dhuhr = getIqaamahTime(data.prayers.dhuhr_api, data.prayers.dhuhr, data.prayers.dhuhr_added_time);
                         const element = document.getElementById('dhuhr');
                         element.innerHTML = 'Iqama '+dhuhr
                     }
@@ -178,7 +178,7 @@
 
 
                     if(data.prayers.asr){
-                        const asr = getIqaamahTime(data.prayers.asr_api, data.prayers.asr);
+                        const asr = getIqaamahTime(data.prayers.asr_api, data.prayers.asr,data.prayers.asr_added_time);
                         const element = document.getElementById('asr');
                         element.innerHTML = 'Iqama '+asr
                     }
@@ -189,7 +189,7 @@
                     }
 
                     if(data.prayers.magrib){
-                        const magrib = getIqaamahTime(data.prayers.magrib_api, data.prayers.magrib);
+                        const magrib = getIqaamahTime(data.prayers.magrib_api, data.prayers.magrib,data.prayers.magrib_added_time);
                         const element = document.getElementById('magrib');
                         element.innerHTML = 'Iqama '+magrib
                     }
@@ -200,7 +200,7 @@
                     }
 
                     if(data.prayers.isha){
-                        const isha = getIqaamahTime(data.prayers.isha_api, data.prayers.isha);
+                        const isha = getIqaamahTime(data.prayers.isha_api, data.prayers.isha,data.prayers.isha_added_time);
                         const element = document.getElementById('isha');
                         element.innerHTML = 'Iqama '+isha
                     }
@@ -315,9 +315,42 @@
             
         }
 
-        function getIqaamahTime(prayerTimeApi, prayerTime) {
+        function getUpdatedTime(timeString, change) {
+                change = parseInt(change) || 0;
+                
+                let [time, period] = timeString.split(" ");
+                let [hours, minutes] = time.split(":").map(Number);
+                
+                // Convert to 24-hour format for easier calculations
+                if (period === "PM" && hours !== 12) hours += 12;
+                if (period === "AM" && hours === 12) hours = 0;
+                
+                // Adjust time
+                let totalMinutes = hours * 60 + minutes + change;
+                totalMinutes = (totalMinutes + 1440) % 1440; // Handle negative values and wrap around
+                
+                // Convert back to hours and minutes
+                hours = Math.floor(totalMinutes / 60);
+                minutes = totalMinutes % 60;
+                
+                // Convert back to 12-hour format
+                period = hours >= 12 ? "PM" : "AM";
+                hours = hours % 12 || 12; // Convert 0 -> 12 for AM
+                
+                // Format output
+                return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
+        }
+
+
+        function getIqaamahTime(prayerTimeApi, prayerTime, add_or_sub = 0) {
+
+            // prayer time contains @ symbol remove @ symbol and return 
             if (prayerTime.includes('@')) {
                 return prayerTime.replace('@', '');
+            }
+
+            if (add_or_sub !== 0) {
+                return getUpdatedTime(prayerTimeApi, add_or_sub);
             }
 
             let apiTimeInMinutes = timeToMinutes(prayerTimeApi);

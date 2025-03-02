@@ -83,6 +83,31 @@ const PrayerView = () => {
       }).format(date);
     };
 
+    function getUpdatedTime(timeString, change) {
+      change = parseInt(change) || 0;
+    
+      let [time, period] = timeString.split(" ");
+      let [hours, minutes] = time.split(":").map(Number);
+    
+      // Convert to 24-hour format for easier calculations
+      if (period === "PM" && hours !== 12) hours += 12;
+      if (period === "AM" && hours === 12) hours = 0;
+    
+      // Adjust time
+      let totalMinutes = hours * 60 + minutes + change;
+      totalMinutes = (totalMinutes + 1440) % 1440; // Handle negative values and wrap around
+    
+      // Convert back to hours and minutes
+      hours = Math.floor(totalMinutes / 60);
+      minutes = totalMinutes % 60;
+    
+      // Convert back to 12-hour format
+      period = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12 || 12; // Convert 0 -> 12 for AM
+    
+      // Format output
+      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
+    }
 
     function timeToMinutes(time) {
       try {
@@ -100,12 +125,18 @@ const PrayerView = () => {
       
   }
 
-  function getIqaamahTime(prayerTimeApi, prayerTime) {
+  // prayerTime is Iqama time
+  function getIqaamahTime(prayerTimeApi, prayerTime, add_or_sub = 0) {
       // prayer time contains @ symbol remove @ symbol and return 
       if (prayerTime.includes('@')) {
           return prayerTime.replace('@', '');
       }
+
+      if (add_or_sub !== 0) {
+          return getUpdatedTime(prayerTimeApi, add_or_sub);
+      }
       
+    
       let apiTimeInMinutes = timeToMinutes(prayerTimeApi);
       let timeInMinutes = timeToMinutes(prayerTime);
 
@@ -157,7 +188,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="fajr_card">
                                           <div class="prayer_text shiny-gold-text">(الفجر)</div>
                                           <div class="prayer_text shiny-gold-text" id="fajr_api">Fajr {prayer.fajr_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="fajr">Iqama {getIqaamahTime(prayer.fajr_api,prayer.fajr)}</div>
+                                          <div class="prayer_text shiny-gold-text" id="fajr">Iqama {getIqaamahTime(prayer.fajr_api,prayer.fajr,prayer.fajr_added_time)}</div>
                                           <div class="prayer_text shiny-gold-text" id="sunrise">Sunrise {prayer.sunrise}</div>   
                                       </div>
                                   </div>
@@ -166,7 +197,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="dhuhr_card">
                                           <div class="prayer_text shiny-gold-text">(الظهر)</div>
                                           <div class="prayer_text shiny-gold-text" id="dhuhr_api">Dhuhr {prayer.duhr_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="dhuhr">Iqama {getIqaamahTime(prayer.duhr_api,prayer.duhr)}</div>
+                                          <div class="prayer_text shiny-gold-text" id="dhuhr">Iqama {getIqaamahTime(prayer.duhr_api,prayer.duhr,prayer.duhr_added_time)}</div>
                                           <div class="prayer_text shiny-gold-text" id="jummah">Jummah {prayer.jummah}</div>  
                                       </div>
                                   </div>
@@ -174,7 +205,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="asr_card">
                                           <div class="prayer_text shiny-gold-text">(العصر)</div>
                                           <div class="prayer_text shiny-gold-text" id="asr_api"> Asr {prayer.asr_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="asr">Iqama {getIqaamahTime(prayer.asr_api,prayer.asr)} </div>
+                                          <div class="prayer_text shiny-gold-text" id="asr">Iqama {getIqaamahTime(prayer.asr_api,prayer.asr,prayer.asr_added_time)} </div>
                                       </div>
                                   </div>
                                   
@@ -184,7 +215,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="magrib_card">
                                           <div class="prayer_text shiny-gold-text">(المغرب)</div>
                                           <div class="prayer_text shiny-gold-text" id="magrib_api">Magrib {prayer.magrib_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="magrib">Iqama {getIqaamahTime(prayer.magrib_api,prayer.magrib)}</div>
+                                          <div class="prayer_text shiny-gold-text" id="magrib">Iqama {getIqaamahTime(prayer.magrib_api,prayer.magrib,prayer.magrib_added_time)}</div>
                                           
                                       </div>
                               </div>
@@ -192,7 +223,7 @@ const PrayerView = () => {
                                       <div class="golden-card" id="isha_card">
                                           <div class="prayer_text shiny-gold-text">(العشاء)</div>
                                           <div class="prayer_text shiny-gold-text" id="isha_api">Isha {prayer.isha_api}</div>
-                                          <div class="prayer_text shiny-gold-text" id="isha">Iqama {getIqaamahTime(prayer.isha_api,prayer.isha)}</div>
+                                          <div class="prayer_text shiny-gold-text" id="isha">Iqama {getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time)}</div>
                                           {prayer.tarawih && <div class="prayer_text shiny-gold-text" id="tarawih">Tarawih {prayer.tarawih}</div> }
                                       </div>
                               </div>
