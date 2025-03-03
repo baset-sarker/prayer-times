@@ -11,6 +11,7 @@ const port = process.env.NODE_SERVER_PORT || 3001;
 const app = express();
 const session = require('express-session');
 
+const PrayTimes = require('./PrayerTime');
 
 // Path to prayer_times.json file
 const prayerTimesFilePath = path.join(__dirname, 'prayer_times.json');
@@ -36,8 +37,17 @@ app.get('/', (req, res) => {
 });
 
 
-const { exec } = require('child_process');
+function getLocalPryayerTime() {
+    const today = new Date();
+    var prayTimes = new PrayTimes();
+    prayTimes.setMethod('ISNA');    
+    var timezone = new Date().getTimezoneOffset()/-60;
+    const times = prayTimes.getTimes(today, [44.6611,-74.9708], timezone)
+    return times;
+}
 
+
+const { exec } = require('child_process');
 function getSSID() {
   return new Promise((resolve, reject) => {
     exec('iwgetid -r', (error, stdout, stderr) => {

@@ -135,7 +135,8 @@ function getNextHadis() {
     }
 
 }
-    async function updatePrayerTimes() {
+
+async function updatePrayerTimes() {
     try {
         const response = await fetch('/prayer-times');
         const data = await response.json();
