@@ -148,6 +148,11 @@ header.masthead .masthead-heading {
 
 .text-gold{
   color: solid gold !important; 
+  font-weight: bold;
+}
+
+.text-gold-large{
+  color: solid gold !important; 
   font-size: 1.2rem;
   font-weight: bold;
 }
