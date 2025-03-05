@@ -65,10 +65,7 @@ const PrayerTimesTable = () => {
                         <tbody>
                         {prayerTimes.map((entry, index) => (
                             <tr key={index} 
-                            className={entry.date === currentDay ? 'text-gold-large text-center' : 'text-center'}
-                            
-                            
-                            >
+                            className={entry.date === currentDay ? 'text-gold-large text-center' : 'text-center'}>
                             <td className="border p-2">{entry.date}</td>
                             <td className="border p-2">{entry.fajr}</td>
                             <td className="border p-2">{entry.sunrise}</td>

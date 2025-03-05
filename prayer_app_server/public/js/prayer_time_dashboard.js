@@ -216,7 +216,8 @@ async function updatePrayerTimes() {
         }
 
         if (data.ssid) {
-            document.getElementById('wifi').textContent = data.ssid;
+            const cur_date = getCurrentDateTime();
+            document.getElementById('wifi').textContent = data.ssid +' | '+ cur_date;
         }
 
 
@@ -299,6 +300,28 @@ function toggleDivs() {
 }
 
 
+function getCurrentDateTime() {
+    const now = new Date();
+    const date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
+    return `${date} ${time}`;
+}
+
+function setCurrentDateTime() {
+    const wifi = document.getElementById('wifi');
+    const wifi_content = wifi.textContent;  
+    
+    const currentTime = getCurrentDateTime()
+    if (wifi_content.includes('Connected')) {
+        wifi.textContent = `Connected | ${currentTime}`;
+    }
+
+    if (wifi_content.includes('Scanning')) {
+        wifi.textContent = `Scanning... | ${currentTime}`;
+    }
+}
+
+
 
 // Initial fetch
 updatePrayerTimes();
@@ -312,3 +335,5 @@ if (window.timerAPI && typeof window.timerAPI.setInterval === 'function') {
     setInterval(updatePrayerTimes, dataFetchInterval);
     setInterval(toggleDivs, hadisShowInterval);
 }
+
+setInterval(setCurrentDateTime, 1000);

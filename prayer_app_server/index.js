@@ -3,28 +3,20 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
-
 const dotenv = require('dotenv');
 dotenv.config();
 const port = process.env.NODE_SERVER_PORT || 3001;
-
 const app = express();
 const session = require('express-session');
-
 const PrayTimes = require('./PrayerTime');
-
 // Path to prayer_times.json file
 const prayerTimesFilePath = path.join(__dirname, 'prayer_times.json');
 const hadisFilePath = path.join(__dirname, 'hadis.json');
-
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
-const { get } = require('http');
-
 app.use(session({ secret: 'TheisIsthesecrets902309203920930', resave: false, saveUninitialized: true }));
 
 // Serve static files (CSS, JS, images, etc.)
@@ -43,8 +35,20 @@ function getLocalPryayerTime() {
     prayTimes.setMethod('ISNA');    
     var timezone = new Date().getTimezoneOffset()/-60;
     const times = prayTimes.getTimes(today, [44.6611,-74.9708], timezone)
+    // console.log(times)
     return times;
 }
+
+
+function isSyncedToday(dateString) {
+    const updatedDate = new Date(dateString);
+    const today = new Date();
+    
+    return updatedDate.getFullYear() === today.getFullYear() &&
+           updatedDate.getMonth() === today.getMonth() &&
+           updatedDate.getDate() === today.getDate();
+}
+
 
 
 const { exec } = require('child_process');
@@ -156,6 +160,17 @@ app.get('/prayer-times',async (req, res) => {
 
         try {
             let prayerTimes = JSON.parse(data);
+            if (!isSyncedToday(prayerTimes.prayers.updated_at)) {
+                // if not connected and not updated today, get prayer time from script PrayerTimes
+                const prayer_times = getLocalPryayerTime();
+                prayerTimes.prayers.fajr_api = prayer_times.fajr;
+                prayerTimes.prayers.sunrise = prayer_times.sunrise;
+                prayerTimes.prayers.dhuhr_api = prayer_times.dhuhr;
+                prayerTimes.prayers.asr_api = prayer_times.asr;
+                prayerTimes.prayers.magrib_api = prayer_times.maghrib;
+                prayerTimes.prayers.isha_api = prayer_times.isha;
+                 console.log("generated time added")
+            }
             prayerTimes = { ...prayerTimes, ssid };
             res.json(prayerTimes);
             

@@ -45,7 +45,8 @@ def get_prayer_and_provider_data():
         "isha": prayer_data.get("isha"),
         "isha_api": prayer_data.get("isha_api"),
         "isha_added_time": prayer_data.get("isha_added_time"),
-        "tarawih": prayer_data.get("tarawih")
+        "tarawih": prayer_data.get("tarawih"),
+        "updated_at": prayer_data.get("updated_at")
     }
 
     notice = {

@@ -54,27 +54,18 @@ journalctl -u myservice  --no-pager -n 5
 https://chatgpt.com/c/67be6265-1b64-8012-95f1-c435352626be
 By default, it fetches the time from NTP servers and adjusts it according to the configured time zone. You can check your current settings with:
 
-bash
-Copy
-Edit
 timedatectl
 If the time zone is incorrect, you can set it manually:
 
-bash
-Copy
-Edit
+
 sudo timedatectl set-timezone <your-timezone>
 For example, to set it to New York:
 
-bash
-Copy
-Edit
+
 sudo timedatectl set-timezone America/New_York
+
 If your Raspberry Pi is not syncing, ensure that NTP is enabled:
 
-bash
-Copy
-Edit
 sudo timedatectl set-ntp on
 Let me know if you're facing any issues with time synchronization.
 
