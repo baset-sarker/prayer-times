@@ -287,7 +287,7 @@ function PrayerForm({ token, apiUrl }) {
         </div>
         <div className="mb-3 mt-3">
         *Set add/subtract to -1 to make Iqama time manual (static). <br/>
-        *If add/subtract has any value other than -1, the Iqama time will automatically updated as (API time + add/subtract value).
+        *If add/subtract has any value other than -1, the Iqama time will automatically updated as (API time + add/subtract value).<br/>
             <button type="submit" className="btn-green">Save Prayer Times</button>
         </div>
     </form>
