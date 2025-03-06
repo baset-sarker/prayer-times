@@ -169,7 +169,7 @@ app.get('/prayer-times',async (req, res) => {
                 prayerTimes.prayers.asr_api = prayer_times.asr;
                 prayerTimes.prayers.magrib_api = prayer_times.maghrib;
                 prayerTimes.prayers.isha_api = prayer_times.isha;
-                 console.log("generated time added")
+                console.info('Prayer times updated from Script');  
             }
             prayerTimes = { ...prayerTimes, ssid };
             res.json(prayerTimes);
