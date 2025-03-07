@@ -49,6 +49,14 @@ function isSyncedToday(dateString) {
            updatedDate.getDate() === today.getDate();
 }
 
+function convert24to12(time24) {
+    const [hours, minutes] = time24.split(':');
+    let hours12 = hours % 12 || 12; // Handle midnight (00:00)
+    const ampm = hours < 12 || hours === 24 ? 'AM' : 'PM'; // Determine AM/PM
+    hours12 = hours12 % 12 || 12;
+    return `${hours12}:${minutes} ${ampm}`;
+  }
+
 
 
 const { exec } = require('child_process');
@@ -163,12 +171,12 @@ app.get('/prayer-times',async (req, res) => {
             if (!isSyncedToday(prayerTimes.prayers.updated_at)) {
                 // if not connected and not updated today, get prayer time from script PrayerTimes
                 const prayer_times = getLocalPryayerTime();
-                prayerTimes.prayers.fajr_api = prayer_times.fajr;
-                prayerTimes.prayers.sunrise = prayer_times.sunrise;
-                prayerTimes.prayers.dhuhr_api = prayer_times.dhuhr;
-                prayerTimes.prayers.asr_api = prayer_times.asr;
-                prayerTimes.prayers.magrib_api = prayer_times.maghrib;
-                prayerTimes.prayers.isha_api = prayer_times.isha;
+                prayerTimes.prayers.fajr_api = convert24to12(prayer_times.fajr);
+                prayerTimes.prayers.sunrise = convert24to12(prayer_times.sunrise);
+                prayerTimes.prayers.dhuhr_api = convert24to12(prayer_times.dhuhr);
+                prayerTimes.prayers.asr_api = convert24to12(prayer_times.asr);
+                prayerTimes.prayers.magrib_api = convert24to12(prayer_times.maghrib);
+                prayerTimes.prayers.isha_api = convert24to12(prayer_times.isha);
                 console.info('Prayer times updated from Script');  
             }
             prayerTimes = { ...prayerTimes, ssid };

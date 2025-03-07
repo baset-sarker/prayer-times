@@ -7,7 +7,6 @@ let current_hadis = 0; // Track the current index
 
 
 // ############ Helpers Start
-
 // Function to convert "hh:mm AM/PM" to minutes since midnight
 function timeToMinutes(time) {
     try {
