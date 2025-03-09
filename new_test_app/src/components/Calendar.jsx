@@ -25,6 +25,7 @@ const PrayerTimesTable = () => {
     //   console.log(prayTimes.getTimes(new Date(), [44.6611,-74.9708], -5));
       
       // var timezone = new Date().getTimezoneOffset()/-60;
+      // overrriding timezone to -5
       var timezone = -5;
       console.log("Timezone: ",timezone);
       
