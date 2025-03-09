@@ -24,7 +24,8 @@ const PrayerTimesTable = () => {
       prayTimes.setMethod('ISNA');
     //   console.log(prayTimes.getTimes(new Date(), [44.6611,-74.9708], -5));
       
-      var timezone = new Date().getTimezoneOffset()/-60;
+      // var timezone = new Date().getTimezoneOffset()/-60;
+      var timezone = -5;
       console.log("Timezone: ",timezone);
       
       for (let day = 1; day <= daysInMonth; day++) {
