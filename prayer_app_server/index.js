@@ -29,6 +29,15 @@ app.get('/', (req, res) => {
 });
 
 
+// this time format for dashboard
+function getCurrentDateTime() {
+    const now = new Date();
+    const date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
+    return `${date} ${time}`;
+}
+
+
 function getLocalPryayerTime() {
     const today = new Date();
     var prayTimes = new PrayTimes();
@@ -180,7 +189,8 @@ app.get('/prayer-times',async (req, res) => {
                 prayerTimes.prayers.isha_api = convert24to12(prayer_times.isha);
                 console.info('Prayer times updated from Script');  
             }
-            prayerTimes = { ...prayerTimes, ssid };
+            const current_datetime = getCurrentDateTime()
+            prayerTimes = { ...prayerTimes, ssid, current_datetime };
             res.json(prayerTimes);
             
         } catch (parseErr) {

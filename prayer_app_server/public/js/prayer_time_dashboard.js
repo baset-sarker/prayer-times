@@ -3,6 +3,7 @@ const hadisShowInterval = 10000; // 10 seconds
 
 let hadisArray = [];
 let current_hadis = 0; // Track the current index
+let current_datetime = null;
 
 
 
@@ -140,8 +141,13 @@ async function updatePrayerTimes() {
         const response = await fetch('/prayer-times');
         const data = await response.json();
 
-        if (data.prayers) {
+        if(data){
+            // set current datetime
+            current_datetime = data.current_datetime
+        }
 
+        if (data.prayers) {
+        
             if(data.prayers.fajr_api){
                 const element_fajr_api = document.getElementById('fajr_api');
                 element_fajr_api.innerHTML = 'Fajr '+data.prayers.fajr_api
@@ -215,8 +221,7 @@ async function updatePrayerTimes() {
         }
 
         if (data.ssid) {
-            const cur_date = getCurrentDateTime();
-            document.getElementById('wifi').textContent = data.ssid +' | '+ cur_date;
+            document.getElementById('wifi').textContent = data.ssid +' | '+ current_datetime;
         }
 
 
@@ -299,24 +304,33 @@ function toggleDivs() {
 }
 
 
-function getCurrentDateTime() {
-    const now = new Date();
+// function getCurrentDateTime() {
+//     const now = new Date();
+//     const date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+//     const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
+//     return `${date} ${time}`;
+// }
+
+function increase_one_second(){
+    const now = new Date(current_datetime);
+    now.setSeconds(now.getSeconds() + 1);
     const date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
-    return `${date} ${time}`;
+    current_datetime = `${date} ${time}`;
 }
 
 function setCurrentDateTime() {
     const wifi = document.getElementById('wifi');
     const wifi_content = wifi.textContent;  
+
+    increase_one_second();
     
-    const currentTime = getCurrentDateTime()
     if (wifi_content.includes('Connected')) {
-        wifi.textContent = `Connected | ${currentTime}`;
+        wifi.textContent = `Connected | ${current_datetime}`;
     }
 
     if (wifi_content.includes('Scanning')) {
-        wifi.textContent = `Scanning... | ${currentTime}`;
+        wifi.textContent = `Scanning... | ${current_datetime}`;
     }
 }
 
@@ -326,13 +340,15 @@ function setCurrentDateTime() {
 updatePrayerTimes();
 
 // Use the timerAPI to setInterval
-if (window.timerAPI && typeof window.timerAPI.setInterval === 'function') {
-    window.timerAPI.setInterval(updatePrayerTimes, dataFetchInterval);
-    window.timerAPI.setInterval(toggleDivs, hadisShowInterval);
-} else {
-    console.error('timerAPI is not available. Falling back to standard setInterval.');
-    setInterval(updatePrayerTimes, dataFetchInterval);
-    setInterval(toggleDivs, hadisShowInterval);
-}
+// if (window.timerAPI && typeof window.timerAPI.setInterval === 'function') {
+//     window.timerAPI.setInterval(updatePrayerTimes, dataFetchInterval);
+//     window.timerAPI.setInterval(toggleDivs, hadisShowInterval);
+// } else {
+//     console.error('timerAPI is not available. Falling back to standard setInterval.');
+//     setInterval(updatePrayerTimes, dataFetchInterval);
+//     setInterval(toggleDivs, hadisShowInterval);
+// }
 
+setInterval(updatePrayerTimes, dataFetchInterval);
+setInterval(toggleDivs, hadisShowInterval);
 setInterval(setCurrentDateTime, 1000);
