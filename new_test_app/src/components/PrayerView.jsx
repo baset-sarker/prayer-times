@@ -250,7 +250,7 @@ const PrayerView = () => {
                               <h2 className="text-white">Useful links</h2>
                               <p className="text-white text-center">Youtube channel, helps to memorize quran</p>
                               <a target='blank' style={{"text-decoration": "none"}} href='https://www.youtube.com/@Worldofpeace-vm4bc' className="text-white">
-                              <img height={'40px'} src='/public/youtube.webp'></img> &nbsp; World of peace</a>
+                              <img height={'40px'} src='youtube.webp'></img> &nbsp; World of peace</a>
                           </div>
                     </div>
 
