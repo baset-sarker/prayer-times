@@ -44,7 +44,7 @@ function getLocalPryayerTime() {
     prayTimes.setMethod('ISNA');    
     // let timezone = new Date().getTimezoneOffset()/-60;
     let timezone = -5;
-    const times = prayTimes.getTimes(today, [44.6611,-74.9708], timezone)
+    const times = prayTimes.getTimes(today, [44.6611,-74.9708], timezone);
     // console.log(times)
     return times;
 }
