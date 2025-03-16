@@ -187,7 +187,7 @@ app.get('/prayer-times',async (req, res) => {
                 prayerTimes.prayers.asr_api = convert24to12(prayer_times.asr);
                 prayerTimes.prayers.magrib_api = convert24to12(prayer_times.maghrib);
                 prayerTimes.prayers.isha_api = convert24to12(prayer_times.isha);
-                console.info('Prayer times updated from Script');  
+                // console.info('Prayer times updated from Script');  
             }
             const current_datetime = getCurrentDateTime()
             prayerTimes = { ...prayerTimes, ssid, current_datetime };
