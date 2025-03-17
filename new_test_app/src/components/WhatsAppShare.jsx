@@ -27,7 +27,7 @@ Tarawih: ${prayer.tarawih}
   const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(FormatedTextForWhatsapp)}`;
 
   return (
-    <a href={whatsappURL} target="_blank" rel="noopener noreferrer" className="whatsapp-btn text-white" style={{ display: 'block', textAlign: 'center', marginTop: '10px', height: '30px' }}>
+    <a href={whatsappURL} target="_blank" rel="noopener noreferrer" className="whatsapp-btn text-gold" style={{ display: 'block', textAlign: 'center', marginTop: '10px', height: '30px' }}>
       <i className="fab fa-whatsapp"></i> Share on WhatsApp
     </a>
   );
