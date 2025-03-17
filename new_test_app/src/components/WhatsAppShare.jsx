@@ -7,14 +7,13 @@ const WhatsAppShare = ({ prayer }) => {
   const FormatedTextForWhatsapp=`Please inform others
                                   These are not prayer times, these are times we gather at our masjid for salat:
                                   
-                                  Fajr: ${prayer.fajr}
-                                  Sunrise: ${prayer.sunrise}
-                                  Dhuhr: ${prayer.duhr}
-                                  Jummah: ${prayer.jummah}
-                                  Asr: ${prayer.asr}
-                                  Magrib: ${prayer.magrib}
-                                  Isha: ${prayer.isha}
-                                  Tarawih: ${prayer.tarawih}
+                                  Fajr Iqama: ${prayer.fajr}
+                                  Dhuhr Iqama: ${prayer.duhr}
+                                  Jummah Iqama: ${prayer.jummah}
+                                  Asr Iqama: ${prayer.asr}
+                                  Magrib Iqama: ${prayer.magrib}
+                                  Isha Iqama: ${prayer.isha}
+                                  Tarawih Iqama: ${prayer.tarawih}
                                   For update visit: https://potsdammasjid.netlify.app/`;
   const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(FormatedTextForWhatsapp)}`;
 
