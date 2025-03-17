@@ -6,18 +6,19 @@ const WhatsAppShare = ({ prayer }) => {
   if (!prayer) return null; // Don't render if message is empty
   // const FormatedTextForWhatsapp= `السلام عليكم ورحمة الله تعالى وبركاته
   let FormatedTextForWhatsapp=`Please inform others
-                                  These are not prayer times, these are times we gather at our masjid for salat:
+These are not prayer times, these are times we gather at our masjid for salat:
                                   
-                                  Fajr Iqama: ${getIqaamahTime(prayer.fajr_api, prayer.fajr, prayer.fajr_added_time)}
-                                  Dhuhr Iqama: ${getIqaamahTime(prayer.duhr_api, prayer.duhr, prayer.duhr_added_time)}
-                                  Jummah Iqama: ${prayer.jummah}
-                                  Asr Iqama: ${getIqaamahTime(prayer.asr_api, prayer.asr, prayer.asr_added_time)}
-                                  Magrib Iqama: ${getIqaamahTime(prayer.magrib_api, prayer.magrib, prayer.magrib_added_time)}
-                                  Isha Iqama: ${getIqaamahTime(prayer.isha_api, prayer.isha, prayer.isha_added_time)}
-                                  `;
+Fajr Iqama: ${getIqaamahTime(prayer.fajr_api, prayer.fajr, prayer.fajr_added_time)}
+Dhuhr Iqama: ${getIqaamahTime(prayer.duhr_api, prayer.duhr, prayer.duhr_added_time)}
+Jummah Iqama: ${prayer.jummah}
+Asr Iqama: ${getIqaamahTime(prayer.asr_api, prayer.asr, prayer.asr_added_time)}
+Magrib Iqama: ${getIqaamahTime(prayer.magrib_api, prayer.magrib, prayer.magrib_added_time)}
+Isha Iqama: ${getIqaamahTime(prayer.isha_api, prayer.isha, prayer.isha_added_time)}`;
+
   if(prayer.tarawih !== ''){
-    FormatedTextForWhatsapp += `Tarawih Iqama: ${prayer.tarawih}
-    `;
+    FormatedTextForWhatsapp += `
+Tarawih Iqama: ${prayer.tarawih}
+`;
   }
 
   FormatedTextForWhatsapp += `For update visit: https://potsdammasjid.netlify.app/`;
