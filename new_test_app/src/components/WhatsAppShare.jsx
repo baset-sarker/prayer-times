@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 const WhatsAppShare = ({ prayer }) => {
   if (!prayer) return null; // Don't render if message is empty
-  const FormatedTextForWhatsapp= `السلام عليكم ورحمة الله تعالى وبركاته
-                                  Please inform others
+  // const FormatedTextForWhatsapp= `السلام عليكم ورحمة الله تعالى وبركاته
+  const FormatedTextForWhatsapp=`Please inform others
                                   These are not prayer times, these are times we gather at our masjid for salat:
                                   
                                   Fajr: ${prayer.fajr}
