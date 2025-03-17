@@ -4,7 +4,7 @@ import { getIqaamahTime } from "./helper";
 
 const WhatsAppShare = ({ prayer }) => {
   if (!prayer) return null; // Don't render if message is empty
-  const FormatedTextForWhatsapp= `السلام عليكم ورحمة الله تعالى وبركاته
+  let FormatedTextForWhatsapp= `السلام عليكم ورحمة الله تعالى وبركاته
 Please inform others
 These are not prayer times, these are times we gather at our masjid for salat:
                                   
