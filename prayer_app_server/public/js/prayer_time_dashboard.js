@@ -214,8 +214,11 @@ async function updatePrayerTimes() {
                 element_isha.innerHTML = 'Iqama '+isha
             }
             if(data.prayers.tarawih){
+                // if tarawi is not empty, and not less than isha api time then show tarawih
+                // if greater than isha api time than show as it is
+                const tarawih = getIqaamahTime(data.prayers.isha_api, data.prayers.tarawih,data.prayers.isha_added_time);
                 const element_tarawih = document.getElementById('tarawih');
-                element_tarawih.innerHTML = 'Tarawih '+data.prayers.tarawih
+                element_tarawih.innerHTML = 'Tarawih '+tarawih
             }
             
         }

@@ -225,7 +225,7 @@ const PrayerView = () => {
                                           <div class="prayer_text shiny-gold-text">(العشاء)</div>
                                           <div class="prayer_text shiny-gold-text" id="isha_api">Isha {prayer.isha_api}</div>
                                           <div class="prayer_text shiny-gold-text" id="isha">Iqama {getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time)}</div>
-                                          {prayer.tarawih && <div class="prayer_text shiny-gold-text" id="tarawih">Tarawih {prayer.tarawih}</div> }
+                                          {prayer.tarawih && <div class="prayer_text shiny-gold-text" id="tarawih">Tarawih {getIqaamahTime(prayer.isha_api,prayer.tarawih,prayer.isha_added_time)}</div> }
                                       </div>
                               </div>
                               
