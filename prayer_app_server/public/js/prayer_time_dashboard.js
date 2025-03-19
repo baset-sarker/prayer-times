@@ -6,7 +6,6 @@ let current_hadis = 0; // Track the current index
 let current_datetime = null;
 
 
-
 // ############ Helpers Start
 // Function to convert "hh:mm AM/PM" to minutes since midnight
 function timeToMinutes(time) {
@@ -239,7 +238,7 @@ async function updatePrayerTimes() {
                 // if greater than isha api time than show as it is
                 const tarawih = getTarawihTime(isha, data.prayers.tarawih);
                 const element_tarawih = document.getElementById('tarawih');
-                element_tarawih.innerHTML = 'Tarawih '+tarawih
+                element_tarawih.innerHTML = 'Taraweeh '+tarawih
             }
             
         }

@@ -17,13 +17,11 @@ Isha Iqama: ${getIqaamahTime(prayer.isha_api, prayer.isha, prayer.isha_added_tim
 
   if(prayer.tarawih !== ''){
     FormatedTextForWhatsapp += `
-Tarawih: ${getTarawihTime(getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time),prayer.tarawih)};
+Taraweeh: ${getTarawihTime(getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time),prayer.tarawih)};
 `;
   }
 
-  FormatedTextForWhatsapp += `For update visit: https://potsdammasjid.netlify.app/`;
-                                                                     
-                                  
+  FormatedTextForWhatsapp += `For update visit: https://potsdammasjid.netlify.app/`;         
   const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(FormatedTextForWhatsapp)}`;
 
   return (
