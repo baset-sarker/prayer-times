@@ -17,7 +17,7 @@ Isha Iqama: ${getIqaamahTime(prayer.isha_api, prayer.isha, prayer.isha_added_tim
 
   if(prayer.tarawih !== ''){
     FormatedTextForWhatsapp += `
-Tarawih: ${prayer.tarawih}
+Tarawih: ${getIqaamahTime(prayer.isha_api, prayer.tarawih, prayer.isha_added_time)};
 `;
   }
 
