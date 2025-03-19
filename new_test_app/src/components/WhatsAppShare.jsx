@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getIqaamahTime } from "./helper";
+import { getIqaamahTime,getTarawihTime } from "./helper";
 
 const WhatsAppShare = ({ prayer }) => {
   if (!prayer) return null; // Don't render if message is empty
@@ -17,7 +17,7 @@ Isha Iqama: ${getIqaamahTime(prayer.isha_api, prayer.isha, prayer.isha_added_tim
 
   if(prayer.tarawih !== ''){
     FormatedTextForWhatsapp += `
-Tarawih: ${getIqaamahTime(prayer.isha_api, prayer.tarawih, prayer.isha_added_time)};
+Tarawih: ${getTarawihTime(getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time),prayer.tarawih)};
 `;
   }
 

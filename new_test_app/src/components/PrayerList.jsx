@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { getIqaamahTime } from './helper';
+import { getIqaamahTime, getTarawihTime} from './helper';
 import WhatsAppShare from './WhatsAppShare';
 
 
@@ -85,7 +85,10 @@ function PrayerList({ token, apiUrl }) {
                       &nbsp;Asr Iqama:{getIqaamahTime(prayer.asr_api, prayer.asr, prayer.asr_added_time)}
                       &nbsp; Magrib Iqama:{getIqaamahTime(prayer.magrib_api, prayer.magrib, prayer.magrib_added_time)} 
                       &nbsp;Isha Iqama:{getIqaamahTime(prayer.isha_api, prayer.isha, prayer.isha_added_time)} 
-                      &nbsp;Tarawih:{prayer.tarawih} 
+                      {prayer.tarawih &&
+                      <span> &nbsp;Tarawih: {getTarawihTime(getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time),prayer.tarawih)}</span> 
+                      }
+
                       &nbsp; <WhatsAppShare prayer={prayer} />
                   </td>
                 </tr>

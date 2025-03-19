@@ -77,6 +77,26 @@ function getIqaamahTime(prayerTimeApi, prayerTime, add_or_sub = 0) {
 }
 
 
+  // api time is isha iqama time , prayerTime is tarawih time
+function getTarawihTime(isha_iqama, tarawihTime, add_or_sub = 0) {
+    
+  let apiTimeInMinutes = timeToMinutes(isha_iqama);
+  let timeInMinutes = timeToMinutes(tarawihTime);
+
+  if (timeInMinutes === null) {
+      return isha_iqama;
+  }
+  if (apiTimeInMinutes >= timeInMinutes) {
+      return isha_iqama;
+  }else {
+      return tarawihTime;
+  }
+}
+
+
+
+
+
 // Function to determine the active prayer
 function highlightActivePrayer(prayerTimes) {
     const now = new Date();
@@ -208,15 +228,16 @@ async function updatePrayerTimes() {
                 element_isha_api.innerHTML = 'Isha '+data.prayers.isha_api
             }
 
+            let isha = null;  // isha iqama
             if(data.prayers.isha){
-                const isha = getIqaamahTime(data.prayers.isha_api, data.prayers.isha,data.prayers.isha_added_time);
+                isha = getIqaamahTime(data.prayers.isha_api, data.prayers.isha,data.prayers.isha_added_time);
                 const element_isha = document.getElementById('isha');
                 element_isha.innerHTML = 'Iqama '+isha
             }
             if(data.prayers.tarawih){
                 // if tarawi is not empty, and not less than isha api time then show tarawih
                 // if greater than isha api time than show as it is
-                const tarawih = getIqaamahTime(data.prayers.isha_api, data.prayers.tarawih,data.prayers.isha_added_time);
+                const tarawih = getTarawihTime(isha, data.prayers.tarawih);
                 const element_tarawih = document.getElementById('tarawih');
                 element_tarawih.innerHTML = 'Tarawih '+tarawih
             }

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import WhatsAppShare from './WhatsAppShare';
 import ContactForm from './ContactForm';
 import Calendar from './Calendar';
+import { getIqaamahTime, getTarawihTime} from './helper';
 
 const PrayerView = () => {
     const apiUrl = '/api/prayer/homepage'; // Make sure this path is correct relative to your frontend
@@ -83,73 +84,49 @@ const PrayerView = () => {
       }).format(date);
     };
 
-    function getUpdatedTime(timeString, change) {
-      change = parseInt(change) || 0;
+    // function getUpdatedTime(timeString, change) {
+    //   change = parseInt(change) || 0;
     
-      let [time, period] = timeString.split(" ");
-      let [hours, minutes] = time.split(":").map(Number);
+    //   let [time, period] = timeString.split(" ");
+    //   let [hours, minutes] = time.split(":").map(Number);
     
-      // Convert to 24-hour format for easier calculations
-      if (period === "PM" && hours !== 12) hours += 12;
-      if (period === "AM" && hours === 12) hours = 0;
+    //   // Convert to 24-hour format for easier calculations
+    //   if (period === "PM" && hours !== 12) hours += 12;
+    //   if (period === "AM" && hours === 12) hours = 0;
     
-      // Adjust time
-      let totalMinutes = hours * 60 + minutes + change;
-      totalMinutes = (totalMinutes + 1440) % 1440; // Handle negative values and wrap around
+    //   // Adjust time
+    //   let totalMinutes = hours * 60 + minutes + change;
+    //   totalMinutes = (totalMinutes + 1440) % 1440; // Handle negative values and wrap around
     
-      // Convert back to hours and minutes
-      hours = Math.floor(totalMinutes / 60);
-      minutes = totalMinutes % 60;
+    //   // Convert back to hours and minutes
+    //   hours = Math.floor(totalMinutes / 60);
+    //   minutes = totalMinutes % 60;
     
-      // Convert back to 12-hour format
-      period = hours >= 12 ? "PM" : "AM";
-      hours = hours % 12 || 12; // Convert 0 -> 12 for AM
+    //   // Convert back to 12-hour format
+    //   period = hours >= 12 ? "PM" : "AM";
+    //   hours = hours % 12 || 12; // Convert 0 -> 12 for AM
     
-      // Format output
-      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
-    }
+    //   // Format output
+    //   return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
+    // }
 
-    function timeToMinutes(time) {
-      try {
-        const [timePart, period] = time.split(" ");
-        let [hours, minutes] = timePart.split(":").map(Number);
+  //   function timeToMinutes(time) {
+  //     try {
+  //       const [timePart, period] = time.split(" ");
+  //       let [hours, minutes] = timePart.split(":").map(Number);
     
-        if (period === "PM" && hours !== 12) hours += 12; // Convert PM hours to 24-hour format
-        if (period === "AM" && hours === 12) hours = 0;   // Convert 12 AM to 0
+  //       if (period === "PM" && hours !== 12) hours += 12; // Convert PM hours to 24-hour format
+  //       if (period === "AM" && hours === 12) hours = 0;   // Convert 12 AM to 0
     
-        return hours * 60 + minutes; // Return total minutes since midnight
-      } catch (error) {
-        console.error("Error converting time to minutes:", error);
-        return null;
-      }
+  //       return hours * 60 + minutes; // Return total minutes since midnight
+  //     } catch (error) {
+  //       console.error("Error converting time to minutes:", error);
+  //       return null;
+  //     }
       
-  }
+  // }
 
-  // prayerTime is Iqama time
-  function getIqaamahTime(prayerTimeApi, prayerTime, add_or_sub = 0) {
-      let add_or_sub_int = parseInt(add_or_sub) || 0;
-      // prayer time contains @ symbol remove @ symbol and return 
-      if (prayerTime.includes('@')) {
-          return prayerTime.replace('@', '');
-      }
- 
-      if (add_or_sub_int !== -1) {
-          return getUpdatedTime(prayerTimeApi, add_or_sub_int);
-      }
-      
-    
-      let apiTimeInMinutes = timeToMinutes(prayerTimeApi);
-      let timeInMinutes = timeToMinutes(prayerTime);
 
-      if (timeInMinutes === null) {
-          return prayerTimeApi;
-      }
-      if (apiTimeInMinutes >= timeInMinutes) {
-          return prayerTimeApi;
-      }else {
-          return prayerTime;
-      }
-  }
 
   return (
     <div>
@@ -225,7 +202,10 @@ const PrayerView = () => {
                                           <div class="prayer_text shiny-gold-text">(العشاء)</div>
                                           <div class="prayer_text shiny-gold-text" id="isha_api">Isha {prayer.isha_api}</div>
                                           <div class="prayer_text shiny-gold-text" id="isha">Iqama {getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time)}</div>
-                                          {prayer.tarawih && <div class="prayer_text shiny-gold-text" id="tarawih">Tarawih {getIqaamahTime(prayer.isha_api,prayer.tarawih,prayer.isha_added_time)}</div> }
+                                          {prayer.tarawih && <div class="prayer_text shiny-gold-text" id="tarawih">
+                                            Tarawih {getTarawihTime(getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time),prayer.tarawih)}
+                                            </div> 
+                                          }
                                       </div>
                               </div>
                               
@@ -249,7 +229,7 @@ const PrayerView = () => {
                           <div className="text-center">
                               <h2 className="text-white">Useful links</h2>
                               <p className="text-white text-center">Youtube channel, helps to memorize quran</p>
-                              <a target='blank' style={{"text-decoration": "none"}} href='https://www.youtube.com/@Worldofpeace-vm4bc' className="text-white">
+                              <a target='blank' style={{"textDecoration": "none"}} href='https://www.youtube.com/@Worldofpeace-vm4bc' className="text-white">
                               <img height={'40px'} src='youtube.webp'></img> &nbsp; World of peace</a>
                           </div>
                     </div>

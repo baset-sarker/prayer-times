@@ -65,6 +65,21 @@ function timeToMinutes(time) {
       }
   }
 
+  // api time is isha iqama time , prayerTime is tarawih time
+function getTarawihTime(isha_iqama, tarawihTime, add_or_sub = 0) {
+    
+  let apiTimeInMinutes = timeToMinutes(isha_iqama);
+  let timeInMinutes = timeToMinutes(tarawihTime);
+
+  if (timeInMinutes === null) {
+      return isha_iqama;
+  }
+  if (apiTimeInMinutes >= timeInMinutes) {
+      return isha_iqama;
+  }else {
+      return tarawihTime;
+  }
+}
 
   function updateIqamaTimeForFirstTim(prayer){
     let updatedTime = '';
@@ -98,5 +113,5 @@ function timeToMinutes(time) {
   }
 
 
-  export { timeToMinutes, getUpdatedTime, getIqaamahTime, updateIqamaTimeForFirstTim };
+  export { timeToMinutes, getUpdatedTime, getIqaamahTime, updateIqamaTimeForFirstTim, getTarawihTime };
   
