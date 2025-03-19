@@ -86,7 +86,7 @@ function PrayerList({ token, apiUrl }) {
                       &nbsp; Magrib Iqama:{getIqaamahTime(prayer.magrib_api, prayer.magrib, prayer.magrib_added_time)} 
                       &nbsp;Isha Iqama:{getIqaamahTime(prayer.isha_api, prayer.isha, prayer.isha_added_time)} 
                       {prayer.tarawih &&
-                      <span> &nbsp;Taraweehh: {getTarawihTime(getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time),prayer.tarawih)}</span> 
+                      <span> &nbsp;Taraweeh: {getTarawihTime(getIqaamahTime(prayer.isha_api,prayer.isha,prayer.isha_added_time),prayer.tarawih)}</span> 
                       }
 
                       &nbsp; <WhatsAppShare prayer={prayer} />
