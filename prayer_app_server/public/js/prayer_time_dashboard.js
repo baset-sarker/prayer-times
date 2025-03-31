@@ -346,7 +346,7 @@ function setCurrentDateTime() {
     const wifi = document.getElementById('wifi');
     const wifi_content = wifi.textContent;  
 
-    increase_one_second();
+    // increase_one_second();
     
     if (wifi_content.includes('Connected')) {
         wifi.textContent = `Connected`;
