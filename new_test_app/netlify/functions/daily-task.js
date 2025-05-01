@@ -37,7 +37,7 @@ export const handler = async (event, context) => {
     try {
 
         const prayer = await Prayer.findById("67a6a7f3910f6b920a5d4254");
-        console.log(prayer);
+        console.log("Previous prayer",prayer);
 
         const api_data = await fetchIslamicFinderData();
         prayer.fajr_api = convert24to12(api_data.results.Fajr)
@@ -55,6 +55,8 @@ export const handler = async (event, context) => {
         // prayer.asr_api = convert24to12(times.asr);
         // prayer.magrib_api = convert24to12(times.maghrib);
         // prayer.isha_api = convert24to12(times.isha);
+
+        console.log("Updated prayer",prayer);
 
 
         // nee to update the time 
