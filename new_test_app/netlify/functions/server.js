@@ -32,10 +32,14 @@ app.use('/api/auth', userRouter);
 app.use('/api/prayer', prayerRouter);
 app.use('/api/provider', providerRouter);
 
+
+// import { fetchIslamicFinderData } from './helpers/helper_func.js';
 // API route
-app.get("/api/test", (req, res) => {
-  res.json({ message: "Hello from Express on Netlify!" });
-});
+// app.get("/api/test", (req, res) => {
+//   // const api_data = fetchIslamicFinderData();
+//   // console.log(api_data)
+//   res.json({ message: "Hello from Express on Netlify!" });
+// });
 
 // API route
 app.get("/api/get-timezone", (req, res) => {
@@ -43,6 +47,11 @@ app.get("/api/get-timezone", (req, res) => {
   console.log(currentTimeZone); 
   res.json({ message: "Hello from Express on Netlify!", currentTimeZone: currentTimeZone });
 });
+
+
+
+
+
 
 
 
@@ -65,6 +74,11 @@ app.get("/api/get-timezone", (req, res) => {
 //   //   salt: salt.toString('base64'),
 //   // };
 // }
+
+// import { fetchIslamicFinderData } from './helpers/helper_func.js';
+
+// const api_data = await fetchIslamicFinderData();
+// console.log(api_data.results.Fajr)
 
 
 

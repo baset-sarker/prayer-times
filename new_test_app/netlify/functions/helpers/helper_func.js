@@ -85,6 +85,7 @@ function convert24to12(time24) {
         zipcode: '13676',    
         method: '2',  
         time_format: '0',        // Calculation method (e.g., 2 for Umm al-Qura)
+        high_latitude: '2', // one seventh rule
       }).toString();
       
       // Make the GET request to the API using Fetch.

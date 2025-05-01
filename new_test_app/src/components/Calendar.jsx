@@ -22,6 +22,7 @@ const PrayerTimesTable = () => {
 
       var prayTimes = new PrayTimes();
       prayTimes.setMethod('ISNA');
+      prayTimes.adjust({ highLats: 'OneSeventh' });
     //   console.log(prayTimes.getTimes(new Date(), [44.6611,-74.9708], -5));
       
       // var timezone = new Date().getTimezoneOffset()/-60;
@@ -83,7 +84,7 @@ const PrayerTimesTable = () => {
                     
                 </div>
                 <p className='text-white text-center text-justify'> *Calendar calculations are taken from  <a href='https://praytimes.org/'>PrayerTimes.org</a>, 
-                                                                           method: ISNA - Islamic Society of North America, juristic: Standard (Shafi, Hanbli, Maliki), Place: Potsdam, NY, USA.
+                                                                           method: ISNA - Islamic Society of North America, adjustment: OneSeventh, juristic: Standard (Shafi, Hanbli, Maliki), Place: Potsdam, NY, USA.
                                                                            
                                           </p>
             </div>
