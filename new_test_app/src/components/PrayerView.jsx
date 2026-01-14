@@ -212,7 +212,11 @@ const PrayerView = () => {
                           </div>
                   
                           </div> 
-                          <p className='py-4 text-white text-center text-justify'> *Prayer times are taken from API <a href='https://www.islamicfinder.us/'>islamicfinder.us</a>, 
+                          {/* <p className='py-4 text-white text-center text-justify'> *Prayer times are taken from API <a href='https://www.islamicfinder.us/'>islamicfinder.us</a>, 
+                                                           method: ISNA - Islamic Society of North America, adjustment: OneSeventh, juristic: Standard (Shafi, Hanbli, Maliki), Place: Potsdam, NY, USA. 
+                                                           please check before follow. <br /> */}
+
+                          <p className='py-4 text-white text-center text-justify'> *Calculations are taken from <a href='https://praytimes.org/'>PrayerTimes.org</a>, 
                                                            method: ISNA - Islamic Society of North America, adjustment: OneSeventh, juristic: Standard (Shafi, Hanbli, Maliki), Place: Potsdam, NY, USA. 
                                                            please check before follow. <br />
 
