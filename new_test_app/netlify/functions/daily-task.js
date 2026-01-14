@@ -9,9 +9,7 @@ const MONGODB_URI = process.env.MONGODB_URI ; // Replace with your MongoDB URI
 
 
 // MongoDB Connection
-mongoose.connect(MONGODB_URI, {
-  useUnifiedTopology: true,
-})
+mongoose.connect(MONGODB_URI)
 .then(() => console.log('MongoDB Connected'))
 .catch((err) => console.error('MongoDB Connection Error:', err));
 
