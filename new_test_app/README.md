@@ -4,10 +4,15 @@ node version 18.10.8
 
 1 first remove node_module
 2 npm install 
-3
+3 npm install -g netlify-cli
+4 netlify login
 
 # to run: 
 netlify dev
+
+# test daily schedul task
+node ./netlify/functions/test-run-daily-task.js
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
