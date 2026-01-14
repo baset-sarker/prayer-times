@@ -11,7 +11,7 @@ node version 18.10.8
 netlify dev
 
 # test daily schedul task
-node ./netlify/functions/test-run-daily-task.js
+node ./netlify/functions/test_run_daily_task.js
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
