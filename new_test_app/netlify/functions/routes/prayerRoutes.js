@@ -7,7 +7,7 @@ import dotenv from 'dotenv'; // Load environment variables from .env file
 dotenv.config(); // Load environment variables from .env file
 
 const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key'; // Replace with a strong secret key
-router = express.Router();
+const router = express.Router();
 
 router.get('/',authenticateJWT ,async (req, res) => {
   console.log("get all prayer=======")
@@ -97,29 +97,39 @@ router.get('/:id', authenticateJWT, async (req, res) => {
       //const prayer = await Prayer.findById(req.params.id)
       const prayer = await Prayer.findById("67a6a7f3910f6b920a5d4254");
 
-      // allaathan api data
-      // const api_data = await fetchData();
-      // prayer.fajr_api = convert24to12(api_data.data.timings.Fajr)
-      // prayer.duhr_api = convert24to12(api_data.data.timings.Dhuhr)
-      // prayer.asr_api = convert24to12(api_data.data.timings.Asr)
-      // prayer.magrib_api = convert24to12(api_data.data.timings.Maghrib)
-      // prayer.isha_api = convert24to12(api_data.data.timings.Isha)
-      // prayer.sunrise = convert24to12(api_data.data.timings.Sunrise)
-
-
-      const api_data = await fetchIslamicFinderData();
-      prayer.fajr_api = convert24to12(api_data.results.Fajr)
-      prayer.sunrise = convert24to12(api_data.results.Duha)
-      prayer.duhr_api = convert24to12(api_data.results.Dhuhr)
-      prayer.asr_api = convert24to12(api_data.results.Asr)
-      prayer.magrib_api = convert24to12(api_data.results.Maghrib)
-      prayer.isha_api = convert24to12(api_data.results.Isha)
-    
       if (!prayer) {
         return res.status(404).json({ message: 'Prayer not found' });
       }
-      // change somve value to int 
-      // prayer.fajr = "12:00";
+
+      let api_data
+
+      try {
+
+        // allaathan api data
+        api_data = await fetchData();
+        prayer.fajr_api = convert24to12(api_data.data.timings.Fajr)
+        prayer.duhr_api = convert24to12(api_data.data.timings.Dhuhr)
+        prayer.asr_api = convert24to12(api_data.data.timings.Asr)
+        prayer.magrib_api = convert24to12(api_data.data.timings.Maghrib)
+        prayer.isha_api = convert24to12(api_data.data.timings.Isha)
+        prayer.sunrise = convert24to12(api_data.data.timings.Sunrise)
+
+
+        // api_data = await fetchIslamicFinderData();
+        // prayer.fajr_api = convert24to12(api_data.results.Fajr)
+        // prayer.sunrise = convert24to12(api_data.results.Duha)
+        // prayer.duhr_api = convert24to12(api_data.results.Dhuhr)
+        // prayer.asr_api = convert24to12(api_data.results.Asr)
+        // prayer.magrib_api = convert24to12(api_data.results.Maghrib)
+        // prayer.isha_api = convert24to12(api_data.results.Isha)
+    
+
+      } catch (error) {
+        console.error('Error fetching data from api:', error.message);
+        return res.status(500).json({ message: 'Error fetching data from external API' });
+      }
+      
+      
       res.json(prayer);
     } catch (err) {
       res.status(500).json({ message: err.message });

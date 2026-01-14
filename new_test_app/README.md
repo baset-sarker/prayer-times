@@ -1,5 +1,11 @@
 # React + Vite
 
+node version 18.10.8
+
+1 first remove node_module
+2 npm install 
+3
+
 # to run: 
 netlify dev
 
