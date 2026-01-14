@@ -1,12 +1,12 @@
 
 
 import {Prayer} from './models/prayer.js';
-import {fetchIslamicFinderData, fetchData, convert24to12} from './helpers/helper_func.js';
+import {fetchIslamicFinderData, fetchData, convert24to12,getLocalPryayerTime} from './helpers/helper_func.js';
 import dotenv from 'dotenv'; // Load environment variables from .env file
 import mongoose from 'mongoose';
 dotenv.config(); // Load environment variables from .env file
 const MONGODB_URI = process.env.MONGODB_URI ; // Replace with your MongoDB URI
-import {PrayTimes} from './PrayerTime.js'
+
 
 // MongoDB Connection
 mongoose.connect(MONGODB_URI, {
@@ -14,21 +14,6 @@ mongoose.connect(MONGODB_URI, {
 })
 .then(() => console.log('MongoDB Connected'))
 .catch((err) => console.error('MongoDB Connection Error:', err));
-
-
-// get data from PrayerTime.js 
-// need to convert the time to 12 hour format
-function getLocalPryayerTime() {
-    const today = new Date();
-    var prayTimes = new PrayTimes();
-    prayTimes.setMethod('ISNA');    
-    prayTimes.adjust({ highLats: 'OneSeventh' });
-    // let timezone = new Date().getTimezoneOffset()/-60;
-    let timezone = -5;
-    const times = prayTimes.getTimes(today, [44.6611,-74.9708], timezone);
-    // console.log(times)
-    return times;
-}
 
 
 export const handler = async (event, context) => {
@@ -48,22 +33,22 @@ export const handler = async (event, context) => {
         // prayer.isha_api = convert24to12(api_data.results.Isha)
 
         // get data from PrayerTime.js
-        // const times = getLocalPryayerTime();
-        // prayer.fajr_api = convert24to12(times.fajr);
-        // prayer.sunrise = convert24to12(times.sunrise);
-        // prayer.duhr_api = convert24to12(times.dhuhr);
-        // prayer.asr_api = convert24to12(times.asr);
-        // prayer.magrib_api = convert24to12(times.maghrib);
-        // prayer.isha_api = convert24to12(times.isha);
+        const times = getLocalPryayerTime();
+        prayer.fajr_api = convert24to12(times.fajr);
+        prayer.sunrise = convert24to12(times.sunrise);
+        prayer.duhr_api = convert24to12(times.dhuhr);
+        prayer.asr_api = convert24to12(times.asr);
+        prayer.magrib_api = convert24to12(times.maghrib);
+        prayer.isha_api = convert24to12(times.isha);
 
         // allaathan api data
-        const api_data = await fetchData();
-        prayer.fajr_api = convert24to12(api_data.data.timings.Fajr)
-        prayer.duhr_api = convert24to12(api_data.data.timings.Dhuhr)
-        prayer.asr_api = convert24to12(api_data.data.timings.Asr)
-        prayer.magrib_api = convert24to12(api_data.data.timings.Maghrib)
-        prayer.isha_api = convert24to12(api_data.data.timings.Isha)
-        prayer.sunrise = convert24to12(api_data.data.timings.Sunrise)
+        // const api_data = await fetchData();
+        // prayer.fajr_api = convert24to12(api_data.data.timings.Fajr)
+        // prayer.duhr_api = convert24to12(api_data.data.timings.Dhuhr)
+        // prayer.asr_api = convert24to12(api_data.data.timings.Asr)
+        // prayer.magrib_api = convert24to12(api_data.data.timings.Maghrib)
+        // prayer.isha_api = convert24to12(api_data.data.timings.Isha)
+        // prayer.sunrise = convert24to12(api_data.data.timings.Sunrise)
 
 
 

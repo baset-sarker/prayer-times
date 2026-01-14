@@ -1,3 +1,4 @@
+import {PrayTimes} from './PrayerTime.js'
 
 function convert24to12(time24) {
     const [hours, minutes] = time24.split(':');
@@ -89,7 +90,7 @@ function convert24to12(time24) {
       }).toString();
       
       // Make the GET request to the API using Fetch.
-      const url = `${baseUrl}?${params.toString()}`; // Use toString()
+      const url = `${baseUrl}?${params.toString()}`; // Useimport {PrayTimes} from './PrayerTime.js' toString()
       
       try {
         const response = await fetch(url,  { headers: { 'Accept': 'application/json'}});
@@ -106,10 +107,26 @@ function convert24to12(time24) {
         console.error('Error fetching data:', error.message);
     }
   }
+  
+
+  // get data from PrayerTime.js 
+  // need to convert the time to 12 hour format
+  function getLocalPryayerTime() {
+      const today = new Date();
+      var prayTimes = new PrayTimes();
+      prayTimes.setMethod('ISNA');    
+      prayTimes.adjust({ highLats: 'OneSeventh' });
+      // let timezone = new Date().getTimezoneOffset()/-60;
+      let timezone = -5;
+      const times = prayTimes.getTimes(today, [44.6611,-74.9708], timezone);
+      // console.log(times)
+      return times;
+  }
 
 
   export {convert24to12,
           getCurrentDateFormatted,
           fetchIslamicFinderData,
           timeToMinutes,
+          getLocalPryayerTime,
           fetchData}
